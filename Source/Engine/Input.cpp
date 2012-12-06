@@ -12,7 +12,7 @@ Input::Input(SDL_Window *wnd, int width, int height)
 	, wndHeight(height)
 {
 	mouseGrabbed = false;
-    mouseVisible = true;
+	mouseVisible = true;
 }
 
 Input::~Input()
@@ -26,65 +26,65 @@ bool Input::IsMouseGrabbed() const
 
 void Input::GrabMouse(bool grabbed)
 {
-    if(mouseGrabbed == grabbed) return;
+	if(mouseGrabbed == grabbed) return;
 
-    mouseGrabbed = grabbed;
-    mousedx = 0;
-    mousedy = 0;
-    if(grabbed)
-    {
-        old_mousex = mousex;
-        old_mousey = mousey;
-        mousex = wndWidth/2;
-        mousey = wndHeight/2;
+	mouseGrabbed = grabbed;
+	mousedx = 0;
+	mousedy = 0;
+	if(grabbed)
+	{
+		old_mousex = mousex;
+		old_mousey = mousey;
+		mousex = wndWidth/2;
+		mousey = wndHeight/2;
 		SDL_WarpMouseInWindow(window, mousex, mousey);
-    }
-    else
-    {
-        mousex = old_mousex;
-        mousey = old_mousey;
+	}
+	else
+	{
+		mousex = old_mousex;
+		mousey = old_mousey;
 		SDL_WarpMouseInWindow(window, mousex, mousey);
-    }
+	}
 }
 
 void Input::UpdateMouseState()
 {
-    int x,y;
-    mouseState = SDL_GetMouseState(&x, &y);
-    if(mouseGrabbed)
-    {
-        mousex = wndWidth/2;
-        mousey = wndHeight/2;
-        mousedx = x - mousex;
-        mousedy = y - mousey;
+	int x,y;
+	mouseState = SDL_GetMouseState(&x, &y);
+	if(mouseGrabbed)
+	{
+		mousex = wndWidth/2;
+		mousey = wndHeight/2;
+		mousedx = x - mousex;
+		mousedy = y - mousey;
 		SDL_WarpMouseInWindow(window, mousex, mousey);
-    }
-    else
-    {
-        mousex = x;
-        mousey = y;
-        mousedx = 0;
-        mousedy = 0;
-    }
+	}
+	else
+	{
+		mousex = x;
+		mousey = y;
+		mousedx = 0;
+		mousedy = 0;
+	}
 }
 
 void Input::ShowMouse(bool show)
 {
-    if(mouseVisible != show)
-    {
-        mouseVisible = show;
-        SDL_ShowCursor(show ? SDL_ENABLE : SDL_DISABLE);
-    }
+	if(mouseVisible != show)
+	{
+		mouseVisible = show;
+		SDL_ShowCursor(show ? SDL_ENABLE : SDL_DISABLE);
+	}
 }
 
 bool Input::KeyPressed(int key)
 {
-    return (keyStates[key] != 0);
+	return (keyStates[key] != 0);
 }
 
 bool Input::MousePressed(int key)
 {
-    return ((mouseState & SDL_BUTTON(key)) != 0);
+	return ((mouseState & SDL_BUTTON(key)) != 0);
 }
 
 void Input::UpdateKeyStates()

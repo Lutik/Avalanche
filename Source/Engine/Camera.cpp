@@ -1,12 +1,3 @@
-/********************************************************************************
-
-Author: Shageev Renat (share@list.ru)
-
-Created: 20.09.2009
-Last Change: 18.04.2010
-
-********************************************************************************/
-
 #include "stdafx.h"
 #include "Camera.h"
 #include "Renderer.h"
@@ -133,41 +124,41 @@ void CCamera::MoveLeft(float dist)
 
 void CCamera::GetModelview(Matrix4f &mat)
 {
-    mat.LoadIdentity();
-    mUp.Normalize();
-    mat.LookAt(mPosition, mPosition+mView, mUp);
+	mat.LoadIdentity();
+	mUp.Normalize();
+	mat.LookAt(mPosition, mPosition+mView, mUp);
 }
 
 void CCamera::GetProjection(Matrix4f &mat)
 {
-    mat.LoadIdentity();
-    mat.Perspective(mFOV, mAspect, mZNear, mZFar);
+	mat.LoadIdentity();
+	mat.Perspective(mFOV, mAspect, mZNear, mZFar);
 }
 
 void CCamera::GetModelviewProjection(Matrix4f &mat)
 {
-    mat.LoadIdentity();
-    mat.Perspective(mFOV, mAspect, mZNear, mZFar);
-    mUp.Normalize();
-    mat.LookAt(mPosition, mPosition+mView, mUp);
+	mat.LoadIdentity();
+	mat.Perspective(mFOV, mAspect, mZNear, mZFar);
+	mUp.Normalize();
+	mat.LookAt(mPosition, mPosition+mView, mUp);
 }
 
 void CCamera::Render()
 {
-    Matrix4f mv, proj;
-    GetModelview(mv);
-    GetProjection(proj);
-    Renderer->SetCamera(mv, proj);
+	Matrix4f mv, proj;
+	GetModelview(mv);
+	GetProjection(proj);
+	Renderer->SetCamera(mv, proj);
 
-    CSceneNode::Render();
+	CSceneNode::Render();
 }
 
 Vector2f CCamera::IntersectFloor(float mx, float my)
 { 
-    float s = mZNear / (mAspect * tanf(Deg2Rad(mFOV)));
-    Vector3f right = CrossProduct3f(mView, mUp);
-    Vector3f view = mView * mZNear + my*s*mUp + mx*s*right;
-    float c = mPosition.z / view.z;
-    return Vector2f(mPosition.x - view.x * c, mPosition.y - view.y * c);
+	float s = mZNear / (mAspect * tanf(Deg2Rad(mFOV)));
+	Vector3f right = CrossProduct3f(mView, mUp);
+	Vector3f view = mView * mZNear + my*s*mUp + mx*s*right;
+	float c = mPosition.z / view.z;
+	return Vector2f(mPosition.x - view.x * c, mPosition.y - view.y * c);
 }
 

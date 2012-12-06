@@ -1,12 +1,3 @@
-/********************************************************************************
-
-Author: Shageev Renat (share@list.ru)
-
-Created: 20.09.2009
-Last Change: 18.04.2010
-
-********************************************************************************/
-
 #ifndef AvalancheCameraH
 #define AvalancheCameraH
 
@@ -26,9 +17,9 @@ public:
 	void RotateViewVec(float x, float y, float z, float angle);
 	void RotateUpVec(float x, float y, float z, float angle);
 	void Rotate(float x, float y, float z, float angle);
-	void RotateX(float angle);	//тангаж
-	void RotateY(float angle);	//рысканье
-	void RotateZ(float angle);	//крен
+	void RotateX(float angle);
+	void RotateY(float angle);
+	void RotateZ(float angle);
 	//movements
 	void MoveForward(float dist);
 	void MoveBackward(float dist) { MoveForward(-dist); }
@@ -40,14 +31,14 @@ public:
 	Vector3f GetUp() { return mUp; }
 	float GetZFar() { return mZFar; }
 	//apply camera to OpenGL
-    void GetModelview(Matrix4f &mat);
-    void GetProjection(Matrix4f &mat);
-    void GetModelviewProjection(Matrix4f &mat);
+	void GetModelview(Matrix4f &mat);
+	void GetProjection(Matrix4f &mat);
+	void GetModelviewProjection(Matrix4f &mat);
 
-    void Render();
+	void Render();
 
-    //Misc
-    Vector2f IntersectFloor(float mx, float my);
+	//Misc
+	Vector2f IntersectFloor(float mx, float my);
 private:
 	//position and orientation
 	Vector3f mView;
@@ -57,7 +48,7 @@ private:
 	float mFOV;
 	float mAspect;
 	float mZNear, mZFar;
-    //  
+	//  
 };
 
 #endif

@@ -5,20 +5,20 @@
 class AvalancheGame : public Av::Application
 {
 public:
-    void onStart();
+	void onStart();
 
-    void onRender();
+	void onRender();
 
-    void onUpdate(float diff);
+	void onUpdate(float diff);
 
-    void onKeyDown(int key);
+	void onKeyDown(int key);
 
-    void onMouseDown(int key);
+	void onMouseDown(int key);
 
-    void onMouseUp(int key);
+	void onMouseUp(int key);
 
-    void onExit();
+	void onExit();
 
-    //unused handlers
-    void onKeyUp(int key) {}
+	//unused handlers
+	void onKeyUp(int key) {}
 };

@@ -13,10 +13,10 @@ Application *application = nullptr;
 Application::Application()
 	: window(nullptr)
 {
-    initialized = false;
-    running = false;
-    shutdownPlanned = false;
-    minimized = false;
+	initialized = false;
+	running = false;
+	shutdownPlanned = false;
+	minimized = false;
 
 	application = this;
 }
@@ -27,15 +27,15 @@ Application::~Application()
 
 bool Application::InitWindow(VideoSettings &settings)
 {
-    wndWidth = settings.width;
+	wndWidth = settings.width;
 	wndHeight = settings.height;
-    aspect = (float) wndWidth / (float) wndHeight;
+	aspect = (float) wndWidth / (float) wndHeight;
 
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
 
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
 	window = SDL_CreateWindow(PROGRAM_NAME, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		wndWidth, wndHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
@@ -43,7 +43,7 @@ bool Application::InitWindow(VideoSettings &settings)
 	if( !window )
 	{
 		Log::log("Failed to create window\n");
-        return false;
+		return false;
 	}
 	
 	input = new Input(window, wndWidth, wndHeight);
@@ -56,42 +56,42 @@ bool Application::InitOpenGL(VideoSettings &settings)
 	context = SDL_GL_CreateContext(window);
 
 	GL_InitMisc();
-    GL_InitShaders();
-    GL_InitVBO();
+	GL_InitShaders();
+	GL_InitVBO();
 
 	return true;
 }
 
 bool Application::Initialize(VideoSettings &settings)
 {
-    if(initialized) return false;
+	if(initialized) return false;
 
-    Log::open("engine.txt", true);
-    Log::log("Launching Avalanche Engine 2\n");
-    Log::log("Build date: "__DATE__", "__TIME__"\n\n");
+	Log::open("engine.txt", true);
+	Log::log("Launching Avalanche Engine 2\n");
+	Log::log("Build date: "__DATE__", "__TIME__"\n\n");
 
-    if(SDL_Init(SDL_INIT_VIDEO /*| SDL_INIT_TIMER*/) < 0)
-    {
-        Log::log("Error: SDL_Init failed\n");
-        return false;
-    }
+	if(SDL_Init(SDL_INIT_VIDEO /*| SDL_INIT_TIMER*/) < 0)
+	{
+		Log::log("Error: SDL_Init failed\n");
+		return false;
+	}
 
 	if(!InitWindow(settings)) return false;
 	if(!InitOpenGL(settings)) return false;
 
-    initialized = true;
+	initialized = true;
 
 	return initialized;
 }
 
 void Application::Exit()
 {
-    if(!initialized) return;
+	if(!initialized) return;
 
-    onExit();
+	onExit();
 
-    Log::log("Shutting down...");
-    Log::close();
+	Log::log("Shutting down...");
+	Log::close();
 
 	SDL_GL_DeleteContext(context);
 	SDL_DestroyWindow(window);
@@ -104,60 +104,60 @@ void Application::Exit()
 
 	SDL_Quit();
 
-    initialized = false;
+	initialized = false;
 }
 
 void Application::Run()
 {
-    if(running) return;
+	if(running) return;
 
-    running = true;
+	running = true;
 
-    onStart();
+	onStart();
 
-    UpdateTimer.Start();
+	UpdateTimer.Start();
 
-    while(!shutdownPlanned)
-    {
-        ProcessEvents();
-        float diff = UpdateTimer.GetTime(true);
-        if(!minimized)
-        {
-            //SDL_PumpEvents();
-            input->UpdateMouseState();
-            input->UpdateKeyStates();
+	while(!shutdownPlanned)
+	{
+		ProcessEvents();
+		float diff = UpdateTimer.GetTime(true);
+		if(!minimized)
+		{
+			//SDL_PumpEvents();
+			input->UpdateMouseState();
+			input->UpdateKeyStates();
 
-            onUpdate(diff);
-            onRender();
+			onUpdate(diff);
+			onRender();
 			SDL_GL_SwapWindow(window);
-        }
-    }
+		}
+	}
 
 	running = false;
-    
-	Exit();  
+	
+	Exit();
 }
 
 bool Application::ProcessEvents()
 {
-    SDL_Event msg;
-    while(SDL_PollEvent(&msg))
-    {
-        ProcessEvent(&msg);
-    }
-    return true;
+	SDL_Event msg;
+	while(SDL_PollEvent(&msg))
+	{
+		ProcessEvent(&msg);
+	}
+	return true;
 }
 
 void Application::ProcessEvent(SDL_Event *msg)
 {
-    switch(msg->type)
-    {
-        case SDL_QUIT: Shutdown(); return;
-        case SDL_KEYDOWN: onKeyDown(msg->key.keysym.scancode); return;
-        case SDL_KEYUP: onKeyUp(msg->key.keysym.scancode); return;
-        case SDL_MOUSEBUTTONDOWN: onMouseDown(msg->button.button); return;
-        case SDL_MOUSEBUTTONUP: onMouseUp(msg->button.button); return;
-    }
+	switch(msg->type)
+	{
+		case SDL_QUIT: Shutdown(); return;
+		case SDL_KEYDOWN: onKeyDown(msg->key.keysym.scancode); return;
+		case SDL_KEYUP: onKeyUp(msg->key.keysym.scancode); return;
+		case SDL_MOUSEBUTTONDOWN: onMouseDown(msg->button.button); return;
+		case SDL_MOUSEBUTTONUP: onMouseUp(msg->button.button); return;
+	}
 }
 
 void Application::Shutdown()
