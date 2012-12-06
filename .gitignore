@@ -1,0 +1,22 @@
+#Executable
+*.exe
+*.dll
+
+#Visual Studio files
+*.sdf
+*.opensdf
+*.user
+*.filter
+*.ilk
+*.pdb
+*.ipch
+*.suo
+Debug
+Release
+Source/ipch
+
+#Windows
+Thumbs.db
+
+#Engine log file
+engine.txt
