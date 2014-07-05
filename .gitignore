@@ -1,6 +1,5 @@
 #Executable
 *.exe
-*.dll
 
 #Visual Studio files
 *.sdf

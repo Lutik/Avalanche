@@ -35,7 +35,7 @@ private:
 	int mousex, mousey, mousedx, mousedy, old_mousex, old_mousey;
 	bool mouseGrabbed;
 	bool mouseVisible;
-	Uint8 *keyStates;
+	const Uint8 *keyStates;
 	Uint8 mouseState;
 };
 
