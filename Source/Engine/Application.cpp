@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Application.h"
 #include "Log.h"
-#include "OpenGL.h"
 
 namespace Av
 {
