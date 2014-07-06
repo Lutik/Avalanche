@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "GameApp.h"
 
+#include "ImageLoaders.h"
+
 void AvalancheGame::onStart()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);

@@ -43,13 +43,13 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\</OutDir>
     <IntDir>..\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)SDL\include;$(SolutionDir)Engine;$(SolutionDir)Math;$(SolutionDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)libs/libpng-1.6.12/;$(SolutionDir)SDL/include;$(SolutionDir)Engine;$(SolutionDir)Math;$(SolutionDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\</OutDir>
     <IntDir>..\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)SDL\include;$(SolutionDir)Engine;$(SolutionDir)Math;$(SolutionDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)libs/libpng-1.6.12/;$(SolutionDir)SDL/include;$(SolutionDir)Engine;$(SolutionDir)Math;$(SolutionDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -62,8 +62,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)SDL/lib/x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;SDL2.lib;libpng16.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)libs/libpng-1.6.12/projects/vstudio/Debug Library;$(SolutionDir)SDL/lib/x86</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -81,13 +81,14 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)SDL/lib/x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;SDL2.lib;libpng16.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)libs/libpng-1.6.12/projects/vstudio/Release Library;$(SolutionDir)SDL/lib/x86</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Application.h" />
     <ClInclude Include="Engine\Avalanche.h" />
+    <ClInclude Include="Engine\ImageLoaders.h" />
     <ClInclude Include="Engine\Input.h" />
     <ClInclude Include="Engine\Log.h" />
     <ClInclude Include="Engine\OpenGL.h" />
@@ -99,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Application.cpp" />
+    <ClCompile Include="Engine\ImageLoaders.cpp" />
     <ClCompile Include="Engine\Input.cpp" />
     <ClCompile Include="Engine\Log.cpp" />
     <ClCompile Include="Engine\OpenGL.cpp" />
