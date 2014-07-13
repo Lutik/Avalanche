@@ -4,7 +4,7 @@
 #include "ImageLoaders.h"
 #include "VertexBuffer.h"
 
-VertexBuffer<VertexP2T2> vb;
+DeviceBuffer<GL_ARRAY_BUFFER, VertexP2T2> vb;
 
 void AvalancheGame::onStart()
 {
