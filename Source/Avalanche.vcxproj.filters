@@ -53,6 +53,9 @@
     <ClInclude Include="Engine\VertexBuffer.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\VertexTypes.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -89,9 +92,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Engine\ImageLoaders.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\VertexBuffer.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>

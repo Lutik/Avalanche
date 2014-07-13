@@ -1,13 +1,5 @@
 #pragma once
 
-#include "math3d.h"
-
-
-struct VertexP2T2
-{
-	Vector2f pos;
-	Vector2f uv;
-};
 
 template<GLenum bufferType, typename DataType>
 class DeviceBuffer

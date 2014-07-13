@@ -3,6 +3,7 @@
 
 #include "ImageLoaders.h"
 #include "VertexBuffer.h"
+#include "VertexTypes.h"
 
 DeviceBuffer<GL_ARRAY_BUFFER, VertexP2T2> vb;
 
