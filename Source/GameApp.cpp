@@ -5,7 +5,7 @@
 #include "VertexBuffer.h"
 #include "VertexTypes.h"
 
-DeviceBuffer<GL_ARRAY_BUFFER, VertexP2T2> vb;
+VertexBuffer<VertexP2T2> vb;
 
 void AvalancheGame::onStart()
 {

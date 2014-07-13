@@ -22,13 +22,13 @@ public:
 		return _size;
 	}
 
-	void Init(size_t size, const DataType *data = NULL, GLenum usage = GL_DYNAMIC_DRAW)
+	void Init(size_t size, const DataType *data = nullptr, GLenum usage = GL_DYNAMIC_DRAW)
 	{
 		if( !IsValid() ) {
 			glGenBuffers(1, &_id);
 		}
 
-		if(data != NULL || size != _size)
+		if(data != nullptr || size != _size)
 		{
 			glBindBuffer(bufferType, _id);
 			glBufferData(bufferType, _size * sizeof(DataType), data, usage);
@@ -61,8 +61,5 @@ public:
 	}
 };
 
-// Requires C++11 template aliases support (VS2013)
-//template<class VertexType> using VertexBuffer = DeviceBuffer<GL_ARRAY_BUFFER, VertexType>;
-//template<class VertexType> using IndexBuffer = DeviceBuffer<GL_ELEMENT_ARRAY_BUFFER, VertexType>;
-
-void DrawArrays();
+template<class VertexType> using VertexBuffer = DeviceBuffer<GL_ARRAY_BUFFER, VertexType>;
+template<class VertexType> using IndexBuffer = DeviceBuffer<GL_ELEMENT_ARRAY_BUFFER, VertexType>;
