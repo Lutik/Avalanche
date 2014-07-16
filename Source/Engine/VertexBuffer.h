@@ -31,7 +31,7 @@ public:
 		if(data != nullptr || size != _size)
 		{
 			glBindBuffer(bufferType, _id);
-			glBufferData(bufferType, _size * sizeof(DataType), data, usage);
+			glBufferData(bufferType, size * sizeof(DataType), data, usage);
 		}
 
 		_size = size;
@@ -62,4 +62,4 @@ public:
 };
 
 template<class VertexType> using VertexBuffer = DeviceBuffer<GL_ARRAY_BUFFER, VertexType>;
-template<class VertexType> using IndexBuffer = DeviceBuffer<GL_ELEMENT_ARRAY_BUFFER, VertexType>;
+template<class IndexType> using IndexBuffer = DeviceBuffer<GL_ELEMENT_ARRAY_BUFFER, IndexType>;
