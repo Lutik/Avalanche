@@ -92,7 +92,9 @@
     <ClInclude Include="Engine\Input.h" />
     <ClInclude Include="Engine\Log.h" />
     <ClInclude Include="Engine\OpenGL.h" />
+    <ClInclude Include="Engine\Shader.h" />
     <ClInclude Include="Engine\Timer.h" />
+    <ClInclude Include="Engine\Utils.h" />
     <ClInclude Include="Engine\VertexBuffer.h" />
     <ClInclude Include="Engine\VertexTypes.h" />
     <ClInclude Include="GameApp.h" />
@@ -106,6 +108,8 @@
     <ClCompile Include="Engine\Input.cpp" />
     <ClCompile Include="Engine\Log.cpp" />
     <ClCompile Include="Engine\OpenGL.cpp" />
+    <ClCompile Include="Engine\Shader.cpp" />
+    <ClCompile Include="Engine\Utils.cpp" />
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Math\m3d_matrix.cpp" />

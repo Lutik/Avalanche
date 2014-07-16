@@ -56,6 +56,12 @@
     <ClInclude Include="Engine\VertexTypes.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Utils.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Shader.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -92,6 +98,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Engine\ImageLoaders.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Utils.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Shader.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>

@@ -202,6 +202,13 @@ bool CheckGLError(char *loc)
 
 void ProgramLog(GLuint program)
 {
+	GLint result = GL_FALSE;
+	glGetProgramiv(program, GL_LINK_STATUS, &result);
+	if (result == GL_TRUE)
+		Av::Log::log("Program link successfull\n");
+	else
+		Av::Log::log("Program link failed\n");
+
 	int logLength = 0;
 	char log[1024];
 
@@ -213,6 +220,13 @@ void ProgramLog(GLuint program)
 
 void ShaderLog(GLuint shader)
 {
+	GLint result = GL_FALSE;
+	glGetShaderiv(shader, GL_COMPILE_STATUS, &result);
+	if (result == GL_TRUE)
+		Av::Log::log("Shader compile successfull\n");
+	else
+		Av::Log::log("Shader compile failed\n");
+
 	int logLength = 0;
 	char log[1024];
 
