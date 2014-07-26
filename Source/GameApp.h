@@ -5,11 +5,13 @@
 class AvalancheGame : public Av::Application
 {
 public:
+	AvalancheGame();
+
 	void onStart();
 
 	void onRender();
 
-	void onUpdate(float diff);
+	void onUpdate(float dt);
 
 	void onKeyDown(int key);
 

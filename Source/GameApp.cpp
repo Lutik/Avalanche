@@ -6,9 +6,13 @@
 #include "VertexTypes.h"
 #include "Shader.h"
 
-VertexBuffer<Vector2f> vb;
+VertexBuffer<VertexP2T2> vb;
 ShaderProgram shader;
 GLuint vao;
+
+AvalancheGame::AvalancheGame()
+{
+}
 
 void AvalancheGame::onStart()
 {
@@ -19,18 +23,29 @@ void AvalancheGame::onStart()
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 
-	Vector2f v[3];
-	v[0] = Vector2f(-0.5f, -0.5f);
-	v[1] = Vector2f(0.5f, -0.5f);
-	v[2] = Vector2f(0.0f, 0.5f);
+	VertexP2T2 v[3] =
+	{
+		{ { -0.5f, -0.5f }, { 0.0f, 0.0f } },
+		{ { -0.5f, 0.5f }, { 0.0f, 1.0f } },
+		{ { 0.5f, 0.5f }, { 1.0f, 1.0f } }
+	};
 	vb.Init(3, v, GL_STATIC_DRAW);
 	vb.Bind();
 
+	int w, h;
+	GLuint texID = loadTexture("Resources/energy_dust.png", w, h);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texID);
+
 	shader.Init("Resources/Shaders/Simple.vsh", "Resources/Shaders/Simple.fsh");
 
-	GLint attrLoc = glGetAttribLocation(shader.GetID(), "position");
-	glVertexAttribPointer(attrLoc, 2, GL_FLOAT, GL_FALSE, sizeof(Vector2f), NULL);
-	glEnableVertexAttribArray(attrLoc);
+	GLint posLoc = glGetAttribLocation(shader.GetID(), "in_pos");
+	glVertexAttribPointer(posLoc, 2, GL_FLOAT, GL_FALSE, sizeof(VertexP2T2), (GLvoid*)offsetof(VertexP2T2, pos));
+	glEnableVertexAttribArray(posLoc);
+
+	GLint uvLoc = glGetAttribLocation(shader.GetID(), "in_uv");
+	glVertexAttribPointer(uvLoc, 2, GL_FLOAT, GL_FALSE, sizeof(VertexP2T2), (GLvoid*)offsetof(VertexP2T2, uv));
+	glEnableVertexAttribArray(uvLoc);
 }
 
 void AvalancheGame::onRender()
@@ -40,11 +55,13 @@ void AvalancheGame::onRender()
 	shader.Bind();
 	glBindVertexArray(vao);
 
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	GLuint texLoc = glGetUniformLocation(shader.GetID(), "tex");
+	glUniform1i(texLoc, 0);
 
+	glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
-void AvalancheGame::onUpdate(float diff)
+void AvalancheGame::onUpdate(float dt)
 {
 }
 
