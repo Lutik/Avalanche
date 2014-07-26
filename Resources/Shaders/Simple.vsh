@@ -1,7 +1,7 @@
-#version 150 core
+#version 400 core
 
-in vec2 in_pos;
-in vec2 in_uv;
+layout(location = 0) in vec2 in_pos;
+layout(location = 1) in vec2 in_uv;
 
 out vec2 uv;
 

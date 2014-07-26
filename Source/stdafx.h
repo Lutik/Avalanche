@@ -29,8 +29,9 @@
 #include <vector>
 
 //OpenGL
-#include <GL/GL.h>
-#include "GL/gl3.h"
-#include "GL/glext.h"
-#include "GL/wglext.h"
+//#include <GL/GL.h>
+//#include "GL/glcorearb.h"
+//#include "GL/glext.h"
+//#include "GL/wglext.h"
+#include "GL/gl_core_4_4.h"
 #include "OpenGL.h"
