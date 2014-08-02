@@ -19,12 +19,12 @@ bool CheckGLError()
 		case GL_INVALID_VALUE:
 			Av::Log::log("OpenGL error: invalid value\n");
 			return true;
-		case GL_STACK_OVERFLOW:
-			Av::Log::log("OpenGL error: stack overflow\n");
-			return true;
-		case GL_STACK_UNDERFLOW:
-			Av::Log::log("OpenGL error: stack underflow\n");
-			return true;
+		//case GL_STACK_OVERFLOW:
+		//	Av::Log::log("OpenGL error: stack overflow\n");
+		//	return true;
+		//case GL_STACK_UNDERFLOW:
+		//	Av::Log::log("OpenGL error: stack underflow\n");
+		//	return true;
 		case GL_OUT_OF_MEMORY:
 			Av::Log::log("OpenGL error: out of memory\n");
 			return true;
@@ -50,12 +50,12 @@ bool CheckGLError(char *loc)
 		case GL_INVALID_VALUE:
 			Av::Log::log("OpenGL error: invalid value (%s)\n", loc);
 			return true;
-		case GL_STACK_OVERFLOW:
-			Av::Log::log("OpenGL error: stack overflow (%s)\n", loc);
-			return true;
-		case GL_STACK_UNDERFLOW:
-			Av::Log::log("OpenGL error: stack underflow (%s)\n", loc);
-			return true;
+		//case GL_STACK_OVERFLOW:
+		//	Av::Log::log("OpenGL error: stack overflow (%s)\n", loc);
+		//	return true;
+		//case GL_STACK_UNDERFLOW:
+		//	Av::Log::log("OpenGL error: stack underflow (%s)\n", loc);
+		//	return true;
 		case GL_OUT_OF_MEMORY:
 			Av::Log::log("OpenGL error: out of memory (%s)\n", loc);
 			return true;

@@ -111,7 +111,7 @@
     <ClCompile Include="Engine\Shader.cpp" />
     <ClCompile Include="Engine\Utils.cpp" />
     <ClCompile Include="GameApp.cpp" />
-    <ClCompile Include="GL\gl_core_4_4.c">
+    <ClCompile Include="GL\gl_core_3_3.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Main.cpp" />

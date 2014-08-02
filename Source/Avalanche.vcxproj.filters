@@ -106,7 +106,7 @@
     <ClCompile Include="Engine\Shader.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="GL\gl_core_4_4.c">
+    <ClCompile Include="GL\gl_core_3_3.c">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>

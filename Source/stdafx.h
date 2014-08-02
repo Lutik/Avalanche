@@ -33,5 +33,5 @@
 //#include "GL/glcorearb.h"
 //#include "GL/glext.h"
 //#include "GL/wglext.h"
-#include "GL/gl_core_4_4.h"
+#include "GL/gl_core_3_3.h"
 #include "OpenGL.h"

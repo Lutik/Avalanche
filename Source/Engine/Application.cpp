@@ -30,8 +30,9 @@ bool Application::InitWindow(VideoSettings &settings)
 	wndHeight = settings.height;
 	aspect = (float) wndWidth / (float) wndHeight;
 
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
@@ -53,6 +54,12 @@ bool Application::InitWindow(VideoSettings &settings)
 bool Application::InitOpenGL(VideoSettings &settings)
 {
 	context = SDL_GL_CreateContext(window);
+
+	int majorVersion, minorVersion;
+	SDL_GL_GetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, &majorVersion);
+	SDL_GL_GetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, &minorVersion);
+
+	Log::log("Created OpenGL context %d.%d\n", majorVersion, minorVersion);
 
 	return (ogl_LoadFunctions() != ogl_LOAD_FAILED);
 }
