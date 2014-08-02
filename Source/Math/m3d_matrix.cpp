@@ -124,6 +124,22 @@ void Matrix4f::Perspective(float fov, float aspect,float zNear, float zFar)
     MultMatrix(m2);
 }
 
+void Matrix4f::Ortho2D(float left, float right, float bottom, float top, float zNear, float zFar)
+{
+	float rl = right - left;
+	float tb = top - bottom;
+	float fn = zFar - zNear;
+
+	Matrix4f m2;
+
+	m2.m[0] = 2.0f / rl;         m2.m[1] = 0.0f;              m2.m[2] = 0.0f;              m2.m[3] = 0.0f;
+	m2.m[4] = 0.0f;              m2.m[5] = 2.0f / tb;         m2.m[6] = 0.0f;              m2.m[7] = 0.0f;
+	m2.m[8] = 0.0f;              m2.m[9] = 0.0f;              m2.m[10] = 2.0f / fn;        m2.m[11] = 0.0f;
+	m2.m[12] = -(right+left)/rl; m2.m[13] = -(top+bottom)/tb; m2.m[14] = -(zFar+zNear)/fn; m2.m[15] = 1.0f;
+
+	MultMatrix(m2);
+}
+
 void Matrix4f::Translate(float x, float y, float z)
 {
     // http://www.opengl.org/sdk/docs/man/

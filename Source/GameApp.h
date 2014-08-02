@@ -4,6 +4,13 @@
 
 class AvalancheGame : public Av::Application
 {
+	Matrix4f _modelview;
+	Matrix4f _projection;
+
+	void SetupMatrices();
+	void SetupGL();
+
+	Matrix4f GetMVPMatrix() const;
 public:
 	AvalancheGame();
 

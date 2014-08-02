@@ -9,27 +9,37 @@
 VertexBuffer<VertexP2T2> vb;
 ShaderProgram shader;
 GLuint vao;
+Matrix4f projection;
 
 AvalancheGame::AvalancheGame()
 {
 }
 
-void AvalancheGame::onStart()
+void AvalancheGame::SetupGL()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-	glViewport(0, 0, GetWindowWidth(), GetWindowHeight());
+	glEnable(GL_BLEND);
+	glBlendEquation(GL_FUNC_ADD);
+	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE_MINUS_DST_ALPHA, GL_ONE);
 
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
+}
 
-	VertexP2T2 v[3] =
+void AvalancheGame::onStart()
+{
+	SetupMatrices();
+	SetupGL();
+
+	VertexP2T2 v[] =
 	{
-		{ { -0.5f, -0.5f }, { 0.0f, 0.0f } },
 		{ { -0.5f, 0.5f }, { 0.0f, 1.0f } },
-		{ { 0.5f, 0.5f }, { 1.0f, 1.0f } }
+		{ { -0.5f, -0.5f }, { 0.0f, 0.0f } },
+		{ { 0.5f, 0.5f }, { 1.0f, 1.0f } },
+		{ { 0.5f, -0.5f }, { 1.0f, 0.0f } }
 	};
-	vb.Init(3, v, GL_STATIC_DRAW);
+	vb.Init(4, v, GL_STATIC_DRAW);
 	vb.Bind();
 
 	int w, h;
@@ -58,7 +68,11 @@ void AvalancheGame::onRender()
 	GLuint texLoc = glGetUniformLocation(shader.GetID(), "tex");
 	glUniform1i(texLoc, 0);
 
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	GLuint mvpLoc = glGetUniformLocation(shader.GetID(), "mvp");
+	Matrix4f mvp = GetMVPMatrix();
+	glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, mvp.ptr());
+
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
 void AvalancheGame::onUpdate(float dt)
@@ -85,4 +99,21 @@ void AvalancheGame::onExit()
 {
 	shader.Release();
 	vb.Release();
+}
+
+
+void AvalancheGame::SetupMatrices()
+{
+	_modelview.LoadIdentity();
+
+	float aspect = GetAspectRatio();
+	_projection.LoadIdentity();
+	_projection.Ortho2D(-aspect, aspect, -1.0f, 1.0f, -1.0f, 1.0f);
+}
+
+Matrix4f AvalancheGame::GetMVPMatrix() const
+{
+	Matrix4f result = _modelview;
+	result.MultMatrix(_projection);
+	return result;
 }

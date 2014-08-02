@@ -202,9 +202,12 @@ public:
 	void LoadIdentity();
     void Invert();
 
+	float* ptr() { return (float*)this; }
+
     //deprecated OpenGL matrix functions analogs
     void MultMatrix(Matrix4f mult);
     void Perspective(float fov, float aspect,float zNear, float zFar);
+	void Ortho2D(float left, float right, float bottom, float top, float zNear, float zFar);
     void Translate(float x, float y, float z);
     void Translate(Vector3f tv);
     void Scale(float x, float y, float z);
