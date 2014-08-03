@@ -62,6 +62,9 @@
     <ClInclude Include="Engine\Shader.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Font.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -107,6 +110,9 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="GL\gl_core_3_3.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Font.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>

@@ -88,6 +88,7 @@
   <ItemGroup>
     <ClInclude Include="Engine\Application.h" />
     <ClInclude Include="Engine\Avalanche.h" />
+    <ClInclude Include="Engine\Font.h" />
     <ClInclude Include="Engine\ImageLoaders.h" />
     <ClInclude Include="Engine\Input.h" />
     <ClInclude Include="Engine\Log.h" />
@@ -104,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Application.cpp" />
+    <ClCompile Include="Engine\Font.cpp" />
     <ClCompile Include="Engine\ImageLoaders.cpp" />
     <ClCompile Include="Engine\Input.cpp" />
     <ClCompile Include="Engine\Log.cpp" />

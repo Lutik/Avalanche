@@ -5,14 +5,18 @@
 #include "VertexBuffer.h"
 #include "VertexTypes.h"
 #include "Shader.h"
+#include "Font.h"
 
 VertexBuffer<VertexP2T2> vb;
+IndexBuffer<Uint16> ib;
 
 Shader vsh, fsh;
 ShaderProgram shader;
 
 GLuint vao;
 Matrix4f projection;
+
+Font font;
 
 AvalancheGame::AvalancheGame()
 {
@@ -35,20 +39,20 @@ void AvalancheGame::onStart()
 	SetupMatrices();
 	SetupGL();
 
-	VertexP2T2 v[] =
-	{
-		{ { -0.5f, 0.5f }, { 0.0f, 1.0f } },
-		{ { -0.5f, -0.5f }, { 0.0f, 0.0f } },
-		{ { 0.5f, 0.5f }, { 1.0f, 1.0f } },
-		{ { 0.5f, -0.5f }, { 1.0f, 0.0f } }
-	};
-	vb.Init(4, v, GL_STATIC_DRAW);
-	vb.Bind();
+	font.Load("Resources/Font/Presquire_32.fnt");
 
-	int w, h;
-	GLuint texID = loadTexture("Resources/energy_dust.png", w, h);
+	std::vector<VertexP2T2> vert;
+	std::vector<Uint16> ind;
+
+	font.DrawString(Vector2f(-0.5f, 0.0f), "Hello, World!", 0.15f, vert, ind);
+
+	vb.Init(vert.size(), vert.data(), GL_STATIC_DRAW);
+	vb.Bind();
+	ib.Init(ind.size(), ind.data(), GL_STATIC_DRAW);
+	ib.Bind();
+
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texID);
+	glBindTexture(GL_TEXTURE_2D, font.GetTexID());
 
 	vsh.InitFromFile("Resources/Shaders/Simple.vsh", GL_VERTEX_SHADER);
 	fsh.InitFromFile("Resources/Shaders/Simple.fsh", GL_FRAGMENT_SHADER);
@@ -81,7 +85,7 @@ void AvalancheGame::onRender()
 	Matrix4f mvp = GetMVPMatrix();
 	glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, mvp.ptr());
 
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+	glDrawElements(GL_TRIANGLES, ib.Size(), GL_UNSIGNED_SHORT, 0);
 }
 
 void AvalancheGame::onUpdate(float dt)
