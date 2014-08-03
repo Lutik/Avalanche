@@ -7,7 +7,10 @@
 #include "Shader.h"
 
 VertexBuffer<VertexP2T2> vb;
+
+Shader vsh, fsh;
 ShaderProgram shader;
+
 GLuint vao;
 Matrix4f projection;
 
@@ -47,7 +50,13 @@ void AvalancheGame::onStart()
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texID);
 
-	shader.Init("Resources/Shaders/Simple.vsh", "Resources/Shaders/Simple.fsh");
+	vsh.InitFromFile("Resources/Shaders/Simple.vsh", GL_VERTEX_SHADER);
+	fsh.InitFromFile("Resources/Shaders/Simple.fsh", GL_FRAGMENT_SHADER);
+
+	shader.Init();
+	shader.AttachShader(&vsh);
+	shader.AttachShader(&fsh);
+	shader.Link();
 
 	GLint posLoc = glGetAttribLocation(shader.GetID(), "in_pos");
 	glVertexAttribPointer(posLoc, 2, GL_FLOAT, GL_FALSE, sizeof(VertexP2T2), (GLvoid*)offsetof(VertexP2T2, pos));
@@ -98,6 +107,8 @@ void AvalancheGame::onMouseUp(int key)
 void AvalancheGame::onExit()
 {
 	shader.Release();
+	vsh.Release();
+	fsh.Release();
 	vb.Release();
 }
 

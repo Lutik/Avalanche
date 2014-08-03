@@ -8,9 +8,14 @@ Shader::Shader()
 {
 }
 
-void Shader::Init(std::string fileName, GLenum shaderType)
+void Shader::InitFromFile(std::string fileName, GLenum shaderType)
 {
 	std::string source = ReadFile(fileName);
+	InitFromSource(source, shaderType);
+}
+
+void Shader::InitFromSource(std::string source, GLenum shaderType)
+{
 	const char *src = source.c_str();
 
 	_id = glCreateShader(shaderType);
@@ -39,26 +44,27 @@ ShaderProgram::ShaderProgram()
 {
 }
 
-void ShaderProgram::Init(std::string vertex, std::string fragment)
+void ShaderProgram::Init()
 {
-	_id = glCreateProgram();
+	_id = glCreateProgram();	
+}
 
+void ShaderProgram::AttachShader(const Shader *shader)
+{
+	glAttachShader(_id, shader->GetID());
+}
+
+void ShaderProgram::Link()
+{
 	glBindFragDataLocation(_id, 0, "fragColor");
-
-	vsh.Init(vertex, GL_VERTEX_SHADER);
-	fsh.Init(fragment, GL_FRAGMENT_SHADER);
-
-	glAttachShader(_id, vsh.GetID());
-	glAttachShader(_id, fsh.GetID());
-
 	glLinkProgram(_id);
-
 	ProgramLog(_id);
 }
 
 void ShaderProgram::Release()
 {
 	glDeleteProgram(_id);
+	_id = 0;
 }
 
 void ShaderProgram::Bind()

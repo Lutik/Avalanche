@@ -5,7 +5,8 @@ class Shader
 public:
 	Shader();
 
-	void Init(std::string fileName, GLenum shaderType);
+	void InitFromFile(std::string fileName, GLenum shaderType);
+	void InitFromSource(std::string source, GLenum shaderType);
 	void Release();
 
 	GLuint GetID() const;
@@ -18,7 +19,11 @@ class ShaderProgram
 {
 public:
 	ShaderProgram();
-	void Init(std::string vertex, std::string fragment);
+
+	void Init();
+	void AttachShader(const Shader *shader);
+	void Link();
+
 	void Release();
 
 	void Bind();
