@@ -4,13 +4,12 @@
 template<GLenum bufferType, typename DataType>
 class DeviceBuffer
 {
-	size_t _size;
-	GLuint _id;
+	size_t _size = 0;
+	GLuint _id = 0;
 public:
-	DeviceBuffer()
-		: _size(0)
-		, _id(0)
-	{}
+	DeviceBuffer() = default;
+	DeviceBuffer(const DeviceBuffer&) = delete;
+	DeviceBuffer& operator=(const DeviceBuffer&) = delete;
 
 	bool IsValid() const
 	{
@@ -41,6 +40,7 @@ public:
 	{
 		glDeleteBuffers(1, &_id);
 		_size = 0;
+		_id = 0;
 	}
 
 	void SetData(const DataType *data, size_t start, size_t count)
