@@ -2,13 +2,9 @@
 #include "GameApp.h"
 
 #include "ImageLoaders.h"
-#include "VertexBuffer.h"
-#include "VertexTypes.h"
 #include "Shader.h"
 #include "Font.h"
 
-VertexBuffer<VertexP2T2> vb;
-IndexBuffer<Uint16> ib;
 
 Shader vsh, fsh;
 ShaderProgram shader;
@@ -46,10 +42,10 @@ void AvalancheGame::onStart()
 
 	font.DrawString(Vector2f(-0.5f, 0.0f), "Hello, World!", 0.15f, vert, ind);
 
-	vb.Init(vert.size(), vert.data(), GL_STATIC_DRAW);
-	vb.Bind();
-	ib.Init(ind.size(), ind.data(), GL_STATIC_DRAW);
-	ib.Bind();
+	vb = std::make_unique<VertexBufferP2T2>(vert.size(), vert.data(), GL_STATIC_DRAW);
+	vb->Bind();
+	ib = std::make_unique<IndexBuffer16>(ind.size(), ind.data(), GL_STATIC_DRAW);
+	ib->Bind();
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, font.GetTexID());
@@ -85,7 +81,7 @@ void AvalancheGame::onRender()
 	Matrix4f mvp = GetMVPMatrix();
 	glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, mvp.ptr());
 
-	glDrawElements(GL_TRIANGLES, ib.Size(), GL_UNSIGNED_SHORT, 0);
+	glDrawElements(GL_TRIANGLES, ib->Size(), GL_UNSIGNED_SHORT, 0);
 }
 
 void AvalancheGame::onUpdate(float dt)
@@ -113,7 +109,7 @@ void AvalancheGame::onExit()
 	shader.Release();
 	vsh.Release();
 	fsh.Release();
-	vb.Release();
+	vb.reset();
 }
 
 

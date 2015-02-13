@@ -7,13 +7,27 @@ class DeviceBuffer
 	size_t _size = 0;
 	GLuint _id = 0;
 public:
-	DeviceBuffer() = default;
+	DeviceBuffer()
+	{
+		glGenBuffers(1, &_id);
+	}
+
+	~DeviceBuffer()
+	{
+		if(_id > 0) {
+			glDeleteBuffers(1, &_id);
+		}
+	}
+
 	DeviceBuffer(const DeviceBuffer&) = delete;
 	DeviceBuffer& operator=(const DeviceBuffer&) = delete;
 
-	bool IsValid() const
+	DeviceBuffer(DeviceBuffer&& other)
 	{
-		return (_id != 0);
+		_size = other._size;
+		_id = other._id;
+		other._size = 0;
+		other._id = 0;
 	}
 
 	size_t Size() const
@@ -23,24 +37,18 @@ public:
 
 	void Init(size_t size, const DataType *data = nullptr, GLenum usage = GL_DYNAMIC_DRAW)
 	{
-		if( !IsValid() ) {
-			glGenBuffers(1, &_id);
-		}
-
 		if(data != nullptr || size != _size)
 		{
 			glBindBuffer(bufferType, _id);
 			glBufferData(bufferType, size * sizeof(DataType), data, usage);
 		}
-
 		_size = size;
 	}
 
-	void Release()
+	DeviceBuffer(size_t size, const DataType *data = nullptr, GLenum usage = GL_DYNAMIC_DRAW)
+		: DeviceBuffer()
 	{
-		glDeleteBuffers(1, &_id);
-		_size = 0;
-		_id = 0;
+		Init(size, data, usage);
 	}
 
 	void SetData(const DataType *data, size_t start, size_t count)

@@ -27,6 +27,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <memory>
 
 //OpenGL
 //#include <GL/GL.h>
