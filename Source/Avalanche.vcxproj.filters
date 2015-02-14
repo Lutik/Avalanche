@@ -65,6 +65,9 @@
     <ClInclude Include="Engine\Font.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Texture.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -113,6 +116,9 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Font.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Texture.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>

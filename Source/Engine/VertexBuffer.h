@@ -24,10 +24,15 @@ public:
 
 	DeviceBuffer(DeviceBuffer&& other)
 	{
-		_size = other._size;
-		_id = other._id;
-		other._size = 0;
-		other._id = 0;
+		std::swap(_size, other._size);
+		std::swap(_id, other._id);
+	}
+
+	DeviceBuffer& operator=(DeviceBuffer&& other)
+	{
+		std::swap(_size, other._size);
+		std::swap(_id, other._id);
+		return *this;
 	}
 
 	size_t Size() const

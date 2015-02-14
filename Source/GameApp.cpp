@@ -3,16 +3,12 @@
 
 #include "ImageLoaders.h"
 #include "Shader.h"
-#include "Font.h"
-
 
 Shader vsh, fsh;
 ShaderProgram shader;
 
 GLuint vao;
 Matrix4f projection;
-
-Font font;
 
 AvalancheGame::AvalancheGame()
 {
@@ -35,20 +31,22 @@ void AvalancheGame::onStart()
 	SetupMatrices();
 	SetupGL();
 
-	font.Load("Resources/Font/Presquire_32.fnt");
+	font.reset(new Font());
+	font->Load("Resources/Font/Presquire_32.fnt");
+
+	CheckGLError();
 
 	std::vector<VertexP2T2> vert;
 	std::vector<Uint16> ind;
 
-	font.DrawString(Vector2f(-0.5f, 0.0f), "Hello, World!", 0.15f, vert, ind);
+	font->DrawString(Vector2f(-0.5f, 0.0f), "Hello, World!", 0.15f, vert, ind);
 
 	vb = std::make_unique<VertexBufferP2T2>(vert.size(), vert.data(), GL_STATIC_DRAW);
 	vb->Bind();
 	ib = std::make_unique<IndexBuffer16>(ind.size(), ind.data(), GL_STATIC_DRAW);
 	ib->Bind();
 
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, font.GetTexID());
+	font->GetTexture().Bind(0);
 
 	vsh.InitFromFile("Resources/Shaders/Simple.vsh", GL_VERTEX_SHADER);
 	fsh.InitFromFile("Resources/Shaders/Simple.fsh", GL_FRAGMENT_SHADER);
@@ -110,6 +108,7 @@ void AvalancheGame::onExit()
 	vsh.Release();
 	fsh.Release();
 	vb.reset();
+	font.reset();
 }
 
 

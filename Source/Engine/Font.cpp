@@ -16,7 +16,8 @@ void Font::Load(std::string description)
 	// 1st line: texture name
 	std::getline(file, line);
 	std::string texName = line.substr(10, std::string::npos);
-	_tex = loadTexture(dirName + texName, _texWidth, _texHeight);
+	Image2D img = loadTexture(dirName + texName);
+	_tex.SetImage(img);
 
 	// 2nd line: font name
 	std::getline(file, line);
@@ -38,7 +39,7 @@ void Font::Load(std::string description)
 			>> glyph.orig_size.x >> glyph.orig_size.y;
 
 		// в генераторе шрифтов используется другая система координат
-		glyph.pos.y = _texHeight - glyph.pos.y - glyph.size.y;
+		glyph.pos.y = _tex.Height() - glyph.pos.y - glyph.size.y;
 		glyph.offset.y = glyph.orig_size.y - glyph.size.y - glyph.offset.y;
 
 		_glyphs.push_back(glyph);
@@ -60,7 +61,7 @@ Font::GlyphInfo* Font::GetGlyph(int code)
 	return nullptr;
 }
 
-GLuint Font::GetTexID() const
+const Texture2D& Font::GetTexture() const
 {
 	return _tex;
 }
@@ -72,8 +73,8 @@ Vector2f Font::DrawGlyph(Vector2f pos, int code, float height, std::vector<Verte
 	if (!g)
 		return pos;
 
-	Vector2f uv(g->pos.x / _texWidth, g->pos.y / _texHeight);
-	Vector2f uvs(g->size.x / _texWidth, g->size.y / _texHeight);
+	Vector2f uv(g->pos.x / _tex.Width(), g->pos.y / _tex.Height());
+	Vector2f uvs(g->size.x / _tex.Width(), g->size.y / _tex.Height());
 
 	float scale = height / g->orig_size.y;
 	Vector2f xy = g->offset * scale;

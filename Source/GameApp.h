@@ -3,6 +3,7 @@
 #include "Avalanche.h"
 #include "VertexBuffer.h"
 #include "VertexTypes.h"
+#include "Font.h"
 
 class AvalancheGame : public Av::Application
 {
@@ -13,7 +14,9 @@ class AvalancheGame : public Av::Application
 	typedef IndexBuffer<Uint16> IndexBuffer16;
 
 	std::unique_ptr<VertexBufferP2T2> vb;
-	std::unique_ptr<IndexBuffer16>ib;
+	std::unique_ptr<IndexBuffer16> ib;
+
+	std::unique_ptr<Font> font;
 
 	void SetupMatrices();
 	void SetupGL();
