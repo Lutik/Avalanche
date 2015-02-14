@@ -71,6 +71,9 @@
     <ClInclude Include="Engine\VertexDescription.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -126,6 +129,9 @@
     </ClCompile>
     <ClCompile Include="Engine\VertexDescription.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
