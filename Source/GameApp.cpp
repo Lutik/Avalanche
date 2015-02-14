@@ -56,13 +56,7 @@ void AvalancheGame::onStart()
 	shader.AttachShader(&fsh);
 	shader.Link();
 
-	GLint posLoc = glGetAttribLocation(shader.GetID(), "in_pos");
-	glVertexAttribPointer(posLoc, 2, GL_FLOAT, GL_FALSE, sizeof(VertexP2T2), (GLvoid*)offsetof(VertexP2T2, pos));
-	glEnableVertexAttribArray(posLoc);
-
-	GLint uvLoc = glGetAttribLocation(shader.GetID(), "in_uv");
-	glVertexAttribPointer(uvLoc, 2, GL_FLOAT, GL_FALSE, sizeof(VertexP2T2), (GLvoid*)offsetof(VertexP2T2, uv));
-	glEnableVertexAttribArray(uvLoc);
+	VertexBufferP2T2::ElemType::GetVertexDescription().Apply();
 }
 
 void AvalancheGame::onRender()

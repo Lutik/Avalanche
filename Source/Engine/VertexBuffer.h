@@ -72,6 +72,8 @@ public:
 	{
 		glBindBuffer(bufferType, 0);
 	}
+
+	typedef DataType ElemType;
 };
 
 template<class VertexType> using VertexBuffer = DeviceBuffer<GL_ARRAY_BUFFER, VertexType>;
