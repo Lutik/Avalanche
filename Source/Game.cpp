@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "ImageLoaders.h"
 #include "Utils.h"
+#include <json/json.h>
 
 GLuint vao;
 
@@ -17,6 +18,21 @@ void TestLayer::SetupGL()
 	glBindVertexArray(vao);
 }
 
+std::string GetStringFromJsonSettings()
+{
+	Json::Value root;
+	Json::Reader reader;
+	bool parseOK = reader.parse(ReadFile("resources/json_test.txt"), root, false);
+	if( parseOK )
+	{
+		return root.get("text", "Default").asString();
+	}
+	else
+	{
+		return std::string("Error");
+	}
+}
+
 TestLayer::TestLayer()
 {
 	SetupMatrices();
@@ -26,7 +42,8 @@ TestLayer::TestLayer()
 
 	CheckGLError();
 
-	mesh = font.MakeStringMesh(Vector2f(-0.5f, 0.0f), "Hello, World!", 0.15f);
+	std::string str = GetStringFromJsonSettings();
+	mesh = font.MakeStringMesh(Vector2f(-0.5f, 0.0f), str, 0.15f);
 
 	font.GetTexture().Bind(0);
 
