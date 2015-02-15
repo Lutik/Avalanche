@@ -1,10 +1,11 @@
 #pragma once
 
 
-template<GLenum bufferType, typename DataType>
+template<GLenum bufferType>
 class DeviceBuffer
 {
 	size_t _size = 0;
+	size_t _elemSize = 1;
 	GLuint _id = 0;
 public:
 	DeviceBuffer()
@@ -25,12 +26,14 @@ public:
 	DeviceBuffer(DeviceBuffer&& other)
 	{
 		std::swap(_size, other._size);
+		std::swap(_elemSize, other._elemSize);
 		std::swap(_id, other._id);
 	}
 
 	DeviceBuffer& operator=(DeviceBuffer&& other)
 	{
 		std::swap(_size, other._size);
+		std::swap(_elemSize, other._elemSize);
 		std::swap(_id, other._id);
 		return *this;
 	}
@@ -40,27 +43,30 @@ public:
 		return _size;
 	}
 
-	void Init(size_t size, const DataType *data = nullptr, GLenum usage = GL_DYNAMIC_DRAW)
+	void Init(size_t size, const void *data = nullptr, size_t elemSize = 1, GLenum usage = GL_DYNAMIC_DRAW)
 	{
-		if(data != nullptr || size != _size)
+		
+		size_t oldSize = _size * _elemSize;
+		size_t newSize = size * elemSize;
+		if(data != nullptr || oldSize != newSize)
 		{
 			glBindBuffer(bufferType, _id);
-			glBufferData(bufferType, size * sizeof(DataType), data, usage);
+			glBufferData(bufferType, newSize, data, usage);
 		}
 		_size = size;
+		_elemSize = elemSize;
 	}
 
-	DeviceBuffer(size_t size, const DataType *data = nullptr, GLenum usage = GL_DYNAMIC_DRAW)
+	DeviceBuffer(size_t size, const void *data = nullptr, size_t elemSize = 1, GLenum usage = GL_DYNAMIC_DRAW)
 		: DeviceBuffer()
 	{
-		Init(size, data, usage);
+		Init(size, data, elemSize, usage);
 	}
 
-	void SetData(const DataType *data, size_t start, size_t count)
+	void SetData(const void *data, size_t start, size_t count)
 	{
-		size_t stride = sizeof(DataType);
 		glBindBuffer(bufferType, _id);
-		glBufferSubData(bufferType, start * stride, count * stride, data);
+		glBufferSubData(bufferType, start * _elemSize, count * _elemSize, data);
 	}
 
 	void Bind()
@@ -72,9 +78,7 @@ public:
 	{
 		glBindBuffer(bufferType, 0);
 	}
-
-	typedef DataType ElemType;
 };
 
-template<class VertexType> using VertexBuffer = DeviceBuffer<GL_ARRAY_BUFFER, VertexType>;
-template<class IndexType> using IndexBuffer = DeviceBuffer<GL_ELEMENT_ARRAY_BUFFER, IndexType>;
+typedef DeviceBuffer<GL_ARRAY_BUFFER> VertexBuffer;
+typedef DeviceBuffer<GL_ELEMENT_ARRAY_BUFFER> IndexBuffer;

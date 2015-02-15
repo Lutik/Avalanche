@@ -3,73 +3,62 @@
 #include "Shader.h"
 #include "Utils.h"
 
-Shader::Shader()
-	: _id(0)
-{
-}
-
-void Shader::InitFromFile(std::string fileName, GLenum shaderType)
-{
-	std::string source = ReadFile(fileName);
-	InitFromSource(source, shaderType);
-}
-
-void Shader::InitFromSource(std::string source, GLenum shaderType)
-{
-	const char *src = source.c_str();
-
-	_id = glCreateShader(shaderType);
-
-	glShaderSource(_id, 1, &src, nullptr);
-	glCompileShader(_id);
-
-	ShaderLog(_id);
-}
-
-void Shader::Release()
-{
-	glDeleteShader(_id);
-	_id = 0;
-}
-
-GLuint Shader::GetID() const
-{
-	return _id;
-}
-
-
 
 ShaderProgram::ShaderProgram()
 	: _id(0)
 {
+	_id = glCreateProgram();
 }
 
-void ShaderProgram::Init()
+ShaderProgram::~ShaderProgram()
 {
-	_id = glCreateProgram();	
+	if(_id > 0)
+		glDeleteProgram(_id);
 }
 
-void ShaderProgram::AttachShader(const Shader *shader)
+void ShaderProgram::Link(const std::string& vs, const std::string& ps)
 {
-	glAttachShader(_id, shader->GetID());
-}
+	std::string source;
+	const char *src;
 
-void ShaderProgram::Link()
-{
+	source = ReadFile(vs);
+	src = source.c_str();
+	GLuint vert_id = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vert_id, 1, &src, nullptr);
+	glCompileShader(vert_id);
+	ShaderLog(vert_id);
+	glAttachShader(_id, vert_id);
+
+	source = ReadFile(ps);
+	src = source.c_str();
+	GLuint frag_id = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(frag_id, 1, &src, nullptr);
+	glCompileShader(frag_id);
+	ShaderLog(frag_id);
+	glAttachShader(_id, frag_id);
+
 	glBindFragDataLocation(_id, 0, "fragColor");
 	glLinkProgram(_id);
 	ProgramLog(_id);
 }
 
-void ShaderProgram::Release()
-{
-	glDeleteProgram(_id);
-	_id = 0;
-}
-
 void ShaderProgram::Bind()
 {
 	glUseProgram(_id);
+}
+
+void ShaderProgram::SetUniform(const std::string& name, Matrix4f &mat)
+{
+	//glUseProgram(_id);
+	GLuint loc = glGetUniformLocation(_id, name.c_str());
+	glUniformMatrix4fv(loc, 1, GL_FALSE, mat.ptr());
+}
+
+void ShaderProgram::SetUniform(const std::string& name, GLint v0)
+{
+	//glUseProgram(_id);
+	GLuint loc = glGetUniformLocation(_id, name.c_str());
+	glUniform1i(loc, v0);
 }
 
 GLuint ShaderProgram::GetID() const

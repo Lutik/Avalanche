@@ -66,7 +66,7 @@ const Texture2D& Font::GetTexture() const
 	return _tex;
 }
 
-Vector2f Font::DrawGlyph(Vector2f pos, int code, float height, std::vector<VertexP2T2> &vb, std::vector<Uint16> &ib)
+Vector2f Font::DrawGlyph(Vector2f pos, int code, float height, std::vector<VertexP2T2> &vb, std::vector<uint16_t> &ib)
 {
 	GlyphInfo *g = GetGlyph(code);
 
@@ -108,11 +108,17 @@ Vector2f Font::DrawGlyph(Vector2f pos, int code, float height, std::vector<Verte
 	return new_pos;
 }
 
-void Font::DrawString(Vector2f pos, std::string str, float height, std::vector<VertexP2T2> &vb, std::vector<Uint16> &ib)
+Mesh Font::MakeStringMesh(Vector2f pos, std::string str, float height)
 {
+	Mesh result;
+	std::vector<VertexP2T2> vb;
+	std::vector<uint16_t> ib;
 	for (unsigned char ch : str)
 	{
 		int code = ch;
 		pos = DrawGlyph(pos, code, height, vb, ib);
 	}
+	result.SetVertices(VertexP2T2::GetVertexDescription(), vb.size(), vb.data());
+	result.SetIndices(IndexType::SHORT, ib.size(), ib.data());
+	return result;
 }

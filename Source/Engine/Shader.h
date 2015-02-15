@@ -1,36 +1,24 @@
 #pragma once
 
-class Shader
-{
-public:
-	Shader();
-
-	void InitFromFile(std::string fileName, GLenum shaderType);
-	void InitFromSource(std::string source, GLenum shaderType);
-	void Release();
-
-	GLuint GetID() const;
-private:
-	GLuint _id;
-
-};
+#include "math3d.h"
 
 class ShaderProgram
 {
 public:
 	ShaderProgram();
+	~ShaderProgram();
 
-	void Init();
-	void AttachShader(const Shader *shader);
-	void Link();
+	ShaderProgram(const ShaderProgram&) = delete;
+	ShaderProgram& operator=(const ShaderProgram&) = delete;
 
-	void Release();
+	void Link(const std::string& vs, const std::string& ps);
 
 	void Bind();
 
 	GLuint GetID() const;
+
+	void SetUniform(const std::string& name, Matrix4f &mat);
+	void SetUniform(const std::string& name, GLint v0);
 private:
 	GLuint _id;
-	Shader vsh;
-	Shader fsh;
 };
