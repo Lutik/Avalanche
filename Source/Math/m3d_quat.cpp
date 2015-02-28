@@ -5,18 +5,6 @@
 /************************************************************************
 	Quaternion implementation
 ************************************************************************/
-Quaternion::Quaternion()
-{
-	//x = y = z = w = 0.0f;
-}
-
-Quaternion::Quaternion(const Quaternion &quat)
-{
-	x = quat.x;
-	y = quat.y;
-	z = quat.z;
-	w = quat.w;
-}
 
 Quaternion::Quaternion(float rx, float ry, float rz, float rw)
 {
@@ -34,18 +22,6 @@ Quaternion::Quaternion(Vector3f &vec, float rw)
 	w = rw;
 }
 
-const Quaternion &Quaternion::operator = (const Quaternion &quat)
-{
-	if( this != &quat)
-	{
-		x = quat.x;
-		y = quat.y;
-		z = quat.z;
-		w = quat.w;
-	}
-	return *this;
-}
-
 Quaternion operator*(const Quaternion &A, const Quaternion &B)
 {
     return Quaternion(A.w*B.x + A.x*B.w + A.y*B.z - A.z*B.y,
@@ -61,7 +37,7 @@ Quaternion operator-(const Quaternion &quat)
 
 void Quaternion::Normalize()
 {
-	float m = 1.0f / sqrt(x*x + y*y + z*z + w*w);
+	float m = 1.0f / std::sqrt(x*x + y*y + z*z + w*w);
 
 	x *= m;
 	y *= m;
@@ -103,9 +79,9 @@ Quaternion QuatProduct(const Quaternion &q1, const Quaternion &q2)
 
 Quaternion RotationToQuaternion(float x, float y, float z, float angle)
 {
-    Vector3f v(x,y,z);
+    Vector3f v(x, y, z);
     v.Normalize();
-    float s = sinf(Deg2Rad(angle/2.0f));
-    float c = cosf(Deg2Rad(angle/2.0f));
-    return Quaternion(v*s, c);
+    float s = std::sin(Deg2Rad(angle * 0.5f));
+    float c = std::cos(Deg2Rad(angle * 0.5f));
+    return Quaternion(v * s, c);
 };

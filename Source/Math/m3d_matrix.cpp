@@ -6,36 +6,23 @@
 	Matrix4f implementation
 ************************************************************************/
 
-Matrix4f::Matrix4f()
-{
-}
-
-const Matrix4f &Matrix4f::operator = (const Matrix4f &mat)
-{
-	if( this != &mat)
-	{
-        for(int i=0; i<16; ++i) m[i] = mat.m[i];
-	}
-	return *this;
-}
-
 void Matrix4f::Transpose()
 {
-    float tmp;
-    tmp = m[1]; m[1] = m[4]; m[4] = tmp;
-    tmp = m[2]; m[2] = m[8]; m[8] = tmp;
-    tmp = m[3]; m[3] = m[12]; m[12] = tmp;
-    tmp = m[6]; m[6] = m[9]; m[9] = tmp;
-    tmp = m[7]; m[7] = m[13]; m[13] = tmp;
-    tmp = m[11]; m[11] = m[14]; m[14] = tmp;
+	std::swap(m[1], m[4]);
+	std::swap(m[2], m[8]);
+	std::swap(m[3], m[12]);
+	std::swap(m[6], m[9]);
+	std::swap(m[7], m[13]);
+	std::swap(m[11], m[14]);
 }
 
 void Matrix4f::LoadIdentity()
 {
-    m[0] = 1.0f;  m[1] = 0.0f;  m[2] = 0.0f;  m[3] = 0.0f;
-    m[4] = 0.0f;  m[5] = 1.0f;  m[6] = 0.0f;  m[7] = 0.0f;
-    m[8] = 0.0f;  m[9] = 0.0f;  m[10] = 1.0f; m[11] = 0.0f;
-    m[12] = 0.0f; m[13] = 0.0f; m[14] = 0.0f; m[15] = 1.0f;
+	std::fill(m, m+ 16, 0.0f);
+    m[0] = 1.0f;
+	m[5] = 1.0f;
+	m[10] = 1.0f;
+	m[15] = 1.0f;
 }
 
 
@@ -55,10 +42,6 @@ float Matrix4f::Det()
 
     return result;
 }
-
-void Matrix4f::Invert()
-{
-};
 
 Matrix4f QuaternionToMatrix(const Quaternion &quat)
 {
@@ -86,33 +69,20 @@ Matrix4f QuaternionToMatrix(const Quaternion &quat)
 void Matrix4f::MultMatrix(Matrix4f mult)
 {
     Matrix4f mat;
-    int i,j;
-
-    /*for(i = 0; i < 4; i++) //Cycle through each vector of first matrix.
-    { 
-        mat.m[i*4] = mult.m[i*4] * m[0] + mult[i*4+1] * m[4] + m[i*4+2] * m[8] + mult[i*4+3] * m[12];
-        mat.m[i*4+1] = mult.m[i*4] * m[1] + mult[i*4+1] * m[5] + m[i*4+2] * m[9] + mult[i*4+3] * m[13];
-        mat.m[i*4+2] = mult.m[i*4] * m[2] + mult[i*4+1] * m[6] + m[i*4+2] * m[10] + mult[i*4+3] * m[14]; 
-        mat.m[i*4+3] = mult.m[i*4] * m[3] + mult[i*4+1] * m[7] + m[i*4+2] * m[11] + mult[i*4+3] * m[15];
-    }*/
-
-    for(i=0; i<4; ++i)
+    for(int i = 0; i < 4; ++i)
     {
-        //0 1 2 3
-        //4 5 6 7
-        //8 9
-        for(j=0; j<4; ++j)
+        for(int j = 0; j < 4; ++j){
             mat.m[i*4+j] = mult[i*4]*m[j] + mult[i*4+1]*m[4+j] + mult[i*4+2]*m[8+j] + mult[i*4+3]*m[12+j];
+		}
     }
-
-    for(int i=0; i<16; ++i) m[i] = mat.m[i];
+	std::copy(mat.m, mat.m + 16, m);
 }
 
 void Matrix4f::Perspective(float fov, float aspect,float zNear, float zFar)
 {
     // http://www.opengl.org/sdk/docs/man/
 
-    float f = 1.0f/tanf(fov*M3D_PI_360);
+    float f = 1.0f / std::tan(Deg2Rad(fov * 0.5f));
     float neg_depth = zNear-zFar;
     Matrix4f m2;
 
@@ -185,7 +155,7 @@ void Matrix4f::Scale(float s)
 
 void Matrix4f::Rotate(float angle, float ax, float ay, float az)
 {
-    Vector3f axe(ax,ay,az);
+    Vector3f axe(ax, ay, az);
     Rotate(angle, axe);
 }
 
@@ -197,8 +167,8 @@ void Matrix4f::Rotate(float angle, Vector3f axe)
     float y = v.y;
     float z = v.z;
     float a = Deg2Rad(angle);
-    float s = sinf(a);
-    float c = cosf(a);
+    float s = std::sin(a);
+    float c = std::cos(a);
     Matrix4f m2;
 
     m2[0] = x*x*(1-c)+c;   m2[1] = x*y*(1-c)-z*s; m2[2] = x*z*(1-c)+y*s; m2[3] = 0;

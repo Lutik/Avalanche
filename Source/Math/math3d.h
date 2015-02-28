@@ -5,28 +5,26 @@
 Math3D Library
 
 Author: Shageev R.R. (share@list.ru)
-2007-2011
+2007-2015
 ************************************************************************/
-
-#include <math.h>
 
 /************************************************************************
 	Small functions, mathematical constants
 ************************************************************************/
-#define M3D_PI      3.141592653589793f
-#define M3D_2PI     6.283185307179586f
-#define M3D_PI_180  0.017453292519943f
-#define M3D_PI_360  0.008726646259972f
-#define M3D_180_PI 57.295779513082321f
+
+namespace math
+{
+	const float PI = 3.141592653589793f;
+}
 
 inline float Deg2Rad(float angle)
 {
-    return angle * M3D_PI_180;
+    return angle * 0.017453292519943f;
 }
 
 inline float Rad2Deg(float angle)
 {
-    return angle * M3D_180_PI;
+    return angle * 57.295779513082321f;
 }
 
 /************************************************************************
@@ -37,16 +35,11 @@ class Vector3f
 {
 public:
 	//data
-	union{
-		struct{ float x,y,z; };
-		struct{ float u,v,w; };
-	};
+	float x, y, z;
 	//constructors
-	Vector3f();
-	Vector3f(const Vector3f &vec);
+	Vector3f() = default;
 	Vector3f(float x, float y, float z);
 	//operators
-	const Vector3f &operator = (const Vector3f &v);
 	const Vector3f &operator += (const Vector3f &v);
 	const Vector3f &operator -= (const Vector3f &v);
 	const Vector3f &operator *= (const float num);
@@ -64,7 +57,6 @@ public:
 	float Length() const;
 	float Length2() const; //x*x + y*y + z*z
 	void Normalize();
-    void Set(float ax, float ay, float az) {x=ax; y=ay; z=az;}
 };
 
 Vector3f Cross(const Vector3f &vA, const Vector3f &vB);
@@ -76,16 +68,11 @@ class Vector2f
 {
 public:
 	//data
-	union{
-		struct{ float x,y; };
-		struct{ float u,v; };
-	};
+	float x, y;
 	//constructors
-	Vector2f();
-	Vector2f(const Vector2f &vec);
+	Vector2f() = default;
 	Vector2f(float x, float y);
 	//operators
-	const Vector2f &operator = (const Vector2f &v);
 	const Vector2f &operator += (const Vector2f &v);
 	const Vector2f &operator -= (const Vector2f &v);
 	const Vector2f &operator *= (const float num);
@@ -105,7 +92,7 @@ public:
 	void Normalize();
 };
 
-float DotProduct2f(const Vector2f &vA, const Vector2f &vB);
+float Dot(const Vector2f &vA, const Vector2f &vB);
 
 /////////////////////////////////////////////////////////////////////////
 
@@ -113,16 +100,11 @@ class Vector4f
 {
 public:
 	//data
-	union{
-		struct{ float x,y,z,w; };
-		struct{ float s,t,r,q; };
-	};
+	float x, y, z, w;
 	//constructors
-	Vector4f();
-	Vector4f(const Vector4f &vec);
+	Vector4f() = default;
 	Vector4f(float x, float y, float z, float w);
 	//operators
-	const Vector4f &operator = (const Vector4f &v);
 	const Vector4f &operator += (const Vector4f &v);
 	const Vector4f &operator -= (const Vector4f &v);
 	const Vector4f &operator *= (const float num);
@@ -155,17 +137,14 @@ public:
 			float x,y,z,w;
 		};
 		struct{
-			Vector3f v; // warning! выравнивание тут ничего не сломает?
+			Vector3f v;
 			float w;
 		};
 	};
 	//constructors
-	Quaternion();
-	Quaternion(const Quaternion &quat);
+	Quaternion() = default;
 	Quaternion(float x, float y, float z, float w);
 	Quaternion(Vector3f &vec, float w);
-	//operators
-	const Quaternion &operator = (const Quaternion &quat);
 
 	friend Quaternion operator-(const Quaternion &quat); //works as Conjugate
     friend Quaternion operator*(const Quaternion &q1, const Quaternion &q2); //unit quaternion product
@@ -187,24 +166,17 @@ class Matrix4f
 public:
 	//data
 	float m[16];
-	//constructors
-	Matrix4f();
-	//Matrix4f(const Matrix4f &mat);
-	//Matrix4f(Vector4f, Vector4f, Vector4f, Vector4f);//rows or columns?
+
 	//operators
-    const Matrix4f &operator = (const Matrix4f &mat);
     inline float &operator [] (int idx)  { return m[idx]; }
-    //const Vector4f &operator *= (const Matrix4f m);
-    //friend Matrix4f operator*(const Matrix4f &v1, const Matrix4f &v2);
 	//functions
 	float Det(); //determinant
 	void Transpose();
 	void LoadIdentity();
-    void Invert();
 
 	float* ptr() { return (float*)this; }
 
-    //deprecated OpenGL matrix functions analogs
+    // deprecated OpenGL matrix functions analogs
     void MultMatrix(Matrix4f mult);
     void Perspective(float fov, float aspect,float zNear, float zFar);
 	void Ortho2D(float left, float right, float bottom, float top, float zNear, float zFar);

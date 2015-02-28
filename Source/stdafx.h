@@ -13,15 +13,6 @@
 
 #include "SDL.h"
 
-// C Runtime Header Files
-#include <stdlib.h>
-#include <malloc.h>
-#include <memory.h>
-#include <tchar.h>
-#include <stdio.h>
-
-#include <assert.h>
-
 //STL
 #include <iostream>
 #include <fstream>

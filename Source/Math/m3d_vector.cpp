@@ -5,34 +5,12 @@
 /************************************************************************
 	Vector3f implementation
 ************************************************************************/
-Vector3f::Vector3f()
-{
-	//x = y = z = 0.0f;
-}
-
-Vector3f::Vector3f(const Vector3f &vec)
-{
-	x = vec.x;
-	y = vec.y;
-	z = vec.z;
-}
 
 Vector3f::Vector3f(float rx, float ry, float rz)
 {
 	x = rx;
 	y = ry;
 	z = rz;
-}
-
-const Vector3f &Vector3f::operator = (const Vector3f &v)
-{
-	if( this != &v)
-	{
-		x = v.x;
-		y = v.y;
-		z = v.z;
-	}
-	return *this;
 }
 
 const Vector3f &Vector3f::operator += (const Vector3f &v)
@@ -131,31 +109,11 @@ float Dot(const Vector3f &vA, const Vector3f &vB)
 /************************************************************************
 	Vector2f implementation
 ************************************************************************/
-Vector2f::Vector2f()
-{
-	//x = y = 0.0f;
-}
-
-Vector2f::Vector2f(const Vector2f &vec)
-{
-	x = vec.x;
-	y = vec.y;
-}
 
 Vector2f::Vector2f(float rx, float ry)
 {
 	x = rx;
 	y = ry;
-}
-
-const Vector2f &Vector2f::operator = (const Vector2f &v)
-{
-	if( this != &v)
-	{
-		x = v.x;
-		y = v.y;
-	}
-	return *this;
 }
 
 const Vector2f &Vector2f::operator += (const Vector2f &v)
@@ -242,18 +200,6 @@ float DotProduct2f(const Vector2f &vA, const Vector2f &vB)
 /************************************************************************
 	Vector4f implementation
 ************************************************************************/
-Vector4f::Vector4f()
-{
-	//x = y = z = w = 0.0f;
-}
-
-Vector4f::Vector4f(const Vector4f &vec)
-{
-	x = vec.x;
-	y = vec.y;
-	z = vec.z;
-	w = vec.w;
-}
 
 Vector4f::Vector4f(float rx, float ry, float rz, float rw)
 {
@@ -261,18 +207,6 @@ Vector4f::Vector4f(float rx, float ry, float rz, float rw)
 	y = ry;
 	z = rz;
 	w = rw;
-}
-
-const Vector4f &Vector4f::operator = (const Vector4f &v)
-{
-	if( this != &v)
-	{
-		x = v.x;
-		y = v.y;
-		z = v.z;
-		w = v.w;
-	}
-	return *this;
 }
 
 const Vector4f &Vector4f::operator += (const Vector4f &v)
