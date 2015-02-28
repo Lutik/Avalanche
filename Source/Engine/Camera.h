@@ -2,17 +2,15 @@
 #define AvalancheCameraH
 
 #include "math3d.h"
-#include "Scene.h"
 
-class CCamera : public CSceneNode 
+class Camera 
 {
 public:
-	CCamera();
-	~CCamera();
 	//initialization
 	void SetPerspective(float fov, float aspect, float zNear, float zFar);
-	void SetUpVector(float x, float y, float z);
-	void SetViewVector(float x, float y, float z);
+	void SetPosition(Vector3f pos);
+	void SetUpVector(Vector3f up);
+	void SetViewVector(Vector3f view);
 	//rotations
 	void RotateViewVec(float x, float y, float z, float angle);
 	void RotateUpVec(float x, float y, float z, float angle);
@@ -26,24 +24,19 @@ public:
 	void MoveLeft(float dist);
 	void MoveRight(float dist) { MoveLeft(-dist); }
 	//get camera info
-	Vector3f GetView() { return mView; }
-	Vector3f GetPos() { return mPosition; }
-	Vector3f GetUp() { return mUp; }
-	float GetZFar() { return mZFar; }
+	Vector3f GetView() const { return _view; }
+	Vector3f GetPos() const { return _pos; }
+	Vector3f GetUp() const { return _up; }
+	float GetZFar() const { return mZFar; }
 	//apply camera to OpenGL
-	void GetModelview(Matrix4f &mat);
-	void GetProjection(Matrix4f &mat);
-	void GetModelviewProjection(Matrix4f &mat);
-
-	void Render();
-
-	//Misc
-	Vector2f IntersectFloor(float mx, float my);
+	Matrix4f GetViewMatrix();
+	Matrix4f GetProjectionMatrix();
+	Matrix4f GetViewProjectionMatrix();
 private:
 	//position and orientation
-	Vector3f mView;
-	Vector3f mUp;
-	//float mDist; //useful only for 3rd person camera
+	Vector3f _pos;
+	Vector3f _view;
+	Vector3f _up;
 	//perspective
 	float mFOV;
 	float mAspect;

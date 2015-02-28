@@ -3,20 +3,18 @@
 #include "GameApp.h"
 #include "Font.h"
 #include "Shader.h"
+#include "Camera.h"
 
 class TestLayer : public IGameLayer
 {
-	Matrix4f _modelview;
-	Matrix4f _projection;
+	Camera _camera;
 
-	Font font;
 	ShaderProgram shader;
 	Mesh mesh;
 
-	void SetupMatrices();
-	void SetupGL();
+	Matrix4f meshMatrix;
 
-	Matrix4f GetMVPMatrix() const;
+	void SetupGL();
 
 public:
 	TestLayer();

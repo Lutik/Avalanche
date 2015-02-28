@@ -18,6 +18,19 @@ struct VertexP2T2
 	}
 };
 
+struct VertexP3
+{
+	Vector3f pos;
+
+	static VertexDescription GetVertexDescription()
+	{
+		VertexDescription desc;
+		desc.vertexSize = sizeof(VertexP3);
+		desc.AddAttrib({0, 3, GL_FLOAT, GL_FALSE, offsetof(VertexP3, pos), VertexAttribType::POSITION});
+		return desc;
+	}
+};
+
 struct VertexP3T2
 {
 	Vector3f pos;
@@ -26,7 +39,7 @@ struct VertexP3T2
 	static VertexDescription GetVertexDescription()
 	{
 		VertexDescription desc;
-		desc.vertexSize = sizeof(VertexP2T2);
+		desc.vertexSize = sizeof(VertexP3T2);
 		desc.AddAttrib({0, 3, GL_FLOAT, GL_FALSE, offsetof(VertexP3T2, pos), VertexAttribType::POSITION});
 		desc.AddAttrib({1, 2, GL_FLOAT, GL_FALSE, offsetof(VertexP3T2, uv), VertexAttribType::TEXCOORD});
 		return desc;
@@ -42,10 +55,10 @@ struct VertexP3T2N3
 	static VertexDescription GetVertexDescription()
 	{
 		VertexDescription desc;
-		desc.vertexSize = sizeof(VertexP2T2);
+		desc.vertexSize = sizeof(VertexP3T2N3);
 		desc.AddAttrib({0, 3, GL_FLOAT, GL_FALSE, offsetof(VertexP3T2N3, pos), VertexAttribType::POSITION});
 		desc.AddAttrib({1, 2, GL_FLOAT, GL_FALSE, offsetof(VertexP3T2N3, uv), VertexAttribType::TEXCOORD});
-		desc.AddAttrib({3, 3, GL_FLOAT, GL_FALSE, offsetof(VertexP3T2N3, normal), VertexAttribType::NORMAL});
+		desc.AddAttrib({2, 3, GL_FLOAT, GL_FALSE, offsetof(VertexP3T2N3, normal), VertexAttribType::NORMAL});
 		return desc;
 	}
 };

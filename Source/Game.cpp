@@ -14,6 +14,10 @@ void TestLayer::SetupGL()
 	glBlendEquation(GL_FUNC_ADD);
 	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE_MINUS_DST_ALPHA, GL_ONE);
 
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+	glDisable(GL_CULL_FACE);
+
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 }
@@ -35,23 +39,49 @@ std::string GetStringFromJsonSettings()
 
 TestLayer::TestLayer()
 {
-	SetupMatrices();
 	SetupGL();
 
-	font.Load("Resources/Font/Presquire_32.fnt");
+	VertexP3 vertData[8] = {
+		{{-1.0f, -1.0f, -1.0f}},
+		{{-1.0f, -1.0f, 1.0f}},
+		{{-1.0f, 1.0f, -1.0f}},
+		{{-1.0f, 1.0f, 1.0f}},
+		{{1.0f, -1.0f, -1.0f}},
+		{{1.0f, -1.0f, 1.0f}},
+		{{1.0f, 1.0f, -1.0f}},
+		{{1.0f, 1.0f, 1.0f}},
+	};
+	uint16_t indexData[36] = {
+		0, 1, 2,  1, 3, 2,
+		0, 2, 4,  4, 2, 6,
+		2, 3, 6,  6, 3, 7,
+		4, 6, 5,  5, 6, 7,
+		1, 0, 4,  5, 4, 1,
+		5, 3, 1,  5, 7, 3
+	};
+
+	mesh.SetVertices(VertexP3::GetVertexDescription(), 8, vertData);
+	mesh.SetIndices(IndexType::SHORT, 36, indexData);
+
+	meshMatrix.LoadIdentity();
+	//meshMatrix.Scale(0.3f);
+
+	_camera.SetPosition({-5.0f, -5.0f, 1.5f});
+	_camera.SetUpVector({0.0f, 0.0f, 1.0f});
+	_camera.SetViewVector({2.0f, 2.0f, -1.0f});
+	_camera.SetPerspective(45.0f, application->GetAspectRatio(), 0.2f, 30.0f);
 
 	CheckGLError();
 
-	std::string str = GetStringFromJsonSettings();
-	mesh = font.MakeStringMesh(Vector2f(-0.5f, 0.0f), str, 0.15f);
-
-	font.GetTexture().Bind(0);
-
 	shader.Link("Resources/Shaders/Simple.vsh", "Resources/Shaders/Simple.fsh");
+
+	CheckGLError("Shader link");
 }
 
 void TestLayer::onUpdate(float dt)
 {
+	meshMatrix.Rotate(10.0f * dt, {1.0f, 0.0f, 0.0f});
+	//meshMatrix.Translate({5.0f * dt, 0.0f, 0.0f});
 }
 
 void TestLayer::onRender()
@@ -59,10 +89,17 @@ void TestLayer::onRender()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glBindVertexArray(vao);
+	
+	Matrix4f mat;
+	mat.LoadIdentity();	
+	mat.MultMatrix(_camera.GetProjectionMatrix());
+	mat.MultMatrix(_camera.GetViewMatrix());
+	mat.MultMatrix(meshMatrix);
+	
 
 	shader.Bind();
-	shader.SetUniform("tex", 0);
-	shader.SetUniform("mvp", GetMVPMatrix());
+	shader.SetUniform("color", Vector4f(0.0f, 1.0f, 1.0f, 1.0f));
+	shader.SetUniform("mvp", mat);
 
 	mesh.Draw();
 }
@@ -77,20 +114,4 @@ void TestLayer::onKeyDown(int key)
 
 TestLayer::~TestLayer()
 {
-}
-
-void TestLayer::SetupMatrices()
-{
-	_modelview.LoadIdentity();
-
-	float aspect = application->GetAspectRatio();
-	_projection.LoadIdentity();
-	_projection.Ortho2D(-aspect, aspect, -1.0f, 1.0f, -1.0f, 1.0f);
-}
-
-Matrix4f TestLayer::GetMVPMatrix() const
-{
-	Matrix4f result = _modelview;
-	result.MultMatrix(_projection);
-	return result;
 }

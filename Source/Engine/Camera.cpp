@@ -1,16 +1,7 @@
 #include "stdafx.h"
 #include "Camera.h"
-#include "Renderer.h"
 
-CCamera::CCamera()
-{
-}
-
-CCamera::~CCamera()
-{
-}
-
-void CCamera::SetPerspective(float fov, float aspect, float zNear, float zFar)
+void Camera::SetPerspective(float fov, float aspect, float zNear, float zFar)
 {
 	mFOV = fov;
 	mAspect = aspect;
@@ -18,147 +9,131 @@ void CCamera::SetPerspective(float fov, float aspect, float zNear, float zFar)
 	mZFar = zFar;
 }
 
-void CCamera::SetUpVector(float x, float y, float z)
+void Camera::SetPosition(Vector3f pos)
 {
-	mUp.x = x;
-	mUp.y = y;
-	mUp.z = z;
-	Vector3f tmp = CrossProduct3f(mUp, mView);
-	mUp = CrossProduct3f(mView, tmp);
-	mUp.Normalize();
+	_pos = pos;
 }
 
-void CCamera::SetViewVector(float x, float y, float z)
+void Camera::SetUpVector(Vector3f up)
 {
-	mView.x = x;
-	mView.y = y;
-	mView.z = z;
-	mView.Normalize();
+	_up = up;
+	Vector3f tmp = Cross(_up, _view);
+	_up = Cross(_view, tmp);
+	_up.Normalize();
+}
+
+void Camera::SetViewVector(Vector3f view)
+{
+	_view = view;
+	_view.Normalize();
 }
 
 //x,y,z should be components of unit vector
-void CCamera::RotateViewVec(float x, float y, float z, float angle)
+void Camera::RotateViewVec(float x, float y, float z, float angle)
 {
 	//make rotation quaternion
-	float sinA2 = sinf(angle/2);
+	float sinA2 = std::sin(angle * 0.5f);
 	Quaternion R;
 	R.x = x * sinA2;
 	R.y = y * sinA2;
 	R.z = z * sinA2;
-	R.w = cosf(angle/2);
+	R.w = std::cos(angle * 0.5f);
 	//find new View vector
-	Quaternion qView(mView, 0);
+	Quaternion qView(_view, 0);
 	Quaternion tmp = UnitQuatProduct(R, qView);
 	qView = UnitQuatProduct(tmp, Conjugate(R));
-	mView = qView.v;
+	_view = qView.v;
 }
 
 //x,y,z should be components of unit vector
-void CCamera::RotateUpVec(float x, float y, float z, float angle)
+void Camera::RotateUpVec(float x, float y, float z, float angle)
 {
 	//make rotation quaternion
-	float sinA2 = sinf(angle/2);
+	float sinA2 = std::sin(angle * 0.5f);
 	Quaternion R;
 	R.x = x * sinA2;
 	R.y = y * sinA2;
 	R.z = z * sinA2;
-	R.w = cosf(angle/2);
+	R.w = std::cos(angle * 0.5f);
 	//find new Up vector
-	Quaternion qUp(mUp, 0);
+	Quaternion qUp(_up, 0);
 	Quaternion tmp = UnitQuatProduct(R, qUp);
 	qUp = UnitQuatProduct(tmp, Conjugate(R));
-	mUp = qUp.v;
+	_up = qUp.v;
 }
 
-void CCamera::Rotate(float x, float y, float z, float angle)
+void Camera::Rotate(float x, float y, float z, float angle)
 {
 	//make rotation quaternion
-	float sinA2 = sinf(angle/2);
+	float sinA2 = std::sin(angle * 0.5f);
 	Quaternion R;
 	R.x = x * sinA2;
 	R.y = y * sinA2;
 	R.z = z * sinA2;
-	R.w = cosf(angle/2);
+	R.w = std::cos(angle * 0.5f);
 	//find new Up vector
-	Quaternion quat1(mUp, 0);
+	Quaternion quat1(_up, 0);
 	Quaternion tmp = UnitQuatProduct(R, quat1);
 	quat1 = UnitQuatProduct(tmp, Conjugate(R));
-	mUp = quat1.v;
+	_up = quat1.v;
 	//find new view vector
-	quat1 = Quaternion(mView, 0);
+	quat1 = Quaternion(_view, 0);
 	tmp = UnitQuatProduct(R, quat1);
 	quat1 = UnitQuatProduct(tmp, Conjugate(R));
-	mView = quat1.v;
+	_view = quat1.v;
 }
 
-void CCamera::RotateX(float angle)
+void Camera::RotateX(float angle)
 {
-	Vector3f tmp = CrossProduct3f(mUp, mView);
+	Vector3f tmp = Cross(_up, _view);
 	Rotate(tmp.x, tmp.y, tmp.z, angle);
 }
 
-void CCamera::RotateY(float angle)
+void Camera::RotateY(float angle)
 {
-	RotateViewVec(mUp.x, mUp.y, mUp.z, angle);
+	RotateViewVec(_up.x, _up.y, _up.z, angle);
 }
 
-void CCamera::RotateZ(float angle)
+void Camera::RotateZ(float angle)
 {
-	RotateUpVec(mView.x, mView.y, mView.z, angle);	
+	RotateUpVec(_view.x, _view.y, _view.z, angle);	
 }
 
-void CCamera::MoveForward(float dist)
+void Camera::MoveForward(float dist)
 {
-	mPosition.x += (mView.x * dist);
-	mPosition.y += (mView.y * dist);
-	mPosition.z += (mView.z * dist);
+	_pos += _view * dist;
 }
 
-void CCamera::MoveLeft(float dist)
+void Camera::MoveLeft(float dist)
 {
-	Vector3f tmp = CrossProduct3f(mUp, mView);
-	mPosition.x += tmp.x * dist;
-	mPosition.y += tmp.y * dist;
-	mPosition.z += tmp.z * dist;
+	Vector3f tmp = Cross(_up, _view) * dist;
+	_pos += tmp;
 }
 
-void CCamera::GetModelview(Matrix4f &mat)
+Matrix4f Camera::GetViewMatrix()
 {
+	Matrix4f mat;
 	mat.LoadIdentity();
-	mUp.Normalize();
-	mat.LookAt(mPosition, mPosition+mView, mUp);
+	_up.Normalize();
+	mat.LookAt(_pos, _pos + _view, _up);
+	return mat;
 }
 
-void CCamera::GetProjection(Matrix4f &mat)
+Matrix4f Camera::GetProjectionMatrix()
 {
-	mat.LoadIdentity();
-	mat.Perspective(mFOV, mAspect, mZNear, mZFar);
-}
-
-void CCamera::GetModelviewProjection(Matrix4f &mat)
-{
+	Matrix4f mat;
 	mat.LoadIdentity();
 	mat.Perspective(mFOV, mAspect, mZNear, mZFar);
-	mUp.Normalize();
-	mat.LookAt(mPosition, mPosition+mView, mUp);
+	return mat;
 }
 
-void CCamera::Render()
+Matrix4f Camera::GetViewProjectionMatrix()
 {
-	Matrix4f mv, proj;
-	GetModelview(mv);
-	GetProjection(proj);
-	Renderer->SetCamera(mv, proj);
-
-	CSceneNode::Render();
-}
-
-Vector2f CCamera::IntersectFloor(float mx, float my)
-{ 
-	float s = mZNear / (mAspect * tanf(Deg2Rad(mFOV)));
-	Vector3f right = CrossProduct3f(mView, mUp);
-	Vector3f view = mView * mZNear + my*s*mUp + mx*s*right;
-	float c = mPosition.z / view.z;
-	return Vector2f(mPosition.x - view.x * c, mPosition.y - view.y * c);
+	Matrix4f mat;
+	mat.LoadIdentity();
+	mat.Perspective(mFOV, mAspect, mZNear, mZFar);
+	_up.Normalize();
+	mat.LookAt(_pos, _pos + _view, _up);
+	return mat;
 }
 

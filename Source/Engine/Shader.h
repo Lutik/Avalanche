@@ -19,6 +19,7 @@ public:
 
 	void SetUniform(const std::string& name, Matrix4f &mat);
 	void SetUniform(const std::string& name, GLint v0);
+	void SetUniform(const std::string& name, Vector4f &vec);
 private:
 	GLuint _id;
 };

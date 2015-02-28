@@ -52,7 +52,8 @@ public:
 	friend Vector3f operator/(const Vector3f &v1, const float num);
 	friend Vector3f operator-(const Vector3f &v);
 
-	operator float*() {return (float*)this;}
+	float* ptr() { return (float*)this; }
+
 	//functions
 	float Length() const;
 	float Length2() const; //x*x + y*y + z*z
@@ -85,7 +86,8 @@ public:
 	friend Vector2f operator/(const Vector2f &v1, const float num);
 	friend Vector2f operator-(const Vector2f &v);
 
-	operator float*() {return (float*)this;};
+	float* ptr() { return (float*)this; }
+
 	//functions
 	float Length() const;
 	float Length2() const; //x*x + y*y
@@ -117,7 +119,7 @@ public:
 	friend Vector4f operator/(const Vector4f &v1, const float num);
 	friend Vector4f operator-(const Vector4f &v);
 
-	operator float*() {return (float*)this;};
+	float* ptr() { return (float*)this; }
 	//functions
 	float Length() const;
 	float Length2() const; //x*x + y*y + z*z + w*w

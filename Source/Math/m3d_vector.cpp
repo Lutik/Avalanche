@@ -176,7 +176,7 @@ Vector2f operator-(const Vector2f &v)
 
 float Vector2f::Length() const
 {
-	return sqrtf(x*x + y*y);
+	return std::sqrt(x*x + y*y);
 }
 
 float Vector2f::Length2() const
@@ -186,7 +186,7 @@ float Vector2f::Length2() const
 
 void Vector2f::Normalize()
 {
-	float m = 1.0f / sqrtf(x*x + y*y);
+	float m = 1.0f / std::sqrt(x*x + y*y);
 
 	x *= m;
 	y *= m;
