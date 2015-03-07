@@ -47,14 +47,21 @@ void ShaderProgram::Bind()
 	glUseProgram(_id);
 }
 
-void ShaderProgram::SetUniform(const std::string& name, Matrix4f &mat)
+void ShaderProgram::SetUniform(const std::string& name, const Matrix4f &mat)
 {
 	//glUseProgram(_id);
 	GLuint loc = glGetUniformLocation(_id, name.c_str());
-	glUniformMatrix4fv(loc, 1, GL_TRUE, mat.ptr());
+	glUniformMatrix4fv(loc, 1, GL_FALSE, mat.ptr());
 }
 
-void ShaderProgram::SetUniform(const std::string& name, Vector4f &vec)
+void ShaderProgram::SetUniform(const std::string& name, const Vector3f &vec)
+{
+	//glUseProgram(_id);
+	GLuint loc = glGetUniformLocation(_id, name.c_str());
+	glUniform3fv(loc, 1, vec.ptr());
+}
+
+void ShaderProgram::SetUniform(const std::string& name, const Vector4f &vec)
 {
 	//glUseProgram(_id);
 	GLuint loc = glGetUniformLocation(_id, name.c_str());

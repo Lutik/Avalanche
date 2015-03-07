@@ -1,5 +1,5 @@
 #pragma once
-#include "math3d.h"
+
 #include "VertexTypes.h"
 #include "Texture.h"
 #include "Mesh.h"

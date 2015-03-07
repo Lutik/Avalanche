@@ -10,9 +10,10 @@ class TestLayer : public IGameLayer
 	Camera _camera;
 
 	ShaderProgram shader;
-	Mesh mesh;
+	std::unique_ptr<Mesh> mesh;
 
-	Matrix4f meshMatrix;
+	Vector3f meshPos;
+	float meshAngle = 0.0f;
 
 	void SetupGL();
 

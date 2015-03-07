@@ -1,7 +1,8 @@
 #ifndef AvalancheCameraH
 #define AvalancheCameraH
 
-#include "math3d.h"
+#include "Vector3.h"
+#include "Matrix.h"
 
 class Camera 
 {
@@ -31,7 +32,6 @@ public:
 	//apply camera to OpenGL
 	Matrix4f GetViewMatrix();
 	Matrix4f GetProjectionMatrix();
-	Matrix4f GetViewProjectionMatrix();
 private:
 	//position and orientation
 	Vector3f _pos;

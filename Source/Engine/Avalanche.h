@@ -11,6 +11,4 @@ struct VideoSettings
 #include "Application.h"
 #include "Input.h"
 
-#include "math3d.h"
-
 #endif

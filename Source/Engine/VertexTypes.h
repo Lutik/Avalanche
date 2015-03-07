@@ -1,6 +1,7 @@
 #pragma once
 
-#include "math3d.h"
+#include "Vector2.h"
+#include "Vector3.h"
 #include "VertexDescription.h"
 
 struct VertexP2T2

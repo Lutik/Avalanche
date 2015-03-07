@@ -1,5 +1,7 @@
 #include "stdafx.h"
+
 #include "Camera.h"
+#include "Quaternion.h"
 
 void Camera::SetPerspective(float fov, float aspect, float zNear, float zFar)
 {
@@ -112,28 +114,12 @@ void Camera::MoveLeft(float dist)
 
 Matrix4f Camera::GetViewMatrix()
 {
-	Matrix4f mat;
-	mat.LoadIdentity();
 	_up.Normalize();
-	mat.LookAt(_pos, _pos + _view, _up);
-	return mat;
+	return Matrix4f::LookAt(_pos, _pos + _view, _up);
 }
 
 Matrix4f Camera::GetProjectionMatrix()
 {
-	Matrix4f mat;
-	mat.LoadIdentity();
-	mat.Perspective(mFOV, mAspect, mZNear, mZFar);
-	return mat;
-}
-
-Matrix4f Camera::GetViewProjectionMatrix()
-{
-	Matrix4f mat;
-	mat.LoadIdentity();
-	mat.Perspective(mFOV, mAspect, mZNear, mZFar);
-	_up.Normalize();
-	mat.LookAt(_pos, _pos + _view, _up);
-	return mat;
+	return Matrix4f::Perspective(mFOV, mAspect, mZNear, mZFar);
 }
 

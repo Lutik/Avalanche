@@ -1,6 +1,8 @@
 #pragma once
 
-#include "math3d.h"
+#include "Vector3.h"
+#include "Vector4.h"
+#include "Matrix.h"
 
 class ShaderProgram
 {
@@ -17,9 +19,10 @@ public:
 
 	GLuint GetID() const;
 
-	void SetUniform(const std::string& name, Matrix4f &mat);
-	void SetUniform(const std::string& name, GLint v0);
-	void SetUniform(const std::string& name, Vector4f &vec);
+	void SetUniform(const std::string &name, const Matrix4f &mat);
+	void SetUniform(const std::string &name, GLint v0);
+	void SetUniform(const std::string &name, const Vector3f &vec);
+	void SetUniform(const std::string &name, const Vector4f &vec);
 private:
 	GLuint _id;
 };
