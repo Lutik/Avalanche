@@ -35,27 +35,30 @@ uint8_t *Image2D::data() const
 	return _data.get();
 }
 
-int Image2D::width() const
+int Image2D::Width() const
 {
 	return _width;
 }
 
-int Image2D::height() const
+int Image2D::Height() const
 {
 	return _height;
 }
 
-GLint Image2D::format() const
+GLint Image2D::Format() const
 {
 	return _format;
 }
 
-GLenum Image2D::type() const
+GLenum Image2D::Type() const
 {
 	return _type;
 }
 
-static const GLuint TEXTURE_LOAD_ERROR = 0;
+bool Image2D::Empty() const
+{
+	return _width * _height == 0;
+}
 
 Image2D loadTexture(const std::string filename) 
  {
@@ -145,7 +148,7 @@ Image2D loadTexture(const std::string filename)
      return image;
    }
    // set the individual row_pointers to point at the correct offsets of image_data
-   for (int i = 0; i < theight; ++i)
+   for (png_uint_32 i = 0; i < theight; ++i)
      row_pointers[theight - 1 - i] = image.data() + i * rowbytes;
  
    //read the png into image_data through row_pointers

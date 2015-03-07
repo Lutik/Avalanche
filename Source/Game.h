@@ -10,6 +10,7 @@ class TestLayer : public IGameLayer
 	Camera _camera;
 
 	ShaderProgram shader;
+	Texture2D texture;
 	std::unique_ptr<Mesh> mesh;
 
 	Vector3f meshPos;

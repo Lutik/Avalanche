@@ -18,10 +18,11 @@ public:
 	Image2D& operator=(Image2D&&);
 
 	uint8_t *data() const;
-	int width() const;
-	int height() const;
-	GLint format() const;
-	GLenum type() const;
+	int Width() const;
+	int Height() const;
+	GLint Format() const;
+	GLenum Type() const;
+	bool Empty() const;
 };
 
 Image2D loadTexture(const std::string filename);

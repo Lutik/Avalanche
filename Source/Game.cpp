@@ -15,7 +15,9 @@ void TestLayer::SetupGL()
 	glBlendEquation(GL_FUNC_ADD);
 	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE_MINUS_DST_ALPHA, GL_ONE);
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glEnable(GL_DEPTH_TEST);
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	glDisable(GL_CULL_FACE);
 
@@ -42,12 +44,15 @@ TestLayer::TestLayer()
 {
 	SetupGL();
 
-	mesh = LoadMeshOBJ("Resources/rocket.obj");
+	mesh = LoadMeshOBJ("Resources/cube.obj");
 	meshPos = Vector3f(0.0f, 0.0f, -6.0f);
 
-	_camera.SetPosition({-5.0f, -5.0f, 1.5f});
+	Image2D img = loadTexture("Resources/metal.png");
+	texture.SetImage(img);
+
+	_camera.SetPosition({0.0f, -6.0f, 3.0f});
+	_camera.SetViewVector({0.0f, 1.0f, -0.5f});
 	_camera.SetUpVector({0.0f, 0.0f, 1.0f});
-	_camera.SetViewVector({2.0f, 2.0f, -1.0f});
 	_camera.SetPerspective(45.0f, application->GetAspectRatio(), 0.2f, 30.0f);
 
 	shader.Link("Resources/Shaders/Simple.vsh", "Resources/Shaders/Simple.fsh");
@@ -55,10 +60,6 @@ TestLayer::TestLayer()
 
 void TestLayer::onUpdate(float dt)
 {
-	if( Av::input->KeyPressed(SDL_SCANCODE_RIGHT) )
-		meshPos.x += 0.5f * dt;
-	if( Av::input->KeyPressed(SDL_SCANCODE_LEFT) )
-		meshPos.x -= 0.5f * dt;
 	meshAngle += 45.0f * dt;
 	if( meshAngle >= 360.0f )
 		meshAngle -= 360.0f;
@@ -70,15 +71,18 @@ void TestLayer::onRender()
 
 	glBindVertexArray(vao);
 
-	Matrix4f proj = _camera.GetProjectionMatrix();
-	Matrix4f view = _camera.GetViewMatrix();
-	Matrix4f model = Matrix4f::Translate(meshPos);
-	model *= Matrix4f::Scale({0.2f, 0.2f, 0.2f});
-	model *= Matrix4f::Rotate(meshAngle, {0.0f, 0.0f, 1.0f});
+	Matrix4f modelMatrix = Matrix4f::Scale({0.06f, 0.06f, 0.06f});
+	modelMatrix *= Matrix4f::Rotate(meshAngle, {0.0f, 0.0f, 1.0f});
 
+	texture.Bind(0);
+
+	Vector3f light_dir(1.0f, 1.0f, -5.0f);
+	light_dir.Normalize();
 	shader.Bind();
-	shader.SetUniform("color", Vector4f(0.0f, 1.0f, 1.0f, 1.0f));
-	shader.SetUniform("mvp", proj * view * model);
+	shader.SetUniform("texture", 0);
+	shader.SetUniform("light_dir", light_dir);
+	shader.SetUniform("modelview", _camera.GetViewMatrix() * modelMatrix);
+	shader.SetUniform("projection", _camera.GetProjectionMatrix());
 
 	mesh->Draw();
 }
