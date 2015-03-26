@@ -3,7 +3,6 @@
 #include "ImageLoaders.h"
 #include "ModelLoaders.h"
 #include "Utils.h"
-#include <json/json.h>
 
 GLuint vao;
 
@@ -23,21 +22,6 @@ void TestLayer::SetupGL()
 
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
-}
-
-std::string GetStringFromJsonSettings()
-{
-	Json::Value root;
-	Json::Reader reader;
-	bool parseOK = reader.parse(ReadFile("resources/json_test.txt"), root, false);
-	if( parseOK )
-	{
-		return root.get("text", "Default").asString();
-	}
-	else
-	{
-		return std::string("Error");
-	}
 }
 
 TestLayer::TestLayer()

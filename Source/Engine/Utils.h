@@ -1,3 +1,5 @@
 #pragma once
 
-std::string ReadFile(const std::string &fileName);
+namespace File {
+	std::string ReadFile(const std::string &fileName);
+}

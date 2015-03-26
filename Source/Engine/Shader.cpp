@@ -21,7 +21,7 @@ void ShaderProgram::Link(const std::string& vs, const std::string& ps)
 	std::string source;
 	const char *src;
 
-	source = ReadFile(vs);
+	source = File::ReadFile(vs);
 	src = source.c_str();
 	GLuint vert_id = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vert_id, 1, &src, nullptr);
@@ -29,7 +29,7 @@ void ShaderProgram::Link(const std::string& vs, const std::string& ps)
 	ShaderLog(vert_id);
 	glAttachShader(_id, vert_id);
 
-	source = ReadFile(ps);
+	source = File::ReadFile(ps);
 	src = source.c_str();
 	GLuint frag_id = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(frag_id, 1, &src, nullptr);

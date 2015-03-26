@@ -2,6 +2,9 @@
 #include "Utils.h"
 #include "Log.h"
 
+namespace File
+{
+
 std::string ReadFile(const std::string &fileName)
 {
 	std::string content;
@@ -21,3 +24,5 @@ std::string ReadFile(const std::string &fileName)
 	fileStream.close();
 	return content;
 }
+
+} // end of namespace File
