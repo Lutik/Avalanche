@@ -92,10 +92,10 @@
     <ClInclude Include="Math\Vector2.h">
       <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Math.h">
+    <ClInclude Include="Math\Quaternion.h">
       <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Quaternion.h">
+    <ClInclude Include="Math\AvMath.h">
       <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>
@@ -154,9 +154,6 @@
     <ClCompile Include="Engine\ModelLoaders.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Math.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
     <ClCompile Include="Math\Quaternion.cpp">
       <Filter>Math</Filter>
     </ClCompile>
@@ -170,6 +167,9 @@
       <Filter>Math</Filter>
     </ClCompile>
     <ClCompile Include="Math\Matrix.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\AvMath.cpp">
       <Filter>Math</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 #include "Quaternion.h"
-#include "Math.h"
+#include "AvMath.h"
 
 Quaternion::Quaternion(float rx, float ry, float rz, float rw)
 {
