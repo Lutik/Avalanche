@@ -1,18 +1,21 @@
 #include "stdafx.h"
 #include "GameApp.h"
 #include "Game.h"
+#include "ResourceManager.h"
 
 
-Av::Application *IGameLayer::application = nullptr;
+Av::Application *IScene::application = nullptr;
 
 AvalancheGame::AvalancheGame()
 {
-	IGameLayer::application = this;
+	IScene::application = this;
 }
 
 void AvalancheGame::onStart()
 {
-	_game.reset(new TestLayer());
+	Av::resourceManager.LoadDescriptions("Resources/resources.json");
+	Av::resourceManager.LoadResources();
+	_game.reset(new TestScene());
 }
 
 void AvalancheGame::onRender()
@@ -48,4 +51,5 @@ void AvalancheGame::onMouseUp(int key)
 void AvalancheGame::onExit()
 {
 	_game.reset();
+	Av::resourceManager.UnloadResources();
 }

@@ -7,21 +7,26 @@
 
 #include "targetver.h"
 
-// Windows Header Files
+// Windows
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
 #include <windows.h>
 
+// SDL
 #include "SDL.h"
 
-//STL
+// STL
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
+#include <map>
 #include <memory>
 #include <algorithm>
 
-//OpenGL
+// JSON
+#include <json/json.h>
+
+// OpenGL
 //#include <GL/GL.h>
 //#include "GL/glcorearb.h"
 //#include "GL/glext.h"

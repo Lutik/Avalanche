@@ -2,10 +2,10 @@
 
 #include "Avalanche.h"
 
-class IGameLayer
+class IScene
 {
 public:
-	virtual ~IGameLayer() {};
+	virtual ~IScene() {};
 
 	virtual void onRender() = 0;
 	virtual void onUpdate(float dt) = 0;
@@ -16,12 +16,12 @@ public:
 
 	static Av::Application *application;
 
-	typedef std::unique_ptr<IGameLayer> Ptr;
+	typedef std::unique_ptr<IScene> Ptr;
 };
 
 class AvalancheGame : public Av::Application
 {
-	IGameLayer::Ptr _game;
+	IScene::Ptr _game;
 public:
 	AvalancheGame();
 

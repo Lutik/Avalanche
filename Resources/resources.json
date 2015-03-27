@@ -1,0 +1,13 @@
+{
+	"Textures" : 
+	[
+		{
+			"name" : "Metal",
+			"path" : "metal.png"
+		},
+		{
+			"name" : "MetalNormal",
+			"path" : "metal_nm.png"
+		}
+	]
+}

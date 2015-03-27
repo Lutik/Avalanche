@@ -5,12 +5,12 @@
 #include "Shader.h"
 #include "Camera.h"
 
-class TestLayer : public IGameLayer
+class TestScene : public IScene
 {
 	Camera _camera;
 
 	ShaderProgram shader;
-	Texture2D texture;
+	Texture2D::Ref texture;
 	std::unique_ptr<Mesh> mesh;
 
 	Vector3f meshPos;
@@ -19,8 +19,8 @@ class TestLayer : public IGameLayer
 	void SetupGL();
 
 public:
-	TestLayer();
-	~TestLayer();
+	TestScene();
+	~TestScene();
 
 	virtual void onRender() override;
 	virtual void onUpdate(float dt) override;

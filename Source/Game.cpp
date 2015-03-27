@@ -3,10 +3,11 @@
 #include "ImageLoaders.h"
 #include "ModelLoaders.h"
 #include "Utils.h"
+#include "ResourceManager.h"
 
 GLuint vao;
 
-void TestLayer::SetupGL()
+void TestScene::SetupGL()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
@@ -24,15 +25,14 @@ void TestLayer::SetupGL()
 	glBindVertexArray(vao);
 }
 
-TestLayer::TestLayer()
+TestScene::TestScene()
 {
 	SetupGL();
 
 	mesh = LoadMeshOBJ("Resources/cube.obj");
 	meshPos = Vector3f(0.0f, 0.0f, -6.0f);
 
-	Image2D img = loadTexture("Resources/metal.png");
-	texture.SetImage(img);
+	texture = Av::resourceManager.GetTexture("Metal");
 
 	_camera.SetPosition({0.0f, -6.0f, 3.0f});
 	_camera.SetViewVector({0.0f, 1.0f, -0.5f});
@@ -42,14 +42,14 @@ TestLayer::TestLayer()
 	shader.Link("Resources/Shaders/Simple.vsh", "Resources/Shaders/Simple.fsh");
 }
 
-void TestLayer::onUpdate(float dt)
+void TestScene::onUpdate(float dt)
 {
 	meshAngle += 45.0f * dt;
 	if( meshAngle >= 360.0f )
 		meshAngle -= 360.0f;
 }
 
-void TestLayer::onRender()
+void TestScene::onRender()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -58,7 +58,7 @@ void TestLayer::onRender()
 	Matrix4f modelMatrix = Matrix4f::Scale({0.06f, 0.06f, 0.06f});
 	modelMatrix *= Matrix4f::Rotate(meshAngle, {0.0f, 0.0f, 1.0f});
 
-	texture.Bind(0);
+	texture->Bind(0);
 
 	Vector3f light_dir(1.0f, 1.0f, -5.0f);
 	light_dir.Normalize();
@@ -71,12 +71,12 @@ void TestLayer::onRender()
 	mesh->Draw();
 }
 
-void TestLayer::onKeyDown(int key)
+void TestScene::onKeyDown(int key)
 {
 	if(key == SDL_SCANCODE_ESCAPE)
 		application->Shutdown();
 }
 
-TestLayer::~TestLayer()
+TestScene::~TestScene()
 {
 }
