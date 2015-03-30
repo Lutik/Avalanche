@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{2C01EC0B-706D-4DA7-9D8D-D031C52E0B66}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\work\Avalanche\Source\libs\bullet-2.82-r2704\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule D:/work/Avalanche/Source/libs/bullet-2.82-r2704/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HD:/work/Avalanche/Source/libs/bullet-2.82-r2704 -BD:/work/Avalanche/Source/libs/bullet-2.82-r2704/build --check-stamp-file D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:/work/Avalanche/Source/libs/bullet-2.82-r2704/CMakeLists.txt;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\CMakeLists.txt;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\3.2.1\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeSystemSpecificInitialize.cmake;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\3.2.1\CMakeCCompiler.cmake;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\3.2.1\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows-MSVC.cmake;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\3.2.1\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindOpenGL.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindGLU.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindOpenGL.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeParseArguments.cmake;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\BulletConfig.cmake.in;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule D:/work/Avalanche/Source/libs/bullet-2.82-r2704/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HD:/work/Avalanche/Source/libs/bullet-2.82-r2704 -BD:/work/Avalanche/Source/libs/bullet-2.82-r2704/build --check-stamp-file D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:/work/Avalanche/Source/libs/bullet-2.82-r2704/CMakeLists.txt;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\CMakeLists.txt;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\3.2.1\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeSystemSpecificInitialize.cmake;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\3.2.1\CMakeCCompiler.cmake;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\3.2.1\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows-MSVC.cmake;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\3.2.1\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindOpenGL.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindGLU.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindOpenGL.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeParseArguments.cmake;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\BulletConfig.cmake.in;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule D:/work/Avalanche/Source/libs/bullet-2.82-r2704/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HD:/work/Avalanche/Source/libs/bullet-2.82-r2704 -BD:/work/Avalanche/Source/libs/bullet-2.82-r2704/build --check-stamp-file D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:/work/Avalanche/Source/libs/bullet-2.82-r2704/CMakeLists.txt;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\CMakeLists.txt;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\3.2.1\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeSystemSpecificInitialize.cmake;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\3.2.1\CMakeCCompiler.cmake;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\3.2.1\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows-MSVC.cmake;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\3.2.1\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindOpenGL.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindGLU.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindOpenGL.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeParseArguments.cmake;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\BulletConfig.cmake.in;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule D:/work/Avalanche/Source/libs/bullet-2.82-r2704/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HD:/work/Avalanche/Source/libs/bullet-2.82-r2704 -BD:/work/Avalanche/Source/libs/bullet-2.82-r2704/build --check-stamp-file D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:/work/Avalanche/Source/libs/bullet-2.82-r2704/CMakeLists.txt;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\CMakeLists.txt;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\3.2.1\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeSystemSpecificInitialize.cmake;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\3.2.1\CMakeCCompiler.cmake;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\3.2.1\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows-MSVC.cmake;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\3.2.1\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindOpenGL.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindGLU.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindOpenGL.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.2\Modules\CMakeParseArguments.cmake;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\BulletConfig.cmake.in;D:\work\Avalanche\Source\libs\bullet-2.82-r2704\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\work\Avalanche\Source\libs\bullet-2.82-r2704\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/BasicDemo/AppBasicDemo.vcxproj">
+      <Project>8BB28DC4-3BEF-43B6-A89E-86A376C9AB98</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/Benchmarks/AppBenchmarks.vcxproj">
+      <Project>5DBCC1D1-8EAB-4F79-B896-85DB9C69CEAA</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/Box2dDemo/AppBox2dDemo.vcxproj">
+      <Project>1BA024C5-6649-4929-A5A8-12D1138F9F77</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/CollisionInterfaceDemo/AppCollisionInterfaceDemo.vcxproj">
+      <Project>86DB7F2F-A289-4A94-942C-E166D72C2945</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/ConcaveDemo/AppConcaveDemo.vcxproj">
+      <Project>D46F2941-C9A0-4C1A-88A5-E5DCF2C4F941</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/ConstraintDemo/AppConstraintDemo.vcxproj">
+      <Project>914A806D-231E-40D6-8A01-B9E4FBF5DB4E</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/ConvexDecompositionDemo/AppConvexDecompositionDemo.vcxproj">
+      <Project>E3D3F6F9-C7C4-41A1-84E3-923C8710D299</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/FeatherstoneMultiBodyDemo/AppFeatherstoneMultiBodyDemo.vcxproj">
+      <Project>FBDD9E95-DEC6-43E1-90AB-8F0A2F19A314</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/FractureDemo/AppFractureDemo.vcxproj">
+      <Project>7A3AC7FD-0B47-45FD-AD6C-BE6F80E25C5A</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/GenericJointDemo/AppGenericJointDemo.vcxproj">
+      <Project>D55122A0-7F04-4637-A4F7-0E490F66C744</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/GimpactTestDemo/AppGimpactTestDemo.vcxproj">
+      <Project>60189208-F20A-4605-AB2D-FA4FDCB8C063</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/GyroscopicDemo/AppGyroscopicDemo.vcxproj">
+      <Project>9CB8BC7D-DA84-435B-8554-4AECF4CE3446</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/HelloWorld/AppHelloWorld.vcxproj">
+      <Project>37C1BD16-22E0-496E-8701-50A9FB264F07</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/InternalEdgeDemo/AppInternalEdgeDemo.vcxproj">
+      <Project>460B76ED-D282-48B8-88CA-82E7D047389B</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/RaytestDemo/AppRaytestDemo.vcxproj">
+      <Project>D4431B3E-1BDA-4DF2-8032-C08DAD3698B9</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/RollingFrictionDemo/AppRollingFrictionDemo.vcxproj">
+      <Project>9C22F76B-B764-44F1-A589-F17895534259</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/SerializeDemo/AppSerializeDemo.vcxproj">
+      <Project>19F258F2-3D9B-4D94-A7A8-A096D49D9F6A</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/VectorAdd_OpenCL/MiniCL/AppVectorAdd_Mini.vcxproj">
+      <Project>130BBC37-0DBD-4819-A4B4-6D13269B169A</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/VoronoiFractureDemo/AppVoronoiFractureDemo.vcxproj">
+      <Project>D6D3C42C-8709-498D-92F9-57D817D26E35</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/src/BulletCollision/BulletCollision.vcxproj">
+      <Project>5DF59C72-18CC-4EFE-81D7-D0DD2C7AF9C9</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/src/BulletDynamics/BulletDynamics.vcxproj">
+      <Project>0E1398DC-8D98-4DD4-954C-FBAD41601916</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Extras/Serialize/BulletFileLoader/BulletFileLoader.vcxproj">
+      <Project>B7312420-AC21-4DD5-A80A-65782A81893E</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/src/BulletMultiThreaded/BulletMultiThreaded.vcxproj">
+      <Project>E11C769E-EE27-4DDB-9BA0-8D47B6AA586E</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/src/BulletSoftBody/BulletSoftBody.vcxproj">
+      <Project>4B0936A8-FF9C-4F46-BC0B-48313178133A</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/src/BulletMultiThreaded/GpuSoftBodySolvers/OpenCL/MiniCL/BulletSoftBodySolvers_OpenCL_Mini.vcxproj">
+      <Project>EA6FC1C2-95C0-4258-BEDC-D66D919C25DE</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Extras/Serialize/BulletWorldImporter/BulletWorldImporter.vcxproj">
+      <Project>ECAA8103-3050-45D4-ADB7-AFD586200E07</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Extras/Serialize/BulletXmlWorldImporter/BulletXmlWorldImporter.vcxproj">
+      <Project>67FA40D6-C372-4B93-8BE0-7722B95BA523</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Extras/ConvexDecomposition/ConvexDecomposition.vcxproj">
+      <Project>6A7071A4-75D0-43BE-865C-7F1924DB24AC</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Extras/GIMPACTUtils/GIMPACTUtils.vcxproj">
+      <Project>D3636E52-E7FB-4CD4-AE65-387767A6BB1B</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Extras/HACD/HACD.vcxproj">
+      <Project>A5663E4F-E9EC-49B6-9D19-A378F4400E21</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/src/LinearMath/LinearMath.vcxproj">
+      <Project>B9735C3C-39A0-4863-9E99-6851858A5711</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/src/MiniCL/MiniCL.vcxproj">
+      <Project>73E6D877-19F1-470E-8910-29A5FF970F05</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/Demos/OpenGL/OpenGLSupport.vcxproj">
+      <Project>F8B08B41-28A9-40CB-942B-87D8009D67B1</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/work/Avalanche/Source/libs/bullet-2.82-r2704/build/ZERO_CHECK.vcxproj">
+      <Project>B887CC1F-F66B-4CEB-B186-3F196B09E4B8</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
