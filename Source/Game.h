@@ -1,16 +1,15 @@
 #pragma once
 
 #include "GameApp.h"
-#include "Font.h"
-#include "Shader.h"
+#include "Material.h"
+#include "Mesh.h"
 #include "Camera.h"
 
 class TestScene : public IScene
 {
 	Camera _camera;
 
-	ShaderProgram *shader;
-	Texture2D *texture;
+	Material *material;
 	Mesh *mesh;
 
 	Vector3f meshPos;

@@ -47,32 +47,57 @@ void ShaderProgram::Bind()
 	glUseProgram(_id);
 }
 
+GLint ShaderProgram::GetUniformLocation(const std::string &name) const
+{
+	return glGetUniformLocation(_id, name.c_str());
+}
+
+void ShaderProgram::SetUniform(GLint loc, const Matrix4f &mat)
+{
+	glUniformMatrix4fv(loc, 1, GL_FALSE, mat.ptr());
+}
+
+void ShaderProgram::SetUniform(GLint loc, const Vector3f &vec)
+{
+	glUniform3fv(loc, 1, vec.ptr());
+}
+
+void ShaderProgram::SetUniform(GLint loc, const Vector4f &vec)
+{
+	glUniform4fv(loc, 1, vec.ptr());
+}
+
+void ShaderProgram::SetUniform(GLint loc, GLint v0)
+{
+	glUniform1i(loc, v0);
+}
+
 void ShaderProgram::SetUniform(const std::string& name, const Matrix4f &mat)
 {
-	//glUseProgram(_id);
-	GLuint loc = glGetUniformLocation(_id, name.c_str());
-	glUniformMatrix4fv(loc, 1, GL_FALSE, mat.ptr());
+	GLint loc = GetUniformLocation(name);
+	if( loc >= 0 )
+		SetUniform(loc, mat);
 }
 
 void ShaderProgram::SetUniform(const std::string& name, const Vector3f &vec)
 {
-	//glUseProgram(_id);
-	GLuint loc = glGetUniformLocation(_id, name.c_str());
-	glUniform3fv(loc, 1, vec.ptr());
+	GLint loc = GetUniformLocation(name);
+	if( loc >= 0 )
+		SetUniform(loc, vec);
 }
 
 void ShaderProgram::SetUniform(const std::string& name, const Vector4f &vec)
 {
-	//glUseProgram(_id);
-	GLuint loc = glGetUniformLocation(_id, name.c_str());
-	glUniform4fv(loc, 1, vec.ptr());
+	GLint loc = GetUniformLocation(name);
+	if (loc >= 0)
+		SetUniform(loc, vec);
 }
 
 void ShaderProgram::SetUniform(const std::string& name, GLint v0)
 {
-	//glUseProgram(_id);
-	GLuint loc = glGetUniformLocation(_id, name.c_str());
-	glUniform1i(loc, v0);
+	GLint loc = GetUniformLocation(name);
+	if (loc >= 0)
+		SetUniform(loc, v0);
 }
 
 GLuint ShaderProgram::GetID() const

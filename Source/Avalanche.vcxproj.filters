@@ -104,6 +104,9 @@
     <ClInclude Include="Engine\ResourceDescriptions.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Material.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -182,6 +185,9 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Engine\ResourceDescriptions.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Material.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>

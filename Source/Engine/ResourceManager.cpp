@@ -52,6 +52,7 @@ void ResourceManager::LoadDescriptions(const std::string &fileName)
 		LoadResourceDescriptions<TextureDesc, Texture2D>(root, "Textures", basePath, _textures);
 		LoadResourceDescriptions<MeshDesc, Mesh>(root, "Meshes", basePath, _meshes);
 		LoadResourceDescriptions<ShaderDesc, ShaderProgram>(root, "Shaders", basePath, _shaders);
+		LoadResourceDescriptions<MaterialDesc, Material>(root, "Materials", basePath, _materials);
 	}
 }
 
@@ -94,6 +95,14 @@ void ResourceManager::LoadResources()
 		ptr->Link(desc.vs_path, desc.fs_path);
 		// todo: check for errors during shader linking
 	}
+
+	// Materials
+	for(auto &elem : _materials)
+	{
+		MaterialDesc &desc = elem.second.first;
+		std::unique_ptr<Material> &ptr = elem.second.second;
+		ptr = std::make_unique<Material>(desc);
+	}
 }
 
 void ResourceManager::UnloadResources()
@@ -102,6 +111,17 @@ void ResourceManager::UnloadResources()
 	{
 		elem.second.second.reset();
 	}
+}
+
+
+bool ResourceManager::HasTextureName(const std::string &name) const
+{
+	return (_textures.find(name) != _textures.end());
+}
+
+bool ResourceManager::HasShaderName(const std::string &name) const
+{
+	return (_shaders.find(name) != _shaders.end());
 }
 
 template<class ResourceDesc, class Resource>
@@ -124,4 +144,9 @@ Mesh* ResourceManager::GetMesh(const std::string &name) const
 ShaderProgram* ResourceManager::GetShader(const std::string &name) const
 {
 	return GetResource<ShaderDesc, ShaderProgram>(name, _shaders);
+}
+
+Material* ResourceManager::GetMaterial(const std::string &name) const
+{
+	return GetResource<MaterialDesc, Material>(name, _materials);
 }
