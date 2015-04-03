@@ -152,17 +152,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="libs\bullet-2.82-r2704\build\src\BulletCollision\BulletCollision.vcxproj">
-      <Project>{5df59c72-18cc-4efe-81d7-d0dd2c7af9c9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="libs\bullet-2.82-r2704\build\src\BulletDynamics\BulletDynamics.vcxproj">
-      <Project>{0e1398dc-8d98-4dd4-954c-fbad41601916}</Project>
-    </ProjectReference>
-    <ProjectReference Include="libs\bullet-2.82-r2704\build\src\LinearMath\LinearMath.vcxproj">
-      <Project>{b9735c3c-39a0-4863-9e99-6851858a5711}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

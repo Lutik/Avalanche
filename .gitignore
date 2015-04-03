@@ -10,6 +10,7 @@ Avalanche.exe
 *.pdb
 *.ipch
 *.suo
+*.bsc
 Debug
 Release
 Source/ipch
