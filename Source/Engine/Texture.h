@@ -27,6 +27,4 @@ public:
 	int Height() const;
 
 	GLuint GetID() const;
-
-	typedef Texture2D* Ref;
 };

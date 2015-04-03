@@ -2,12 +2,48 @@
 	"Textures" : 
 	[
 		{
-			"name" : "Metal",
+			"name" : "MetalDiffuse",
 			"path" : "metal.png"
 		},
 		{
 			"name" : "MetalNormal",
 			"path" : "metal_nm.png"
+		}
+	],
+	"Meshes" :
+	[
+		{
+			"name" : "Cube",
+			"path" : "cube.obj"
+		}
+	],
+	"Shaders" :
+	[
+		{
+			"name" : "Default",
+			"vs" : "Shaders/Simple.vsh",
+			"fs" : "Shaders/Simple.fsh"
+		}
+	],
+	"Materials" :
+	[
+		{
+			"name" : "Metal",
+			"shader" : "Default",
+			"textures" : [
+				{"diffuse" : "MetalDiffuse"}
+			],
+			"params" : [
+				{"some_param" : "0.5"}
+			]
+		}
+	],
+	"Models" :
+	[
+		{
+			"name" : "MetalCube",
+			"mesh" : "Cube",
+			"material" : "Metal"
 		}
 	]
 }

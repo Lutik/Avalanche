@@ -9,9 +9,9 @@ class TestScene : public IScene
 {
 	Camera _camera;
 
-	ShaderProgram shader;
-	Texture2D::Ref texture;
-	std::unique_ptr<Mesh> mesh;
+	ShaderProgram *shader;
+	Texture2D *texture;
+	Mesh *mesh;
 
 	Vector3f meshPos;
 	float meshAngle = 0.0f;

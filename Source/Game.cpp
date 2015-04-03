@@ -29,17 +29,18 @@ TestScene::TestScene()
 {
 	SetupGL();
 
-	mesh = LoadMeshOBJ("Resources/cube.obj");
+	mesh = Av::resourceManager.GetMesh("Cube");
 	meshPos = Vector3f(0.0f, 0.0f, -6.0f);
 
-	texture = Av::resourceManager.GetTexture("Metal");
+	texture = Av::resourceManager.GetTexture("MetalDiffuse");
+
+	shader = Av::resourceManager.GetShader("Default");
 
 	_camera.SetPosition({0.0f, -6.0f, 3.0f});
 	_camera.SetViewVector({0.0f, 1.0f, -0.5f});
 	_camera.SetUpVector({0.0f, 0.0f, 1.0f});
 	_camera.SetPerspective(45.0f, application->GetAspectRatio(), 0.2f, 30.0f);
 
-	shader.Link("Resources/Shaders/Simple.vsh", "Resources/Shaders/Simple.fsh");
 }
 
 void TestScene::onUpdate(float dt)
@@ -62,11 +63,11 @@ void TestScene::onRender()
 
 	Vector3f light_dir(1.0f, 1.0f, -5.0f);
 	light_dir.Normalize();
-	shader.Bind();
-	shader.SetUniform("texture", 0);
-	shader.SetUniform("light_dir", light_dir);
-	shader.SetUniform("modelview", _camera.GetViewMatrix() * modelMatrix);
-	shader.SetUniform("projection", _camera.GetProjectionMatrix());
+	shader->Bind();
+	shader->SetUniform("texture", 0);
+	shader->SetUniform("light_dir", light_dir);
+	shader->SetUniform("modelview", _camera.GetViewMatrix() * modelMatrix);
+	shader->SetUniform("projection", _camera.GetProjectionMatrix());
 
 	mesh->Draw();
 }

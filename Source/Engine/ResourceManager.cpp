@@ -1,30 +1,20 @@
 #include "stdafx.h"
 
 #include "ResourceManager.h"
+
 #include "Utils.h"
+
+#include "ModelLoaders.h"
 
 namespace Av {
 	ResourceManager resourceManager;
 }
 
-
-TextureDesc::TextureDesc(const Json::Value &value, const std::string &basePath)
-{
-	path = basePath + value.get("path", "").asString();
-}
-
-bool TextureDesc::IsValid() const
-{
-	return File::Exists(path);
-}
-
-
-
-template<class ResourceDesc, class ResourcePtr>
+template<class ResourceDesc, class Resource>
 void LoadResourceDescriptions(const Json::Value &json,
 	const std::string &resType,
 	const std::string &basePath,
-	std::map<std::string, std::pair<ResourceDesc, ResourcePtr>> &descriptions)
+	ResourceContainer<ResourceDesc, Resource> &descriptions)
 {
 	Json::Value descArray = json.get(resType, Json::Value());
 	for(const Json::Value &value : descArray)
@@ -33,7 +23,7 @@ void LoadResourceDescriptions(const Json::Value &json,
 		if( !name.empty() )
 		{
 			ResourceDesc desc(value, basePath);
-			auto result = descriptions.emplace(name, std::make_pair(desc, ResourcePtr()));
+			auto result = descriptions.emplace(name, std::make_pair(desc, std::unique_ptr<Resource>()));
 			if( !result.second ) {
 				// Log error - resource with this name already exists
 			} else if( !result.first->second.first.IsValid() ) {
@@ -59,16 +49,19 @@ void ResourceManager::LoadDescriptions(const std::string &fileName)
 
 		const std::string basePath = File::FolderFromPath(fileName);
 
-		LoadResourceDescriptions<TextureDesc, TexturePtr>(root, "Textures", basePath, _textures);
+		LoadResourceDescriptions<TextureDesc, Texture2D>(root, "Textures", basePath, _textures);
+		LoadResourceDescriptions<MeshDesc, Mesh>(root, "Meshes", basePath, _meshes);
+		LoadResourceDescriptions<ShaderDesc, ShaderProgram>(root, "Shaders", basePath, _shaders);
 	}
 }
 
 void ResourceManager::LoadResources()
 {
+	// Textures
 	for(auto &elem : _textures)
 	{
 		TextureDesc &desc = elem.second.first;
-		TexturePtr &ptr = elem.second.second;
+		std::unique_ptr<Texture2D> &ptr = elem.second.second;
 		Image2D img = loadTexture(desc.path);
 		if( !img.Empty() )
 		{
@@ -80,6 +73,27 @@ void ResourceManager::LoadResources()
 			// log error
 		}
 	}
+
+	// Meshes
+	for(auto &elem : _meshes)
+	{
+		MeshDesc &desc = elem.second.first;
+		std::unique_ptr<Mesh> &ptr = elem.second.second;
+		ptr = LoadMeshOBJ(desc.path);
+		if( !ptr ) {
+			// log error
+		}
+	}
+
+	// Shaders
+	for(auto &elem : _shaders)
+	{
+		ShaderDesc &desc = elem.second.first;
+		std::unique_ptr<ShaderProgram> &ptr = elem.second.second;
+		ptr = std::make_unique<ShaderProgram>();
+		ptr->Link(desc.vs_path, desc.fs_path);
+		// todo: check for errors during shader linking
+	}
 }
 
 void ResourceManager::UnloadResources()
@@ -90,12 +104,24 @@ void ResourceManager::UnloadResources()
 	}
 }
 
-Texture2D::Ref ResourceManager::GetTexture(const std::string &name) const
+template<class ResourceDesc, class Resource>
+Resource *GetResource(const std::string &name, const ResourceContainer<ResourceDesc, Resource> &container)
 {
-	auto itr = _textures.find(name);
-	if( itr != _textures.end() )
-	{
-		return itr->second.second.get();
-	}
-	return nullptr;
+	auto itr = container.find(name);
+	return (itr != container.end()) ? itr->second.second.get() : nullptr;
+}
+
+Texture2D* ResourceManager::GetTexture(const std::string &name) const
+{
+	return GetResource<TextureDesc, Texture2D>(name, _textures);
+}
+
+Mesh* ResourceManager::GetMesh(const std::string &name) const
+{
+	return GetResource<MeshDesc, Mesh>(name, _meshes);
+}
+
+ShaderProgram* ResourceManager::GetShader(const std::string &name) const
+{
+	return GetResource<ShaderDesc, ShaderProgram>(name, _shaders);
 }
