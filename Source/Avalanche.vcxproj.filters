@@ -131,6 +131,9 @@
     <ClInclude Include="Engine\Render\VertexTypes.h">
       <Filter>Engine\Render</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Game\Scene.h">
+      <Filter>Engine\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -219,6 +222,9 @@
     </ClCompile>
     <ClCompile Include="Engine\Render\VertexDescription.cpp">
       <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Game\Scene.cpp">
+      <Filter>Engine\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -92,6 +92,7 @@
     <ClInclude Include="Engine\Core\Application.h" />
     <ClInclude Include="Engine\Core\Input.h" />
     <ClInclude Include="Engine\Core\Timer.h" />
+    <ClInclude Include="Engine\Game\Scene.h" />
     <ClInclude Include="Engine\Render\Renderer.h" />
     <ClInclude Include="Engine\Render\Shader.h" />
     <ClInclude Include="Engine\Render\Texture.h" />
@@ -125,6 +126,7 @@
   <ItemGroup>
     <ClCompile Include="Engine\Core\Application.cpp" />
     <ClCompile Include="Engine\Core\Input.cpp" />
+    <ClCompile Include="Engine\Game\Scene.cpp" />
     <ClCompile Include="Engine\Render\Renderer.cpp" />
     <ClCompile Include="Engine\Render\Shader.cpp" />
     <ClCompile Include="Engine\Render\Texture.cpp" />

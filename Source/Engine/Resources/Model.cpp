@@ -10,6 +10,11 @@ Model::Model(Mesh *mesh, Material *material)
 	_mesh->SetupVertexArray();
 }
 
+Material* Model::GetMaterial() const
+{
+	return _material;
+}
+
 void Model::Bind()
 {
 	_vao.Bind();
