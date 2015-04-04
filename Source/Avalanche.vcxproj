@@ -97,6 +97,7 @@
     <ClInclude Include="Engine\Log.h" />
     <ClInclude Include="Engine\Material.h" />
     <ClInclude Include="Engine\Mesh.h" />
+    <ClInclude Include="Engine\Model.h" />
     <ClInclude Include="Engine\ModelLoaders.h" />
     <ClInclude Include="Engine\OpenGL.h" />
     <ClInclude Include="Engine\ResourceDescriptions.h" />
@@ -129,6 +130,7 @@
     <ClCompile Include="Engine\Log.cpp" />
     <ClCompile Include="Engine\Material.cpp" />
     <ClCompile Include="Engine\Mesh.cpp" />
+    <ClCompile Include="Engine\Model.cpp" />
     <ClCompile Include="Engine\ModelLoaders.cpp" />
     <ClCompile Include="Engine\OpenGL.cpp" />
     <ClCompile Include="Engine\ResourceDescriptions.cpp" />

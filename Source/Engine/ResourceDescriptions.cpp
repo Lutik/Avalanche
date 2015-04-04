@@ -47,11 +47,25 @@ MaterialDesc::MaterialDesc(const Json::Value &value, const std::string &basePath
 	for( const std::string &texType : members )
 	{
 		std::string texName = jsonTextures.get(texType, "").asString();
-		textures.emplace_back(texType, texName);
+		if( !texName.empty() ){
+			textures.emplace_back(texType, texName);
+		}
 	}
 }
 
 bool MaterialDesc::IsValid() const
 {
-	return true;
+	return !shader.empty();
+}
+
+
+ModelDesc::ModelDesc(const Json::Value &value, const std::string &basePath)
+{
+	mesh = value.get("mesh", "").asString();
+	material = value.get("material", "").asString();
+}
+
+bool ModelDesc::IsValid() const
+{
+	return !mesh.empty() && !material.empty();
 }

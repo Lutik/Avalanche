@@ -42,11 +42,29 @@ void Mesh::SetIndices(IndexType indexType, size_t count, const void *data)
 	_ib.Init(count, data, IndexTypeSize(_indexType), GL_DYNAMIC_DRAW);
 }
 
-void Mesh::Draw()
+IndexType Mesh::GetIndexType() const
+{
+	return _indexType;
+}
+
+GLenum Mesh::GetIndexTypeGL() const
+{
+	return IndexTypeGL(_indexType);
+}
+
+GLenum Mesh::GetPrimitiveTypeGL() const
+{
+	return GL_TRIANGLES;
+}
+
+size_t Mesh::GetIndexCount() const
+{
+	return _ib.Size();
+}
+
+void Mesh::SetupVertexArray()
 {
 	_vb.Bind();
 	_ib.Bind();
 	_vertexDescription.Apply();
-
-	glDrawElements(GL_TRIANGLES, _ib.Size(), IndexTypeGL(_indexType), 0);
 }

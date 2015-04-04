@@ -53,6 +53,7 @@ void ResourceManager::LoadDescriptions(const std::string &fileName)
 		LoadResourceDescriptions<MeshDesc, Mesh>(root, "Meshes", basePath, _meshes);
 		LoadResourceDescriptions<ShaderDesc, ShaderProgram>(root, "Shaders", basePath, _shaders);
 		LoadResourceDescriptions<MaterialDesc, Material>(root, "Materials", basePath, _materials);
+		LoadResourceDescriptions<ModelDesc, Model>(root, "Models", basePath, _models);
 	}
 }
 
@@ -103,26 +104,35 @@ void ResourceManager::LoadResources()
 		std::unique_ptr<Material> &ptr = elem.second.second;
 		ptr = std::make_unique<Material>(desc);
 	}
+
+	// Models
+	for (auto &elem : _models)
+	{
+		ModelDesc &desc = elem.second.first;
+		std::unique_ptr<Model> &ptr = elem.second.second;
+		Mesh *mesh = GetMesh(desc.mesh);
+		Material *mat = GetMaterial(desc.material);
+		ptr = std::make_unique<Model>(mesh, mat);
+	}
 }
 
-void ResourceManager::UnloadResources()
+template<class ResContainer>
+void UnloadResourceContainer(ResContainer& cont)
 {
-	for(auto &elem : _textures)
-	{
+	for(auto &elem : cont) {
 		elem.second.second.reset();
 	}
 }
 
-
-bool ResourceManager::HasTextureName(const std::string &name) const
+void ResourceManager::UnloadResources()
 {
-	return (_textures.find(name) != _textures.end());
+	UnloadResourceContainer(_models);
+	UnloadResourceContainer(_materials);
+	UnloadResourceContainer(_meshes);
+	UnloadResourceContainer(_shaders);
+	UnloadResourceContainer(_textures);
 }
 
-bool ResourceManager::HasShaderName(const std::string &name) const
-{
-	return (_shaders.find(name) != _shaders.end());
-}
 
 template<class ResourceDesc, class Resource>
 Resource *GetResource(const std::string &name, const ResourceContainer<ResourceDesc, Resource> &container)
@@ -149,4 +159,9 @@ ShaderProgram* ResourceManager::GetShader(const std::string &name) const
 Material* ResourceManager::GetMaterial(const std::string &name) const
 {
 	return GetResource<MaterialDesc, Material>(name, _materials);
+}
+
+Model* ResourceManager::GetModel(const std::string &name) const
+{
+	return GetResource<ModelDesc, Model>(name, _models);
 }

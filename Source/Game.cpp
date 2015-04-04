@@ -5,8 +5,6 @@
 #include "Utils.h"
 #include "ResourceManager.h"
 
-GLuint vao;
-
 void TestScene::SetupGL()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -20,19 +18,15 @@ void TestScene::SetupGL()
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	glDisable(GL_CULL_FACE);
-
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
 }
 
 TestScene::TestScene()
 {
 	SetupGL();
 
-	mesh = Av::resourceManager.GetMesh("Cube");
 	meshPos = Vector3f(0.0f, 0.0f, -6.0f);
 
-	material = Av::resourceManager.GetMaterial("Metal");
+	_model = Av::resourceManager.GetModel("MetalCube");
 
 	_camera.SetPosition({0.0f, -6.0f, 3.0f});
 	_camera.SetViewVector({0.0f, 1.0f, -0.5f});
@@ -51,22 +45,20 @@ void TestScene::onRender()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glBindVertexArray(vao);
-
 	Matrix4f modelMatrix = Matrix4f::Scale({0.06f, 0.06f, 0.06f});
 	modelMatrix *= Matrix4f::Rotate(meshAngle, {0.0f, 0.0f, 1.0f});
-
-	material->Bind();
 
 	Vector3f light_dir(1.0f, 1.0f, -5.0f);
 	light_dir.Normalize();
 
-	ShaderProgram *shader = material->GetShader();
+	_model->Bind();
+
+	ShaderProgram *shader = _model->_material->GetShader();
 	shader->SetUniform("light_dir", light_dir);
 	shader->SetUniform("modelview", _camera.GetViewMatrix() * modelMatrix);
 	shader->SetUniform("projection", _camera.GetProjectionMatrix());
 
-	mesh->Draw();
+	_model->Draw();
 }
 
 void TestScene::onKeyDown(int key)

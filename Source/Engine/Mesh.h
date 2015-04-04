@@ -28,5 +28,10 @@ public:
 	void SetVertices(const VertexDescription &vertDesc, size_t count, const void *data);
 	void SetIndices(IndexType indexType, size_t count, const void *data);
 
-	void Draw();
+	IndexType GetIndexType() const;
+	GLenum GetIndexTypeGL() const;
+	size_t GetIndexCount() const;
+	GLenum GetPrimitiveTypeGL() const;
+
+	void SetupVertexArray();
 };

@@ -1,16 +1,14 @@
 #pragma once
 
 #include "GameApp.h"
-#include "Material.h"
-#include "Mesh.h"
 #include "Camera.h"
+#include "Model.h"
 
 class TestScene : public IScene
 {
 	Camera _camera;
 
-	Material *material;
-	Mesh *mesh;
+	Model *_model;
 
 	Vector3f meshPos;
 	float meshAngle = 0.0f;

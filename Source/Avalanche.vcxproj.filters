@@ -110,6 +110,9 @@
     <ClInclude Include="Engine\VertexArrayObject.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Model.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -191,6 +194,9 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Material.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Model.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>

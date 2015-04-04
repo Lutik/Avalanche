@@ -73,11 +73,6 @@ public:
 	{
 		glBindBuffer(bufferType, _id);
 	}
-
-	void Unbind()
-	{
-		glBindBuffer(bufferType, 0);
-	}
 };
 
 typedef DeviceBuffer<GL_ARRAY_BUFFER> VertexBuffer;
