@@ -31,7 +31,7 @@ TestScene::TestScene()
 	_camera.SetPosition({0.0f, -6.0f, 3.0f});
 	_camera.SetViewVector({0.0f, 1.0f, -0.5f});
 	_camera.SetUpVector({0.0f, 0.0f, 1.0f});
-	_camera.SetPerspective(45.0f, application->GetAspectRatio(), 0.2f, 30.0f);
+	_camera.SetPerspective(45.0f, Av::application->GetAspectRatio(), 0.2f, 30.0f);
 }
 
 void TestScene::onUpdate(float dt)
@@ -64,7 +64,7 @@ void TestScene::onRender()
 void TestScene::onKeyDown(int key)
 {
 	if(key == SDL_SCANCODE_ESCAPE)
-		application->Shutdown();
+		Av::application->Shutdown();
 }
 
 TestScene::~TestScene()

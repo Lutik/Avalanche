@@ -22,6 +22,7 @@
 #include <map>
 #include <memory>
 #include <algorithm>
+#include <list>
 
 // JSON
 #include <json/json.h>

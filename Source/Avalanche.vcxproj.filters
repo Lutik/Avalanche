@@ -15,6 +15,21 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{8c94a97c-3a96-4abc-bcee-52a33636e938}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Utils">
+      <UniqueIdentifier>{a29d854b-539c-4120-bfaa-169f0ff9a74c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Core">
+      <UniqueIdentifier>{a556e242-098d-4b59-a888-e82e387b8182}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Render">
+      <UniqueIdentifier>{fe94f817-b007-4bee-9c80-5e737c264dee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Resources">
+      <UniqueIdentifier>{44a18cc8-f468-408f-8263-9b9cb3c32896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Game">
+      <UniqueIdentifier>{c90810dc-8af4-4953-a553-715b0659f11f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -26,59 +41,11 @@
     <ClInclude Include="Engine\Avalanche.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Log.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\OpenGL.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Timer.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Input.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Application.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="GameApp.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\ImageLoaders.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\VertexBuffer.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\VertexTypes.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Utils.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Shader.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Font.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Texture.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\VertexDescription.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Mesh.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Camera.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\ModelLoaders.h">
-      <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Math\Matrix.h">
       <Filter>Math</Filter>
@@ -98,20 +65,71 @@
     <ClInclude Include="Math\AvMath.h">
       <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\ResourceManager.h">
-      <Filter>Engine</Filter>
+    <ClInclude Include="Engine\Core\Application.h">
+      <Filter>Engine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\ResourceDescriptions.h">
-      <Filter>Engine</Filter>
+    <ClInclude Include="Engine\Core\Input.h">
+      <Filter>Engine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Material.h">
-      <Filter>Engine</Filter>
+    <ClInclude Include="Engine\Core\Timer.h">
+      <Filter>Engine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\VertexArrayObject.h">
-      <Filter>Engine</Filter>
+    <ClInclude Include="Engine\Utils\OpenGL.h">
+      <Filter>Engine\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Model.h">
-      <Filter>Engine</Filter>
+    <ClInclude Include="Engine\Utils\Camera.h">
+      <Filter>Engine\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Utils\Font.h">
+      <Filter>Engine\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Utils\ImageLoaders.h">
+      <Filter>Engine\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Utils\Log.h">
+      <Filter>Engine\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Utils\Utils.h">
+      <Filter>Engine\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Resources\Material.h">
+      <Filter>Engine\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Resources\Mesh.h">
+      <Filter>Engine\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Resources\Model.h">
+      <Filter>Engine\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Resources\ModelLoaders.h">
+      <Filter>Engine\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Resources\ResourceDescriptions.h">
+      <Filter>Engine\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Resources\ResourceManager.h">
+      <Filter>Engine\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Renderer.h">
+      <Filter>Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Shader.h">
+      <Filter>Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Texture.h">
+      <Filter>Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\VertexArrayObject.h">
+      <Filter>Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\VertexBuffer.h">
+      <Filter>Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\VertexDescription.h">
+      <Filter>Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\VertexTypes.h">
+      <Filter>Engine\Render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -121,53 +139,11 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Log.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\OpenGL.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Input.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Application.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
     <ClCompile Include="GameApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\ImageLoaders.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Utils.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Shader.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="GL\gl_core_3_3.c">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Font.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Texture.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\VertexDescription.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Mesh.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Camera.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\ModelLoaders.cpp">
-      <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Math\Quaternion.cpp">
       <Filter>Math</Filter>
@@ -187,17 +163,62 @@
     <ClCompile Include="Math\AvMath.cpp">
       <Filter>Math</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\ResourceManager.cpp">
-      <Filter>Engine</Filter>
+    <ClCompile Include="GL\gl_core_3_3.c">
+      <Filter>Engine\Render</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\ResourceDescriptions.cpp">
-      <Filter>Engine</Filter>
+    <ClCompile Include="Engine\Core\Application.cpp">
+      <Filter>Engine\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Material.cpp">
-      <Filter>Engine</Filter>
+    <ClCompile Include="Engine\Core\Input.cpp">
+      <Filter>Engine\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Model.cpp">
-      <Filter>Engine</Filter>
+    <ClCompile Include="Engine\Utils\OpenGL.cpp">
+      <Filter>Engine\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Utils\Camera.cpp">
+      <Filter>Engine\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Utils\Font.cpp">
+      <Filter>Engine\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Utils\ImageLoaders.cpp">
+      <Filter>Engine\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Utils\Log.cpp">
+      <Filter>Engine\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Utils\Utils.cpp">
+      <Filter>Engine\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Resources\Material.cpp">
+      <Filter>Engine\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Resources\Mesh.cpp">
+      <Filter>Engine\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Resources\Model.cpp">
+      <Filter>Engine\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Resources\ModelLoaders.cpp">
+      <Filter>Engine\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Resources\ResourceDescriptions.cpp">
+      <Filter>Engine\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Resources\ResourceManager.cpp">
+      <Filter>Engine\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Renderer.cpp">
+      <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Shader.cpp">
+      <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Texture.cpp">
+      <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\VertexDescription.cpp">
+      <Filter>Engine\Render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

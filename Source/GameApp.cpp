@@ -4,11 +4,8 @@
 #include "ResourceManager.h"
 
 
-Av::Application *IScene::application = nullptr;
-
 AvalancheGame::AvalancheGame()
 {
-	IScene::application = this;
 }
 
 void AvalancheGame::onStart()

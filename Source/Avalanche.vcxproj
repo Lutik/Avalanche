@@ -43,13 +43,13 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\</OutDir>
     <IntDir>..\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)libs/jsoncpp-src-0.5.0/include;$(SolutionDir)libs/libpng-1.6.17/;$(SolutionDir)SDL/include;$(SolutionDir)Engine;$(SolutionDir)Math;$(SolutionDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)libs/jsoncpp-src-0.5.0/include;$(SolutionDir)libs/libpng-1.6.17/;$(SolutionDir)SDL/include;$(SolutionDir);$(SolutionDir)/Engine;$(SolutionDir)/Math;$(SolutionDir)/Engine/Core;$(SolutionDir)/Engine/Utils;$(SolutionDir)/Engine/Resources;$(SolutionDir)/Engine/Render;$(SolutionDir)/Engine/Game;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\</OutDir>
     <IntDir>..\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)libs/jsoncpp-src-0.5.0/include;$(SolutionDir)libs/libpng-1.6.17/;$(SolutionDir)SDL/include;$(SolutionDir)Engine;$(SolutionDir)Math;$(SolutionDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)libs/jsoncpp-src-0.5.0/include;$(SolutionDir)libs/libpng-1.6.17/;$(SolutionDir)SDL/include;$(SolutionDir);$(SolutionDir)/Engine;$(SolutionDir)/Math;$(SolutionDir)/Engine/Core;$(SolutionDir)/Engine/Utils;$(SolutionDir)/Engine/Resources;$(SolutionDir)/Engine/Render;$(SolutionDir)/Engine/Game;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -88,28 +88,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Application.h" />
     <ClInclude Include="Engine\Avalanche.h" />
-    <ClInclude Include="Engine\Camera.h" />
-    <ClInclude Include="Engine\Font.h" />
-    <ClInclude Include="Engine\ImageLoaders.h" />
-    <ClInclude Include="Engine\Input.h" />
-    <ClInclude Include="Engine\Log.h" />
-    <ClInclude Include="Engine\Material.h" />
-    <ClInclude Include="Engine\Mesh.h" />
-    <ClInclude Include="Engine\Model.h" />
-    <ClInclude Include="Engine\ModelLoaders.h" />
-    <ClInclude Include="Engine\OpenGL.h" />
-    <ClInclude Include="Engine\ResourceDescriptions.h" />
-    <ClInclude Include="Engine\ResourceManager.h" />
-    <ClInclude Include="Engine\Shader.h" />
-    <ClInclude Include="Engine\Texture.h" />
-    <ClInclude Include="Engine\Timer.h" />
-    <ClInclude Include="Engine\Utils.h" />
-    <ClInclude Include="Engine\VertexArrayObject.h" />
-    <ClInclude Include="Engine\VertexBuffer.h" />
-    <ClInclude Include="Engine\VertexDescription.h" />
-    <ClInclude Include="Engine\VertexTypes.h" />
+    <ClInclude Include="Engine\Core\Application.h" />
+    <ClInclude Include="Engine\Core\Input.h" />
+    <ClInclude Include="Engine\Core\Timer.h" />
+    <ClInclude Include="Engine\Render\Renderer.h" />
+    <ClInclude Include="Engine\Render\Shader.h" />
+    <ClInclude Include="Engine\Render\Texture.h" />
+    <ClInclude Include="Engine\Render\VertexArrayObject.h" />
+    <ClInclude Include="Engine\Render\VertexBuffer.h" />
+    <ClInclude Include="Engine\Render\VertexDescription.h" />
+    <ClInclude Include="Engine\Render\VertexTypes.h" />
+    <ClInclude Include="Engine\Resources\Material.h" />
+    <ClInclude Include="Engine\Resources\Mesh.h" />
+    <ClInclude Include="Engine\Resources\Model.h" />
+    <ClInclude Include="Engine\Resources\ModelLoaders.h" />
+    <ClInclude Include="Engine\Resources\ResourceDescriptions.h" />
+    <ClInclude Include="Engine\Resources\ResourceManager.h" />
+    <ClInclude Include="Engine\Utils\Camera.h" />
+    <ClInclude Include="Engine\Utils\Font.h" />
+    <ClInclude Include="Engine\Utils\ImageLoaders.h" />
+    <ClInclude Include="Engine\Utils\Log.h" />
+    <ClInclude Include="Engine\Utils\OpenGL.h" />
+    <ClInclude Include="Engine\Utils\Utils.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="Math\AvMath.h" />
@@ -122,23 +123,24 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\Application.cpp" />
-    <ClCompile Include="Engine\Camera.cpp" />
-    <ClCompile Include="Engine\Font.cpp" />
-    <ClCompile Include="Engine\ImageLoaders.cpp" />
-    <ClCompile Include="Engine\Input.cpp" />
-    <ClCompile Include="Engine\Log.cpp" />
-    <ClCompile Include="Engine\Material.cpp" />
-    <ClCompile Include="Engine\Mesh.cpp" />
-    <ClCompile Include="Engine\Model.cpp" />
-    <ClCompile Include="Engine\ModelLoaders.cpp" />
-    <ClCompile Include="Engine\OpenGL.cpp" />
-    <ClCompile Include="Engine\ResourceDescriptions.cpp" />
-    <ClCompile Include="Engine\ResourceManager.cpp" />
-    <ClCompile Include="Engine\Shader.cpp" />
-    <ClCompile Include="Engine\Texture.cpp" />
-    <ClCompile Include="Engine\Utils.cpp" />
-    <ClCompile Include="Engine\VertexDescription.cpp" />
+    <ClCompile Include="Engine\Core\Application.cpp" />
+    <ClCompile Include="Engine\Core\Input.cpp" />
+    <ClCompile Include="Engine\Render\Renderer.cpp" />
+    <ClCompile Include="Engine\Render\Shader.cpp" />
+    <ClCompile Include="Engine\Render\Texture.cpp" />
+    <ClCompile Include="Engine\Render\VertexDescription.cpp" />
+    <ClCompile Include="Engine\Resources\Material.cpp" />
+    <ClCompile Include="Engine\Resources\Mesh.cpp" />
+    <ClCompile Include="Engine\Resources\Model.cpp" />
+    <ClCompile Include="Engine\Resources\ModelLoaders.cpp" />
+    <ClCompile Include="Engine\Resources\ResourceDescriptions.cpp" />
+    <ClCompile Include="Engine\Resources\ResourceManager.cpp" />
+    <ClCompile Include="Engine\Utils\Camera.cpp" />
+    <ClCompile Include="Engine\Utils\Font.cpp" />
+    <ClCompile Include="Engine\Utils\ImageLoaders.cpp" />
+    <ClCompile Include="Engine\Utils\Log.cpp" />
+    <ClCompile Include="Engine\Utils\OpenGL.cpp" />
+    <ClCompile Include="Engine\Utils\Utils.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="GL\gl_core_3_3.c">

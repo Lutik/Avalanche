@@ -3,7 +3,6 @@
 #include "Shader.h"
 #include "Utils.h"
 
-
 ShaderProgram::ShaderProgram()
 	: _id(0)
 {

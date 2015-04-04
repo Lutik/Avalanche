@@ -14,8 +14,6 @@ public:
 	virtual void onMouseDown(int key) {};
 	virtual void onMouseUp(int key) {};
 
-	static Av::Application *application;
-
 	typedef std::unique_ptr<IScene> Ptr;
 };
 
