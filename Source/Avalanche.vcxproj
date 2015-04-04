@@ -105,6 +105,7 @@
     <ClInclude Include="Engine\Texture.h" />
     <ClInclude Include="Engine\Timer.h" />
     <ClInclude Include="Engine\Utils.h" />
+    <ClInclude Include="Engine\VertexArrayObject.h" />
     <ClInclude Include="Engine\VertexBuffer.h" />
     <ClInclude Include="Engine\VertexDescription.h" />
     <ClInclude Include="Engine\VertexTypes.h" />
