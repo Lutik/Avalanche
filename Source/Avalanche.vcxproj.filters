@@ -101,9 +101,6 @@
     <ClInclude Include="Engine\Resources\Mesh.h">
       <Filter>Engine\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Resources\Model.h">
-      <Filter>Engine\Resources</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Resources\ModelLoaders.h">
       <Filter>Engine\Resources</Filter>
     </ClInclude>
@@ -215,9 +212,6 @@
       <Filter>Engine\Resources</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Resources\Mesh.cpp">
-      <Filter>Engine\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Resources\Model.cpp">
       <Filter>Engine\Resources</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Resources\ModelLoaders.cpp">

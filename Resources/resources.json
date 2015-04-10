@@ -40,12 +40,4 @@
 			}
 		}
 	],
-	"Models" :
-	[
-		{
-			"name" : "MetalCube",
-			"mesh" : "Cube",
-			"material" : "Metal"
-		}
-	]
 }

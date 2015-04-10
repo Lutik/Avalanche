@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Matrix.h"
-#include "Model.h"
+#include "Mesh.h"
+#include "Material.h"
+#include "VertexArrayObject.h"
 #include "EntitySystem.h"
 
 class Renderer

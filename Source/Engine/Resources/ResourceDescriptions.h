@@ -32,12 +32,3 @@ struct MaterialDesc
 	MaterialDesc(const Json::Value &value, const std::string &basePath);
 	bool IsValid() const;
 };
-
-struct ModelDesc
-{
-	std::string mesh;
-	std::string material;
-
-	ModelDesc(const Json::Value &value, const std::string &basePath);
-	bool IsValid() const;
-};

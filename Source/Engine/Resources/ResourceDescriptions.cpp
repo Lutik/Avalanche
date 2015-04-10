@@ -57,15 +57,3 @@ bool MaterialDesc::IsValid() const
 {
 	return !shader.empty();
 }
-
-
-ModelDesc::ModelDesc(const Json::Value &value, const std::string &basePath)
-{
-	mesh = value.get("mesh", "").asString();
-	material = value.get("material", "").asString();
-}
-
-bool ModelDesc::IsValid() const
-{
-	return !mesh.empty() && !material.empty();
-}

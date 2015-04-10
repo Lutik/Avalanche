@@ -5,7 +5,6 @@
 #include "Mesh.h"
 #include "Shader.h"
 #include "Material.h"
-#include "Model.h"
 
 template<class ResourceDesc, class Resource> using ResourceContainer
 	= std::map<std::string, std::pair<ResourceDesc, std::unique_ptr<Resource>>>;
@@ -16,7 +15,6 @@ class ResourceManager
 	ResourceContainer<MeshDesc, Mesh> _meshes;
 	ResourceContainer<ShaderDesc, ShaderProgram> _shaders;
 	ResourceContainer<MaterialDesc, Material> _materials;
-	ResourceContainer<ModelDesc, Model> _models;
 public:
 	void LoadDescriptions(const std::string &fileName);
 
@@ -27,7 +25,6 @@ public:
 	Mesh* GetMesh(const std::string &name) const;
 	ShaderProgram* GetShader(const std::string &name) const;
 	Material* GetMaterial(const std::string &name) const;
-	Model* GetModel(const std::string &name) const;
 };
 
 namespace Av

@@ -53,7 +53,6 @@ void ResourceManager::LoadDescriptions(const std::string &fileName)
 		LoadResourceDescriptions<MeshDesc, Mesh>(root, "Meshes", basePath, _meshes);
 		LoadResourceDescriptions<ShaderDesc, ShaderProgram>(root, "Shaders", basePath, _shaders);
 		LoadResourceDescriptions<MaterialDesc, Material>(root, "Materials", basePath, _materials);
-		LoadResourceDescriptions<ModelDesc, Model>(root, "Models", basePath, _models);
 	}
 }
 
@@ -104,16 +103,6 @@ void ResourceManager::LoadResources()
 		std::unique_ptr<Material> &ptr = elem.second.second;
 		ptr = std::make_unique<Material>(desc);
 	}
-
-	// Models
-	for (auto &elem : _models)
-	{
-		ModelDesc &desc = elem.second.first;
-		std::unique_ptr<Model> &ptr = elem.second.second;
-		Mesh *mesh = GetMesh(desc.mesh);
-		Material *mat = GetMaterial(desc.material);
-		ptr = std::make_unique<Model>(mesh, mat);
-	}
 }
 
 template<class ResContainer>
@@ -126,7 +115,6 @@ void UnloadResourceContainer(ResContainer& cont)
 
 void ResourceManager::UnloadResources()
 {
-	UnloadResourceContainer(_models);
 	UnloadResourceContainer(_materials);
 	UnloadResourceContainer(_meshes);
 	UnloadResourceContainer(_shaders);
@@ -159,9 +147,4 @@ ShaderProgram* ResourceManager::GetShader(const std::string &name) const
 Material* ResourceManager::GetMaterial(const std::string &name) const
 {
 	return GetResource<MaterialDesc, Material>(name, _materials);
-}
-
-Model* ResourceManager::GetModel(const std::string &name) const
-{
-	return GetResource<ModelDesc, Model>(name, _models);
 }
