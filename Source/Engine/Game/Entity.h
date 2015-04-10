@@ -14,8 +14,15 @@ public:
 	Entity(const Entity&) = delete;
 	Entity& operator=(const Entity&) = delete;
 
-	Component *GetComponent(ComponentType type) const;
+	bool HasComponent(ComponentType type) const;
 	void AddComponent(Component *comp);
+
+	template<class CType>
+	CType* GetComponent(ComponentType type) const
+	{
+		auto itr = _components.find(type);
+		return (itr != _components.end()) ? static_cast<CType*>(itr->second.get()) : nullptr;
+	}
 
 	EntityId GetId() const;
 };

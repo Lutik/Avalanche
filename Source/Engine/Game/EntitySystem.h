@@ -2,7 +2,7 @@
 
 #include "Entity.h"
 
-class EntitySystem
+class EntityContainer
 {
 	EntityId _last_entity_id = 0;
 
@@ -15,7 +15,7 @@ public:
 	void DeleteEntity(EntityId id);
 	Entity* GetEntity(EntityId id);
 
-	void GetEntitiesWithComponentTypes(const std::vector<ComponentType> &compTypes, std::vector<Entity*> &entities);
+	std::vector<Entity*> GetEntitiesWithComponentTypes(const std::vector<ComponentType> &compTypes) const;
 
 	void Clear();
 };

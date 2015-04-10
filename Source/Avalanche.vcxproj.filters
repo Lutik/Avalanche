@@ -149,6 +149,9 @@
     <ClInclude Include="Engine\Game\TransformComponent.h">
       <Filter>Engine\Game\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Game\ModelComponent.h">
+      <Filter>Engine\Game\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -248,6 +251,9 @@
       <Filter>Engine\Game</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Game\TransformComponent.cpp">
+      <Filter>Engine\Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Game\ModelComponent.cpp">
       <Filter>Engine\Game\Components</Filter>
     </ClCompile>
   </ItemGroup>

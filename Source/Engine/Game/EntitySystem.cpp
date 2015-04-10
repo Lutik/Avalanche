@@ -2,13 +2,13 @@
 
 #include "EntitySystem.h"
 
-Entity* EntitySystem::CreateEntity()
+Entity* EntityContainer::CreateEntity()
 {
 	_entities.push_back(std::make_unique<Entity>(_last_entity_id++));
 	return _entities.back().get();
 }
 
-void EntitySystem::DeleteEntity(EntityId id)
+void EntityContainer::DeleteEntity(EntityId id)
 {
 	auto itr = std::find_if(_entities.begin(), _entities.end(), [=](const EntityPtr& entity){
 		return entity->GetId() == id;
@@ -18,7 +18,7 @@ void EntitySystem::DeleteEntity(EntityId id)
 	}
 }
 
-Entity* EntitySystem::GetEntity(EntityId id)
+Entity* EntityContainer::GetEntity(EntityId id)
 {
 	auto itr = std::find_if(_entities.begin(), _entities.end(), [=](const EntityPtr& entity){
 		return entity->GetId() == id;
@@ -26,25 +26,27 @@ Entity* EntitySystem::GetEntity(EntityId id)
 	return (itr != _entities.end()) ? itr->get() : nullptr;
 }
 
-void EntitySystem::GetEntitiesWithComponentTypes(const std::vector<ComponentType> &compTypes, std::vector<Entity*> &entities)
+std::vector<Entity*> EntityContainer::GetEntitiesWithComponentTypes(const std::vector<ComponentType> &compTypes) const
 {
-	for(EntityPtr &entity : _entities)
+	std::vector<Entity*> result;
+	for(const EntityPtr &entity : _entities)
 	{
 		bool hasComponents = true;
 		for(ComponentType cType : compTypes) {
-			if( entity->GetComponent(cType) == nullptr ) {
+			if( !entity->HasComponent(cType)  ) {
 				hasComponents = false;
 				break;
 			}
 		}
 
 		if( hasComponents ) {
-			entities.push_back(entity.get());
+			result.push_back(entity.get());
 		}
 	}
+	return result;
 }
 
-void EntitySystem::Clear()
+void EntityContainer::Clear()
 {
 	_entities.clear();
 	_last_entity_id = 0;

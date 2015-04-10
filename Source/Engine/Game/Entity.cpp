@@ -7,10 +7,10 @@ Entity::Entity(EntityId id)
 {
 }
 
-Component* Entity::GetComponent(ComponentType type) const
+bool Entity::HasComponent(ComponentType type) const
 {
 	auto itr = _components.find(type);
-	return (itr != _components.end()) ? itr->second.get() : nullptr;
+	return (itr != _components.end());
 }
 
 void Entity::AddComponent(Component *comp)

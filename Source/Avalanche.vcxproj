@@ -95,6 +95,7 @@
     <ClInclude Include="Engine\Game\Component.h" />
     <ClInclude Include="Engine\Game\Entity.h" />
     <ClInclude Include="Engine\Game\EntitySystem.h" />
+    <ClInclude Include="Engine\Game\ModelComponent.h" />
     <ClInclude Include="Engine\Game\Scene.h" />
     <ClInclude Include="Engine\Game\TransformComponent.h" />
     <ClInclude Include="Engine\Render\Renderer.h" />
@@ -132,6 +133,7 @@
     <ClCompile Include="Engine\Core\Input.cpp" />
     <ClCompile Include="Engine\Game\Entity.cpp" />
     <ClCompile Include="Engine\Game\EntitySystem.cpp" />
+    <ClCompile Include="Engine\Game\ModelComponent.cpp" />
     <ClCompile Include="Engine\Game\Scene.cpp" />
     <ClCompile Include="Engine\Game\TransformComponent.cpp" />
     <ClCompile Include="Engine\Render\Renderer.cpp" />
