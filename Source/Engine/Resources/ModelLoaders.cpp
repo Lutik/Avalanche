@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "ModelLoaders.h"
 #include "Log.h"
 #include "VertexTypes.h"
@@ -78,7 +78,6 @@ std::unique_ptr<Mesh> LoadMeshOBJ(const std::string &fileName)
 
 	std::vector< std::vector<FaceVertex> > faceGroups;
 
-	// ñ÷èòûâàåì âñå äàííûå
 	while (!fileStream.eof())
 	{
 		std::string line = "";
@@ -130,9 +129,10 @@ std::unique_ptr<Mesh> LoadMeshOBJ(const std::string &fileName)
 	indices.resize(vertices.size());
 	std::iota(indices.begin(), indices.end(), 0);
 
-	mesh.reset(new Mesh());
+	mesh = std::make_unique<Mesh>();
 	mesh->SetVertices(VertexP3T2N3::GetVertexDescription(), vertices.size(), vertices.data());
 	mesh->SetIndices(IndexType::SHORT, indices.size(), indices.data());
+	mesh->UpdateVertexArray();
 
 	return mesh;
 }

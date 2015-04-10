@@ -2,6 +2,7 @@
 
 #include "VertexBuffer.h"
 #include "VertexDescription.h"
+#include "VertexArrayObject.h"
 
 enum class IndexType : int
 {
@@ -12,6 +13,7 @@ enum class IndexType : int
 
 class Mesh
 {
+	VertexArrayObject _vao;
 	VertexBuffer _vb;
 	IndexBuffer _ib;
 	VertexDescription _vertexDescription;
@@ -33,5 +35,8 @@ public:
 	size_t GetIndexCount() const;
 	GLenum GetPrimitiveTypeGL() const;
 
-	void SetupVertexArray();
+	void UpdateVertexArray();
+
+	void Bind();
+	void Draw();
 };

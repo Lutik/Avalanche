@@ -13,7 +13,6 @@ class Renderer
 
 	struct ModelRenderData
 	{
-		VertexArrayObject *vao;
 		Mesh *mesh;
 		Material *material;
 		Matrix4f matrix;

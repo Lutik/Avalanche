@@ -2,13 +2,11 @@
 
 #include "Component.h"
 
-#include "VertexArrayObject.h"
 #include "Mesh.h"
 #include "Material.h"
 
 struct MeshComponent : public Component
 {
-	std::unique_ptr<VertexArrayObject> vao;
 	Mesh *mesh = nullptr;
 
 	void SetMesh(Mesh *m);

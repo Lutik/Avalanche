@@ -40,7 +40,7 @@ void Renderer::CollectRenderData(EntityContainer &entities)
 		MeshComponent *cmesh = ent->GetComponent<MeshComponent>(ComponentType::MESH);
 		MeshDrawComponent *cmeshdraw = ent->GetComponent<MeshDrawComponent>(ComponentType::MESH_DRAWER);
 
-		_models.push_back( {cmesh->vao.get(), cmesh->mesh, cmeshdraw->material, ctransform->GetModelMatrix()} );
+		_models.push_back( {cmesh->mesh, cmeshdraw->material, ctransform->GetModelMatrix()} );
 	}
 }
 
@@ -55,19 +55,16 @@ void Renderer::Draw(EntityContainer &entities)
 	{
 		cnt_shader = md.material->GetShader();
 
-		md.vao->Bind();
-		md.material->Bind();
+		md.mesh->Bind();
 
+		md.material->Bind();
 		cnt_shader->SetUniform("modelview", _view * md.matrix);
 		if( cnt_shader != prev_shader ){
 			cnt_shader->SetUniform("light_dir", _light_direction);
 			cnt_shader->SetUniform("projection", _projection);
 		}
-
-		GLenum primType = md.mesh->GetPrimitiveTypeGL();
-		GLenum indexType = md.mesh->GetIndexTypeGL();
-		size_t indexCount = md.mesh->GetIndexCount();
-		glDrawElements(primType, indexCount, indexType, 0);
+		
+		md.mesh->Draw();
 
 		prev_shader = cnt_shader;
 	}

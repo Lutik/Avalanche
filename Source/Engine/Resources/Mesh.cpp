@@ -19,6 +19,7 @@ Mesh::Mesh(Mesh&& other)
 	std::swap(_ib, other._ib);
 	std::swap(_vertexDescription, other._vertexDescription);
 	std::swap(_indexType, other._indexType);
+	std::swap(_vao, other._vao);
 }
 
 Mesh& Mesh::operator=(Mesh&& other)
@@ -27,6 +28,7 @@ Mesh& Mesh::operator=(Mesh&& other)
 	std::swap(_ib, other._ib);
 	std::swap(_vertexDescription, other._vertexDescription);
 	std::swap(_indexType, other._indexType);
+	std::swap(_vao, other._vao);
 	return *this;
 }
 
@@ -62,9 +64,20 @@ size_t Mesh::GetIndexCount() const
 	return _ib.Size();
 }
 
-void Mesh::SetupVertexArray()
+void Mesh::UpdateVertexArray()
 {
+	_vao.Bind();
 	_vb.Bind();
 	_ib.Bind();
 	_vertexDescription.Apply();
+}
+
+void Mesh::Bind()
+{
+	_vao.Bind();
+}
+
+void Mesh::Draw()
+{
+	glDrawElements(GetPrimitiveTypeGL(), _ib.Size(), GetIndexTypeGL(), 0);
 }
