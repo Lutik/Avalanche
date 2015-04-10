@@ -5,11 +5,13 @@
 #include "Model.h"
 #include "Renderer.h"
 
+#include "TransformComponent.h"
+
 class TestScene : public Scene
 {
 	Camera _camera;
 	Model *_model;
-	float meshAngle = 0.0f;
+	TransformComponent _transform;
 	Renderer _render;
 public:
 	TestScene();

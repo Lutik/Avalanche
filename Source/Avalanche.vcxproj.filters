@@ -30,6 +30,9 @@
     <Filter Include="Engine\Game">
       <UniqueIdentifier>{c90810dc-8af4-4953-a553-715b0659f11f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Game\Components">
+      <UniqueIdentifier>{00b7ffae-36cf-420e-bc54-db95c9711d64}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -134,6 +137,18 @@
     <ClInclude Include="Engine\Game\Scene.h">
       <Filter>Engine\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Game\Component.h">
+      <Filter>Engine\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Game\Entity.h">
+      <Filter>Engine\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Game\EntitySystem.h">
+      <Filter>Engine\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Game\TransformComponent.h">
+      <Filter>Engine\Game\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -225,6 +240,15 @@
     </ClCompile>
     <ClCompile Include="Engine\Game\Scene.cpp">
       <Filter>Engine\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Game\Entity.cpp">
+      <Filter>Engine\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Game\EntitySystem.cpp">
+      <Filter>Engine\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Game\TransformComponent.cpp">
+      <Filter>Engine\Game\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

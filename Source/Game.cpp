@@ -13,19 +13,20 @@ TestScene::TestScene()
 	_camera.SetViewVector({0.0f, 1.0f, -0.5f});
 	_camera.SetUpVector({0.0f, 0.0f, 1.0f});
 	_camera.SetPerspective(45.0f, Av::application->GetAspectRatio(), 0.2f, 30.0f);
+
+	_transform.position = {0,0,0};
+	_transform.rotation = RotationToQuaternion({0,0,1}, 0.0f);
+	_transform.scale = 0.06f;
 }
 
 void TestScene::onUpdate(float dt)
 {
-	meshAngle += 45.0f * dt;
-	if( meshAngle >= 360.0f )
-		meshAngle -= 360.0f;
+	_transform.Rotate({0,0,1}, 45.0f * dt);
 }
 
 void TestScene::onRender()
 {
-	Matrix4f modelMatrix = Matrix4f::Scale({0.06f, 0.06f, 0.06f});
-	modelMatrix *= Matrix4f::Rotate(meshAngle, {0.0f, 0.0f, 1.0f});
+	Matrix4f modelMatrix = _transform.GetModelMatrix();
 
 	Vector3f light_dir(1.0f, 1.0f, -5.0f);
 	light_dir.Normalize();

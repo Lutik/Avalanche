@@ -14,7 +14,7 @@
 // SDL
 #include "SDL.h"
 
-// STL
+// C++ Standard Library
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -23,6 +23,7 @@
 #include <memory>
 #include <algorithm>
 #include <list>
+#include <cstdint>
 
 // JSON
 #include <json/json.h>

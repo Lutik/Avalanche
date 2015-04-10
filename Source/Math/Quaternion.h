@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vector3.h"
+#include "Matrix.h"
 
 class Quaternion
 {
@@ -32,3 +33,4 @@ Quaternion RotationToQuaternion(Vector3f v, float angle);
 Quaternion Conjugate(const Quaternion &quat);
 Quaternion UnitQuatProduct(const Quaternion &A, const Quaternion &B);
 Quaternion QuatProduct(const Quaternion &A, const Quaternion &B);
+Matrix4f RotationMatrix(const Quaternion &quat);

@@ -1,14 +1,7 @@
 #pragma once
 
-#include "Actor.h"
-
 class Scene
 {
-
-protected:
-	//void AddActor();
-	//void RemoveActor();
-	//void UpdateActors();
 public:
 	virtual ~Scene() {};
 

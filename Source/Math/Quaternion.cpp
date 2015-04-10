@@ -73,3 +73,25 @@ Quaternion RotationToQuaternion(Vector3f v, float angle)
     float c = std::cos(Deg2Rad(angle * 0.5f));
     return Quaternion(v * s, c);
 }
+
+Matrix4f RotationMatrix(const Quaternion &q)
+{
+	Matrix4f m;
+
+	float x22 = 2.0f * q.x * q.x;
+	float y22 = 2.0f * q.y * q.y;
+	float z22 = 2.0f * q.z * q.z;
+	float zw2 = 2.0f * q.z * q.w;
+	float xy2 = 2.0f * q.x * q.y;
+	float xz2 = 2.0f * q.x * q.z;
+	float yw2 = 2.0f * q.y * q.w;
+	float xw2 = 2.0f * q.x * q.w;
+	float yz2 = 2.0f * q.y * q.z;
+
+	m.m[0][0] = 1 - y22 - z22;  m.m[0][1] = xy2 - zw2;      m.m[0][2] = xz2 + yw2;      m.m[0][3] = 0.0f;
+    m.m[1][0] = xy2 + zw2;      m.m[1][1] = 1 - x22 - z22;  m.m[1][2] = yz2 - xw2;      m.m[1][3] = 0.0f;
+    m.m[2][0] = xz2 - yw2;      m.m[2][1] = yz2 + xw2;      m.m[2][2] = 1 - x22 - y22;  m.m[2][3] = 0.0f;
+    m.m[3][0] = 0.0f;           m.m[3][1] = 0.0f;           m.m[3][2] = 0.0f;           m.m[3][3] = 1.0f;
+
+	return m;
+}
