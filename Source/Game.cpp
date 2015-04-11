@@ -6,6 +6,9 @@
 #include "ResourceManager.h"
 
 #include "ModelComponent.h"
+#include "MyComponents.h"
+
+
 
 TestScene::TestScene()
 {
@@ -14,11 +17,18 @@ TestScene::TestScene()
 	_camera.SetUpVector({0.0f, 0.0f, 1.0f});
 	_camera.SetPerspective(45.0f, Av::application->GetAspectRatio(), 0.2f, 30.0f);
 
-	CreateCube({-1.5, 0.0f, 0.0f}, 0.03f);
-	CreateCube({1.5f, 0.0f, 0.0f}, 0.03f);
+	Entity *cube1 = CreateCube({-1.5, 0.0f, 0.0f}, 0.035f);
+	Entity *cube2 = CreateCube({1.5f, 0.0f, 0.0f}, 0.03f);
+	
+	MyAnimComponent *canim = new MyAnimComponent();
+	cube1->AddComponent(canim);
+
+	MyInputComponent *cinput = new MyInputComponent();
+	cinput->speed = 0.5f;
+	cube2->AddComponent(cinput);
 }
 
-void TestScene::CreateCube(Vector3f pos, float scale)
+Entity* TestScene::CreateCube(Vector3f pos, float scale)
 {
 	Entity *cube = entities.CreateEntity();
 	TransformComponent *tc = new TransformComponent();
@@ -32,21 +42,12 @@ void TestScene::CreateCube(Vector3f pos, float scale)
 	cube->AddComponent(tc);
 	cube->AddComponent(mesh_comp);
 	cube->AddComponent(md_comp);
-}
-
-void TestScene::MoveCubes(float dt)
-{
-	auto cubes = entities.GetEntitiesWithComponentTypes({ComponentType::TRANSFORM});
-	for(Entity *cube : cubes)
-	{
-		TransformComponent *transform = cube->GetComponent<TransformComponent>(ComponentType::TRANSFORM);
-		transform->Rotate({0,0,1}, 45.0f * dt);
-	}
+	return cube;
 }
 
 void TestScene::onUpdate(float dt)
 {
-	MoveCubes(dt);
+	_animator.Update(entities, dt);
 }
 
 void TestScene::onRender()

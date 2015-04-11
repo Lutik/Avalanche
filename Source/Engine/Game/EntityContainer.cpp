@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "EntitySystem.h"
+#include "EntityContainer.h"
 
 Entity* EntityContainer::CreateEntity()
 {

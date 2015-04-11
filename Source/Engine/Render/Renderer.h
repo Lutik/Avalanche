@@ -4,7 +4,7 @@
 #include "Mesh.h"
 #include "Material.h"
 #include "VertexArrayObject.h"
-#include "EntitySystem.h"
+#include "EntityContainer.h"
 
 class Renderer
 {

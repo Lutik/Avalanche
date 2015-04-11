@@ -33,6 +33,9 @@
     <Filter Include="Engine\Game\Components">
       <UniqueIdentifier>{00b7ffae-36cf-420e-bc54-db95c9711d64}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Game\Systems">
+      <UniqueIdentifier>{4e51c272-27ae-411c-8298-4d66a2a1c837}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -149,6 +152,15 @@
     <ClInclude Include="Engine\Game\ModelComponent.h">
       <Filter>Engine\Game\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Game\AnimatorSystem.h">
+      <Filter>Engine\Game\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Game\AnimatorComponent.h">
+      <Filter>Engine\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MyComponents.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -249,6 +261,12 @@
     </ClCompile>
     <ClCompile Include="Engine\Game\ModelComponent.cpp">
       <Filter>Engine\Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Game\AnimatorSystem.cpp">
+      <Filter>Engine\Game\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="MyComponents.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
