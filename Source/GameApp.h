@@ -13,7 +13,6 @@ public:
 	AvalancheGame();
 
 	void onStart() override;
-	void onRender() override;
 	void onUpdate(float dt) override;
 	void onKeyDown(int key) override;
 	void onKeyUp(int key) override;

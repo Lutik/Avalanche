@@ -20,7 +20,7 @@ void AvalancheGame::SetupGL()
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-	glDisable(GL_CULL_FACE);
+	glEnable(GL_CULL_FACE);
 }
 
 void AvalancheGame::onStart()
@@ -31,13 +31,6 @@ void AvalancheGame::onStart()
 	SetupGL();
 
 	_game.reset(new TestScene());
-}
-
-void AvalancheGame::onRender()
-{
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	_game->onRender();
 }
 
 void AvalancheGame::onUpdate(float dt)

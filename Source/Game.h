@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Scene.h"
-#include "Camera.h"
 #include "Renderer.h"
 
 #include "EntityContainer.h"
@@ -11,17 +10,15 @@
 
 class TestScene : public Scene
 {
-	Camera _camera;
-
 	Renderer _render;
 	AnimatorSystem _animator;
 
 	EntityContainer entities;
 
 	Entity* CreateCube(Vector3f pos, float scale);
+	Entity* CreateCamera(Vector3f pos, Vector3f view);
 public:
 	TestScene();
 
-	virtual void onRender() override;
 	virtual void onUpdate(float dt) override;
 };

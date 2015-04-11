@@ -35,3 +35,8 @@ void MyInputComponent::Update(TransformComponent *transform, float dt)
 		transform->position -= up * (speed * dt);
 	}
 }
+
+
+void CamControlComponent::Update(TransformComponent *transform, float dt)
+{
+}

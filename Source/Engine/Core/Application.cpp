@@ -129,8 +129,10 @@ void Application::Run()
 			input->UpdateMouseState();
 			input->UpdateKeyStates();
 
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 			onUpdate(diff);
-			onRender();
+
 			SDL_GL_SwapWindow(window);
 		}
 	}

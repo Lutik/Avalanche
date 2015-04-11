@@ -2,30 +2,24 @@
 
 #include "Avalanche.h"
 #include "Game.h"
-#include "Utils.h"
 #include "ResourceManager.h"
 
 #include "ModelComponent.h"
 #include "MyComponents.h"
-
+#include "CameraComponent.h"
 
 
 TestScene::TestScene()
 {
-	_camera.SetPosition({0.0f, -6.0f, 3.0f});
-	_camera.SetViewVector({0.0f, 1.0f, -0.5f});
-	_camera.SetUpVector({0.0f, 0.0f, 1.0f});
-	_camera.SetPerspective(45.0f, Av::application->GetAspectRatio(), 0.2f, 30.0f);
-
-	Entity *cube1 = CreateCube({-1.5, 0.0f, 0.0f}, 0.035f);
-	Entity *cube2 = CreateCube({1.5f, 0.0f, 0.0f}, 0.03f);
+	Entity *cube1 = CreateCube({-3.5, 0.0f, 0.0f}, 0.035f);
+	Entity *cube2 = CreateCube({3.5f, 0.0f, 0.0f}, 0.03f);
+	Entity *cube3 = CreateCube({0.0f, 3.5f, 0.0f}, 0.03f);
+	Entity *cube4 = CreateCube({0.0f, -3.5f, 0.0f}, 0.03f);
+	Entity *cam = CreateCamera({-6.0f, -6.0f, 3.0f}, {1.0f, 1.0f, -0.5f});
 	
-	MyAnimComponent *canim = new MyAnimComponent();
-	cube1->AddComponent(canim);
-
-	MyInputComponent *cinput = new MyInputComponent();
-	cinput->speed = 0.5f;
-	cube2->AddComponent(cinput);
+	cube1->AddComponent(new MyAnimComponent());
+	cube2->AddComponent(new MyAnimComponent());
+	//cam->AddComponent(new MyAnimComponent());
 }
 
 Entity* TestScene::CreateCube(Vector3f pos, float scale)
@@ -45,19 +39,26 @@ Entity* TestScene::CreateCube(Vector3f pos, float scale)
 	return cube;
 }
 
+Entity* TestScene::CreateCamera(Vector3f pos, Vector3f view)
+{
+	Entity *cam = entities.CreateEntity();
+	TransformComponent *tc = new TransformComponent();
+	tc->position = pos;
+	tc->rotation = RotationFromVectors({1,0,0}, view);
+	tc->scale = 1.0f;
+	cam->AddComponent(tc);
+	cam->AddComponent(new PerspectiveCameraComponent(45.0f, Av::application->GetAspectRatio(), 0.2f, 30.0f));
+	return cam;
+}
+
 void TestScene::onUpdate(float dt)
 {
 	_animator.Update(entities, dt);
-}
 
-void TestScene::onRender()
-{
 	Vector3f light_dir(1.0f, 1.0f, -5.0f);
 	light_dir.Normalize();
 
 	_render.Clear();
-	_render.SetViewMatrix(_camera.GetViewMatrix());
-	_render.SetProjectionMatrix(_camera.GetProjectionMatrix());
 	_render.AddLight(light_dir);
 	_render.Draw(entities);
 }

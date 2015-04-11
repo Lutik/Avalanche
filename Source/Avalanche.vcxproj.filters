@@ -1,16 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Math">
-      <UniqueIdentifier>{36d89754-1a60-4852-9f4c-c313ad2c6bd0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine">
       <UniqueIdentifier>{8c94a97c-3a96-4abc-bcee-52a33636e938}</UniqueIdentifier>
@@ -36,6 +29,13 @@
     <Filter Include="Engine\Game\Systems">
       <UniqueIdentifier>{4e51c272-27ae-411c-8298-4d66a2a1c837}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyGame">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Engine\Math">
+      <UniqueIdentifier>{36d89754-1a60-4852-9f4c-c313ad2c6bd0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -48,28 +48,28 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="GameApp.h">
-      <Filter>Source Files</Filter>
+      <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Source Files</Filter>
+      <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Math\Matrix.h">
-      <Filter>Math</Filter>
+      <Filter>Engine\Math</Filter>
     </ClInclude>
     <ClInclude Include="Math\Vector3.h">
-      <Filter>Math</Filter>
+      <Filter>Engine\Math</Filter>
     </ClInclude>
     <ClInclude Include="Math\Vector4.h">
-      <Filter>Math</Filter>
+      <Filter>Engine\Math</Filter>
     </ClInclude>
     <ClInclude Include="Math\Vector2.h">
-      <Filter>Math</Filter>
+      <Filter>Engine\Math</Filter>
     </ClInclude>
     <ClInclude Include="Math\Quaternion.h">
-      <Filter>Math</Filter>
+      <Filter>Engine\Math</Filter>
     </ClInclude>
     <ClInclude Include="Math\AvMath.h">
-      <Filter>Math</Filter>
+      <Filter>Engine\Math</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Core\Application.h">
       <Filter>Engine\Core</Filter>
@@ -81,9 +81,6 @@
       <Filter>Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Utils\OpenGL.h">
-      <Filter>Engine\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Utils\Camera.h">
       <Filter>Engine\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Utils\Font.h">
@@ -143,9 +140,6 @@
     <ClInclude Include="Engine\Game\Entity.h">
       <Filter>Engine\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Game\EntitySystem.h">
-      <Filter>Engine\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Game\TransformComponent.h">
       <Filter>Engine\Game\Components</Filter>
     </ClInclude>
@@ -159,7 +153,13 @@
       <Filter>Engine\Game\Components</Filter>
     </ClInclude>
     <ClInclude Include="MyComponents.h">
-      <Filter>Source Files</Filter>
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Game\EntityContainer.h">
+      <Filter>Engine\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Game\CameraComponent.h">
+      <Filter>Engine\Game\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -167,31 +167,31 @@
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>MyGame</Filter>
     </ClCompile>
     <ClCompile Include="GameApp.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>MyGame</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>MyGame</Filter>
     </ClCompile>
     <ClCompile Include="Math\Quaternion.cpp">
-      <Filter>Math</Filter>
+      <Filter>Engine\Math</Filter>
     </ClCompile>
     <ClCompile Include="Math\Vector3.cpp">
-      <Filter>Math</Filter>
+      <Filter>Engine\Math</Filter>
     </ClCompile>
     <ClCompile Include="Math\Vector2.cpp">
-      <Filter>Math</Filter>
+      <Filter>Engine\Math</Filter>
     </ClCompile>
     <ClCompile Include="Math\Vector4.cpp">
-      <Filter>Math</Filter>
+      <Filter>Engine\Math</Filter>
     </ClCompile>
     <ClCompile Include="Math\Matrix.cpp">
-      <Filter>Math</Filter>
+      <Filter>Engine\Math</Filter>
     </ClCompile>
     <ClCompile Include="Math\AvMath.cpp">
-      <Filter>Math</Filter>
+      <Filter>Engine\Math</Filter>
     </ClCompile>
     <ClCompile Include="GL\gl_core_3_3.c">
       <Filter>Engine\Render</Filter>
@@ -203,9 +203,6 @@
       <Filter>Engine\Core</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Utils\OpenGL.cpp">
-      <Filter>Engine\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Utils\Camera.cpp">
       <Filter>Engine\Utils</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Utils\Font.cpp">
@@ -253,9 +250,6 @@
     <ClCompile Include="Engine\Game\Entity.cpp">
       <Filter>Engine\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Game\EntitySystem.cpp">
-      <Filter>Engine\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Game\TransformComponent.cpp">
       <Filter>Engine\Game\Components</Filter>
     </ClCompile>
@@ -266,7 +260,13 @@
       <Filter>Engine\Game\Systems</Filter>
     </ClCompile>
     <ClCompile Include="MyComponents.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Game\EntityContainer.cpp">
+      <Filter>Engine\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Game\CameraComponent.cpp">
+      <Filter>Engine\Game\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

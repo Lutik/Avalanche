@@ -34,3 +34,5 @@ Quaternion Conjugate(const Quaternion &quat);
 Quaternion UnitQuatProduct(const Quaternion &A, const Quaternion &B);
 Quaternion QuatProduct(const Quaternion &A, const Quaternion &B);
 Matrix4f RotationMatrix(const Quaternion &quat);
+Vector3f RotateVector(Vector3f vec, const Quaternion &quat);
+Quaternion RotationFromVectors(Vector3f from, Vector3f to);

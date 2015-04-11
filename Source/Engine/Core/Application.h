@@ -16,7 +16,6 @@ public:
 	virtual void onStart() = 0;
 	virtual void onExit() = 0;
 	virtual void onUpdate(float diff) {};
-	virtual void onRender() = 0;
 	virtual void onKeyDown(int key) {};
 	virtual void onKeyUp(int key) {};
 	virtual void onMouseDown(int key) {};

@@ -21,6 +21,7 @@ class Renderer
 
 	Vector3f _light_direction;
 
+	bool CollectCameraData(EntityContainer &entities);
 	void CollectRenderData(EntityContainer &entities);
 public:
 	void SetViewMatrix(const Matrix4f &mat);

@@ -5,6 +5,7 @@
 
 #include "TransformComponent.h"
 #include "ModelComponent.h"
+#include "CameraComponent.h"
 
 void Renderer::SetViewMatrix(const Matrix4f &mat)
 {
@@ -26,13 +27,30 @@ void Renderer::Clear()
 	_models.clear();
 }
 
+bool Renderer::CollectCameraData(EntityContainer &entities)
+{
+	auto objects = entities.GetEntitiesWithComponentTypes({ComponentType::TRANSFORM, ComponentType::CAMERA});
+	if( !objects.empty() )
+	{
+		TransformComponent *ctransform = objects[0]->GetComponent<TransformComponent>(ComponentType::TRANSFORM);
+		CameraComponent *ccam = objects[0]->GetComponent<CameraComponent>(ComponentType::CAMERA);
+
+		_view = ccam->GetViewMatrix(ctransform);
+		_projection =ccam->GetProjectionMatrix();
+
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 void Renderer::CollectRenderData(EntityContainer &entities)
 {
 	_models.clear();
 
-	static const std::vector<ComponentType> compTypes = {ComponentType::TRANSFORM, ComponentType::MESH, ComponentType::MESH_DRAWER};
-
-	auto objects = entities.GetEntitiesWithComponentTypes(compTypes);
+	auto objects = entities.GetEntitiesWithComponentTypes({ComponentType::TRANSFORM, ComponentType::MESH, ComponentType::MESH_DRAWER});
 
 	for(Entity *ent : objects)
 	{
@@ -46,6 +64,9 @@ void Renderer::CollectRenderData(EntityContainer &entities)
 
 void Renderer::Draw(EntityContainer &entities)
 {
+	if( !CollectCameraData(entities) )
+		return;
+
 	CollectRenderData(entities);
 
 	ShaderProgram *cnt_shader = nullptr;

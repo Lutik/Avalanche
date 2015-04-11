@@ -95,3 +95,23 @@ Matrix4f RotationMatrix(const Quaternion &q)
 
 	return m;
 }
+
+Vector3f RotateVector(Vector3f vec, const Quaternion &rotation)
+{
+	Quaternion qvec(vec, 0);
+	Quaternion tmp = UnitQuatProduct(rotation, qvec);
+	qvec = UnitQuatProduct(tmp, Conjugate(rotation));
+	return qvec.v;
+}
+
+Quaternion RotationFromVectors(Vector3f from, Vector3f to)
+{
+	from.Normalize();
+	to.Normalize();
+	Vector3f v = Cross(from, to);
+	v.Normalize();
+	float cos_theta = Dot(from, to);
+	float half_cos = std::sqrt(0.5f * (1.0f + cos_theta));
+	float half_sin = std::sqrt(0.5f * (1.0f - cos_theta));
+	return Quaternion(half_sin * v.x, half_sin * v.y, half_sin * v.z, half_cos);
+}
