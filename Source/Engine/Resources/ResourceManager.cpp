@@ -23,7 +23,7 @@ void LoadResourceDescriptions(const Json::Value &json,
 		if( !name.empty() )
 		{
 			ResourceDesc desc(value, basePath);
-			auto result = descriptions.emplace(name, std::make_pair(desc, std::unique_ptr<Resource>()));
+			auto result = descriptions.emplace(name, std::make_pair(desc, std::shared_ptr<Resource>()));
 			if( !result.second ) {
 				// Log error - resource with this name already exists
 			} else if( !result.first->second.first.IsValid() ) {
@@ -62,11 +62,11 @@ void ResourceManager::LoadResources()
 	for(auto &elem : _textures)
 	{
 		TextureDesc &desc = elem.second.first;
-		std::unique_ptr<Texture2D> &ptr = elem.second.second;
+		std::shared_ptr<Texture2D> &ptr = elem.second.second;
 		Image2D img = loadTexture(desc.path);
 		if( !img.Empty() )
 		{
-			ptr = std::make_unique<Texture2D>();
+			ptr = std::make_shared<Texture2D>();
 			ptr->SetImage(img);
 		}
 		else
@@ -79,7 +79,7 @@ void ResourceManager::LoadResources()
 	for(auto &elem : _meshes)
 	{
 		MeshDesc &desc = elem.second.first;
-		std::unique_ptr<Mesh> &ptr = elem.second.second;
+		Mesh::Ptr &ptr = elem.second.second;
 		ptr = LoadMeshOBJ(desc.path);
 		if( !ptr ) {
 			// log error
@@ -90,8 +90,8 @@ void ResourceManager::LoadResources()
 	for(auto &elem : _shaders)
 	{
 		ShaderDesc &desc = elem.second.first;
-		std::unique_ptr<ShaderProgram> &ptr = elem.second.second;
-		ptr = std::make_unique<ShaderProgram>();
+		std::shared_ptr<ShaderProgram> &ptr = elem.second.second;
+		ptr = std::make_shared<ShaderProgram>();
 		ptr->Link(desc.vs_path, desc.fs_path);
 		// todo: check for errors during shader linking
 	}
@@ -100,8 +100,8 @@ void ResourceManager::LoadResources()
 	for(auto &elem : _materials)
 	{
 		MaterialDesc &desc = elem.second.first;
-		std::unique_ptr<Material> &ptr = elem.second.second;
-		ptr = std::make_unique<Material>(desc);
+		std::shared_ptr<Material> &ptr = elem.second.second;
+		ptr = std::make_shared<Material>(desc);
 	}
 }
 
@@ -123,28 +123,35 @@ void ResourceManager::UnloadResources()
 
 
 template<class ResourceDesc, class Resource>
-Resource *GetResource(const std::string &name, const ResourceContainer<ResourceDesc, Resource> &container)
+Resource *GetResourceRawPtr(const std::string &name, const ResourceContainer<ResourceDesc, Resource> &container)
 {
 	auto itr = container.find(name);
 	return (itr != container.end()) ? itr->second.second.get() : nullptr;
 }
 
-Texture2D* ResourceManager::GetTexture(const std::string &name) const
+template<class ResourceDesc, class Resource>
+std::shared_ptr<Resource> GetResource(const std::string &name, const ResourceContainer<ResourceDesc, Resource> &container)
 {
-	return GetResource<TextureDesc, Texture2D>(name, _textures);
+	auto itr = container.find(name);
+	return (itr != container.end()) ? itr->second.second : std::shared_ptr<Resource>();
 }
 
-Mesh* ResourceManager::GetMesh(const std::string &name) const
+Texture2D* ResourceManager::GetTexture(const std::string &name) const
+{
+	return GetResourceRawPtr<TextureDesc, Texture2D>(name, _textures);
+}
+
+Mesh::Ptr ResourceManager::GetMesh(const std::string &name) const
 {
 	return GetResource<MeshDesc, Mesh>(name, _meshes);
 }
 
 ShaderProgram* ResourceManager::GetShader(const std::string &name) const
 {
-	return GetResource<ShaderDesc, ShaderProgram>(name, _shaders);
+	return GetResourceRawPtr<ShaderDesc, ShaderProgram>(name, _shaders);
 }
 
 Material* ResourceManager::GetMaterial(const std::string &name) const
 {
-	return GetResource<MaterialDesc, Material>(name, _materials);
+	return GetResourceRawPtr<MaterialDesc, Material>(name, _materials);
 }

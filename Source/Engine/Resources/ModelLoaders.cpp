@@ -51,15 +51,13 @@ FaceVertex readFaceValue(std::string &line, const std::string &prefix)
 	return result;
 }
 
-std::unique_ptr<Mesh> LoadMeshOBJ(const std::string &fileName)
+Mesh::Ptr LoadMeshOBJ(const std::string &fileName)
 {
-	std::unique_ptr<Mesh> mesh;
-
 	std::ifstream fileStream(fileName, std::ios::in);
 
 	if (!fileStream.is_open()) {
 		Av::Log::log("Can't read file %s\n", fileName.c_str());
-		return mesh;
+		return Mesh::Ptr();
 	}
 
 	const std::string vertPref("v ");
@@ -110,7 +108,7 @@ std::unique_ptr<Mesh> LoadMeshOBJ(const std::string &fileName)
 	fileStream.close();
 
 	if( faceGroups.empty() || faceGroups.front().empty() )
-		return mesh;
+		return Mesh::Ptr();
 
 	std::vector<VertexP3T2N3> vertices;
 	for(auto &faces : faceGroups)
@@ -129,7 +127,7 @@ std::unique_ptr<Mesh> LoadMeshOBJ(const std::string &fileName)
 	indices.resize(vertices.size());
 	std::iota(indices.begin(), indices.end(), 0);
 
-	mesh = std::make_unique<Mesh>();
+	Mesh::Ptr mesh = std::make_shared<Mesh>();
 	mesh->SetVertices(VertexP3T2N3::GetVertexDescription(), vertices.size(), vertices.data());
 	mesh->SetIndices(IndexType::SHORT, PrimitiveType::TRIANGLES, indices.size(), indices.data());
 

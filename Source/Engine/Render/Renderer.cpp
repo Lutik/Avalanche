@@ -4,7 +4,7 @@
 #include "Shader.h"
 
 #include "TransformComponent.h"
-#include "ModelComponent.h"
+#include "MeshComponent.h"
 #include "CameraComponent.h"
 
 void Renderer::SetViewMatrix(const Matrix4f &mat)
@@ -58,7 +58,7 @@ void Renderer::CollectRenderData(EntityContainer &entities)
 		MeshComponent *cmesh = ent->GetComponent<MeshComponent>(ComponentType::MESH);
 		MeshDrawComponent *cmeshdraw = ent->GetComponent<MeshDrawComponent>(ComponentType::MESH_DRAWER);
 
-		_models.push_back( {cmesh->mesh, cmeshdraw->material, ctransform->GetModelMatrix()} );
+		_models.push_back( {cmesh->mesh.get(), cmeshdraw->material, ctransform->GetModelMatrix()} );
 	}
 }
 

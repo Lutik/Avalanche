@@ -2,4 +2,4 @@
 
 #include "Mesh.h"
 
-std::unique_ptr<Mesh> LoadMeshOBJ(const std::string &fileName);
+Mesh::Ptr LoadMeshOBJ(const std::string &fileName);

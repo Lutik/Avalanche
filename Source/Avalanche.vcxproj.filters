@@ -143,9 +143,6 @@
     <ClInclude Include="Engine\Game\TransformComponent.h">
       <Filter>Engine\Game\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Game\ModelComponent.h">
-      <Filter>Engine\Game\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Game\AnimatorSystem.h">
       <Filter>Engine\Game\Systems</Filter>
     </ClInclude>
@@ -159,6 +156,12 @@
       <Filter>Engine\Game</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Game\CameraComponent.h">
+      <Filter>Engine\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Game\Shapes.h">
+      <Filter>Engine\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Game\MeshComponent.h">
       <Filter>Engine\Game\Components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -253,9 +256,6 @@
     <ClCompile Include="Engine\Game\TransformComponent.cpp">
       <Filter>Engine\Game\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Game\ModelComponent.cpp">
-      <Filter>Engine\Game\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Game\AnimatorSystem.cpp">
       <Filter>Engine\Game\Systems</Filter>
     </ClCompile>
@@ -266,6 +266,12 @@
       <Filter>Engine\Game</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Game\CameraComponent.cpp">
+      <Filter>Engine\Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Game\Shapes.cpp">
+      <Filter>Engine\Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Game\MeshComponent.cpp">
       <Filter>Engine\Game\Components</Filter>
     </ClCompile>
   </ItemGroup>

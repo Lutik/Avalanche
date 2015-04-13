@@ -7,7 +7,7 @@
 #include "Material.h"
 
 template<class ResourceDesc, class Resource> using ResourceContainer
-	= std::map<std::string, std::pair<ResourceDesc, std::unique_ptr<Resource>>>;
+	= std::map<std::string, std::pair<ResourceDesc, std::shared_ptr<Resource>>>;
 
 class ResourceManager
 {
@@ -22,7 +22,7 @@ public:
 	void UnloadResources();
 
 	Texture2D* GetTexture(const std::string &name) const;
-	Mesh* GetMesh(const std::string &name) const;
+	Mesh::Ptr GetMesh(const std::string &name) const;
 	ShaderProgram* GetShader(const std::string &name) const;
 	Material* GetMaterial(const std::string &name) const;
 };

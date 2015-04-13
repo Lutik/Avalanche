@@ -46,4 +46,6 @@ public:
 
 	void Bind();
 	void Draw();
+
+	typedef std::shared_ptr<Mesh> Ptr;
 };
