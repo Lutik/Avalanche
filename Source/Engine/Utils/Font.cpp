@@ -119,6 +119,6 @@ Mesh Font::MakeStringMesh(Vector2f pos, std::string str, float height)
 		pos = DrawGlyph(pos, code, height, vb, ib);
 	}
 	result.SetVertices(VertexP2T2::GetVertexDescription(), vb.size(), vb.data());
-	result.SetIndices(IndexType::SHORT, ib.size(), ib.data());
+	result.SetIndices(IndexType::SHORT, PrimitiveType::TRIANGLES, ib.size(), ib.data());
 	return result;
 }

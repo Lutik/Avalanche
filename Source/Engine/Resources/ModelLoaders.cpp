@@ -131,8 +131,7 @@ std::unique_ptr<Mesh> LoadMeshOBJ(const std::string &fileName)
 
 	mesh = std::make_unique<Mesh>();
 	mesh->SetVertices(VertexP3T2N3::GetVertexDescription(), vertices.size(), vertices.data());
-	mesh->SetIndices(IndexType::SHORT, indices.size(), indices.data());
-	mesh->UpdateVertexArray();
+	mesh->SetIndices(IndexType::SHORT, PrimitiveType::TRIANGLES, indices.size(), indices.data());
 
 	return mesh;
 }

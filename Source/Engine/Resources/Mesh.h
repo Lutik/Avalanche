@@ -11,6 +11,13 @@ enum class IndexType : int
 	INT   = 2
 };
 
+enum class PrimitiveType : int
+{
+	TRIANGLES      = 0,
+	TRIANGLE_STRIP = 1,
+	TRIANGLE_FAN   = 2
+};
+
 class Mesh
 {
 	VertexArrayObject _vao;
@@ -18,6 +25,7 @@ class Mesh
 	IndexBuffer _ib;
 	VertexDescription _vertexDescription;
 	IndexType _indexType;
+	PrimitiveType _primitiveType;
 public:
 	Mesh() = default;
 
@@ -28,14 +36,13 @@ public:
 	Mesh& operator=(Mesh&& other);
 
 	void SetVertices(const VertexDescription &vertDesc, size_t count, const void *data);
-	void SetIndices(IndexType indexType, size_t count, const void *data);
+	void SetIndices(IndexType indexType, PrimitiveType primType, size_t count, const void *data);
 
 	IndexType GetIndexType() const;
 	GLenum GetIndexTypeGL() const;
-	size_t GetIndexCount() const;
+	PrimitiveType GetPrimitiveType() const;
 	GLenum GetPrimitiveTypeGL() const;
-
-	void UpdateVertexArray();
+	size_t GetIndexCount() const;
 
 	void Bind();
 	void Draw();

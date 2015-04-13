@@ -3,7 +3,13 @@
 
 GLenum IndexTypeGL(IndexType type)
 {
-	const GLenum gl_types[] = {GL_UNSIGNED_BYTE, GL_UNSIGNED_SHORT, GL_UNSIGNED_INT};
+	static const GLenum gl_types[] = {GL_UNSIGNED_BYTE, GL_UNSIGNED_SHORT, GL_UNSIGNED_INT};
+	return gl_types[(int)type];
+}
+
+GLenum PrimitiveTypeGL(PrimitiveType type)
+{
+	static const GLenum gl_types[] = {GL_TRIANGLES, GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN};
 	return gl_types[(int)type];
 }
 
@@ -35,13 +41,22 @@ Mesh& Mesh::operator=(Mesh&& other)
 void Mesh::SetVertices(const VertexDescription &vertDesc, size_t count, const void *data)
 {
 	_vertexDescription = vertDesc;
-	_vb.Init(count, data, _vertexDescription.vertexSize, GL_DYNAMIC_DRAW);
+	_vao.Bind();
+	_vb.Init(count, data, _vertexDescription.vertexSize, GL_DYNAMIC_DRAW);	
+	if(_ib.Size() > 0) {
+		_vertexDescription.Apply();
+	}
 }
 
-void Mesh::SetIndices(IndexType indexType, size_t count, const void *data)
+void Mesh::SetIndices(IndexType indexType, PrimitiveType primType, size_t count, const void *data)
 {
 	_indexType = indexType;
+	_primitiveType = primType;
+	_vao.Bind();
 	_ib.Init(count, data, IndexTypeSize(_indexType), GL_DYNAMIC_DRAW);
+	if(_vb.Size() > 0) {
+		_vertexDescription.Apply();
+	}
 }
 
 IndexType Mesh::GetIndexType() const
@@ -54,22 +69,19 @@ GLenum Mesh::GetIndexTypeGL() const
 	return IndexTypeGL(_indexType);
 }
 
+PrimitiveType Mesh::GetPrimitiveType() const
+{
+	return _primitiveType;
+}
+
 GLenum Mesh::GetPrimitiveTypeGL() const
 {
-	return GL_TRIANGLES;
+	return PrimitiveTypeGL(_primitiveType);
 }
 
 size_t Mesh::GetIndexCount() const
 {
 	return _ib.Size();
-}
-
-void Mesh::UpdateVertexArray()
-{
-	_vao.Bind();
-	_vb.Bind();
-	_ib.Bind();
-	_vertexDescription.Apply();
 }
 
 void Mesh::Bind()
