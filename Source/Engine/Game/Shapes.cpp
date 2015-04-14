@@ -19,9 +19,9 @@ Mesh::Ptr MakePlane(float size_x, float size_y, int segments_x, int segments_y, 
 	float dv = uv_scale_y / segments_y;
 
 	std::vector<VertexP3T2N3> vertices;
-	for(int x = 0; x <= segments_x; ++x)
+	for(int y = 0; y <= segments_y; ++y)
 	{
-		for(int y = 0; y <= segments_y; ++y)
+		for(int x = 0; x <= segments_x; ++x)
 		{
 			VertexP3T2N3 vertex;
 			vertex.pos = {offset_x + dx*x, offset_y + dy*y, 0.0f};
@@ -37,15 +37,15 @@ Mesh::Ptr MakePlane(float size_x, float size_y, int segments_x, int segments_y, 
 	{
 		int baseIdx = strip * (segments_x + 1);
 		if(strip > 0) {
-			indices.push_back(baseIdx);
+			indices.push_back(baseIdx + segments_x + 1);
 		}
 		for(int x = 0; x <= segments_x; ++x)
 		{
-			indices.push_back(baseIdx + x);
 			indices.push_back(baseIdx + x + (segments_x+1));
+			indices.push_back(baseIdx + x);
 		}
 		if(strip < segments_y-1) {
-			indices.push_back(baseIdx + 2*segments_x + 1);
+			indices.push_back(baseIdx + segments_x);
 		}
 	}
 
