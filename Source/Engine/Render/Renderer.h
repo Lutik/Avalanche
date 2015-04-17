@@ -19,8 +19,17 @@ class Renderer
 	};
 	std::vector<ModelRenderData> _models;
 
-	Vector3f _light_direction;
+	struct LightData
+	{
+		Vector3f pos;
+		Vector3f color;
+		Vector3f attenuation;
+	};
+	std::vector<LightData> _lights;
 
+	void SortLights(Vector3f model_pos, int count);
+
+	void CollectLightData(EntityContainer &entities);
 	bool CollectCameraData(EntityContainer &entities);
 	void CollectRenderData(EntityContainer &entities);
 public:

@@ -7,6 +7,7 @@
 #include "MeshComponent.h"
 #include "MyComponents.h"
 #include "CameraComponent.h"
+#include "LightComponent.h"
 #include "Shapes.h"
 
 TestScene::TestScene()
@@ -17,10 +18,12 @@ TestScene::TestScene()
 	Entity *cube4 = CreateCube({0.0f, -3.5f, 0.0f}, 0.03f);
 	Entity *cam = CreateCamera({-6.0f, -6.0f, 3.0f}, {1.0f, 1.0f, -0.5f});
 	Entity *plane = CreatePlane();
+	Entity *light = CreateLight({0.0f, 0.0f, 1.0f}, {0.0f, 1.0f, 1.0f});
 	
 	cube1->AddComponent(new MyAnimComponent());
 	cube2->AddComponent(new MyAnimComponent());
 	//cam->AddComponent(new MyAnimComponent());
+	light->AddComponent(new MyInputComponent(1.0f));
 }
 
 Entity* TestScene::CreateCube(Vector3f pos, float scale)
@@ -79,14 +82,31 @@ Entity* TestScene::CreatePlane()
 	return plane;
 }
 
+Entity* TestScene::CreateLight(Vector3f pos, Vector3f color)
+{
+	Entity *light = entities.CreateEntity();
+	TransformComponent *tc = new TransformComponent();
+	tc->position = pos;
+	tc->rotation = RotationToQuaternion({0,0,1}, 0.0f);
+	tc->scale = 0.01f;
+	PointLightComponent *lc = new PointLightComponent(Vector3f{0.8f, 1.0f, 1.0f}, Vector3f{1.0f, 0.0f, 0.1f});
+	light->AddComponent(tc);
+	light->AddComponent(lc);
+
+	MeshComponent *mesh_comp = new MeshComponent();
+	mesh_comp->SetMesh(Av::resourceManager.GetMesh("Cube"));
+	MeshDrawComponent *md_comp = new MeshDrawComponent();
+	md_comp->material = Av::resourceManager.GetMaterial("Metal");
+	light->AddComponent(mesh_comp);
+	light->AddComponent(md_comp);
+
+	return light;
+}
+
 void TestScene::onUpdate(float dt)
 {
 	_animator.Update(entities, dt);
 
-	Vector3f light_dir(0.0f, 0.0f, -5.0f);
-	light_dir.Normalize();
-
 	_render.Clear();
-	_render.AddLight(light_dir);
 	_render.Draw(entities);
 }

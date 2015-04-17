@@ -10,7 +10,7 @@ AvalancheGame::AvalancheGame()
 
 void AvalancheGame::SetupGL()
 {
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.05f, 1.0f);
 
 	glEnable(GL_BLEND);
 	glBlendEquation(GL_FUNC_ADD);

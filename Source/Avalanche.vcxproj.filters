@@ -164,6 +164,9 @@
     <ClInclude Include="Engine\Game\MeshComponent.h">
       <Filter>Engine\Game\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Game\LightComponent.h">
+      <Filter>Engine\Game\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -272,6 +275,9 @@
       <Filter>Engine\Game\Components</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Game\MeshComponent.cpp">
+      <Filter>Engine\Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Game\LightComponent.cpp">
       <Filter>Engine\Game\Components</Filter>
     </ClCompile>
   </ItemGroup>

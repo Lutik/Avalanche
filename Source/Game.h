@@ -18,6 +18,7 @@ class TestScene : public Scene
 	Entity* CreateCube(Vector3f pos, float scale);
 	Entity* CreateCamera(Vector3f pos, Vector3f view);
 	Entity* CreatePlane();
+	Entity* CreateLight(Vector3f pos, Vector3f color);
 public:
 	TestScene();
 

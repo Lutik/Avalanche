@@ -8,6 +8,7 @@ enum class ComponentType
 	MESH_DRAWER, // параметры и материалы для отрисовки мешей
 	ANIMATOR,    // тип компонентов, которые меняют положение/ориентацию обектов
 	CAMERA,
+	POINT_LIGHT
 };
 
 struct Component

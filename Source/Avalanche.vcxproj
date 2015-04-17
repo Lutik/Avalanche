@@ -98,6 +98,7 @@
     <ClInclude Include="Engine\Game\EntityContainer.h" />
     <ClInclude Include="Engine\Game\AnimatorComponent.h" />
     <ClInclude Include="Engine\Game\AnimatorSystem.h" />
+    <ClInclude Include="Engine\Game\LightComponent.h" />
     <ClInclude Include="Engine\Game\MeshComponent.h" />
     <ClInclude Include="Engine\Game\Scene.h" />
     <ClInclude Include="Engine\Game\Shapes.h" />
@@ -138,6 +139,7 @@
     <ClCompile Include="Engine\Game\Entity.cpp" />
     <ClCompile Include="Engine\Game\EntityContainer.cpp" />
     <ClCompile Include="Engine\Game\AnimatorSystem.cpp" />
+    <ClCompile Include="Engine\Game\LightComponent.cpp" />
     <ClCompile Include="Engine\Game\MeshComponent.cpp" />
     <ClCompile Include="Engine\Game\Scene.cpp" />
     <ClCompile Include="Engine\Game\Shapes.cpp" />

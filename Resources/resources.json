@@ -25,8 +25,8 @@
 	[
 		{
 			"name" : "Default",
-			"vs" : "Shaders/Simple.vsh",
-			"fs" : "Shaders/Simple.fsh"
+			"vs" : "Shaders/Lambert.vsh",
+			"fs" : "Shaders/Lambert.fsh"
 		}
 	],
 	"Materials" :
@@ -35,12 +35,7 @@
 			"name" : "Metal",
 			"shader" : "Default",
 			"textures" : {
-				"diffuse_tex" : "MetalDiffuse",
-				"normal_tex" : "MetalNormal"
-			},
-			"params" : {
-				"some_param" : 0.5,
-				"some_vec_param" : [0.0, 1.0, 2.0]
+				"diffuse_tex" : "MetalDiffuse"
 			}
 		},
 		{
