@@ -22,8 +22,7 @@ TestScene::TestScene()
 	
 	cube1->AddComponent(new MyAnimComponent());
 	cube2->AddComponent(new MyAnimComponent());
-	//cam->AddComponent(new MyAnimComponent());
-	light->AddComponent(new MyInputComponent(1.0f));
+	cam->AddComponent(new CamControlComponent());
 
 	_physics.Init();
 }
@@ -49,10 +48,15 @@ Entity* TestScene::CreateCube(Vector3f pos, float scale)
 // и при этом направление вверх никуда не уедет
 Quaternion CalcCameraRotation(Vector3f view)
 {
+	const Vector3f ref_view = {1,0,0};
+
 	Vector3f view_hor = {view.x, view.y, 0.0f};
-	Quaternion q1 = RotationFromVectors({1,0,0}, view_hor);
-	Quaternion q2 = RotationFromVectors(view_hor, view);
-	return UnitQuatProduct(q2, q1);
+	Quaternion q1 = RotationFromVectors(ref_view, view_hor);
+
+	Vector3f view_ver = RotateVector(view, Conjugate(q1));
+	Quaternion q2 = RotationFromVectors(ref_view, view_ver);
+
+	return UnitQuatProduct(q1, q2);
 }
 
 Entity* TestScene::CreateCamera(Vector3f pos, Vector3f view)

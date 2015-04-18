@@ -36,7 +36,50 @@ void MyInputComponent::Update(TransformComponent *transform, float dt)
 	}
 }
 
-
 void CamControlComponent::Update(TransformComponent *transform, float dt)
 {
+	Vector3f view = RotateVector({1,0,0}, transform->rotation);
+	view.Normalize();
+	Vector3f up = {0,0,1};
+	Vector3f side = Cross(view, up);
+
+	const float MOVE_SPEED = 2.0f;
+	const float ROTATION_SPEED = 0.7f;
+
+	if( Av::input->KeyPressed(SDL_SCANCODE_UP) ) {
+		transform->position += view * MOVE_SPEED * dt;
+	}
+	if( Av::input->KeyPressed(SDL_SCANCODE_DOWN) ) {
+		transform->position -= view * MOVE_SPEED * dt;
+	}
+	if( Av::input->KeyPressed(SDL_SCANCODE_RIGHT) ) {
+		transform->position += side * MOVE_SPEED * dt;
+	}
+	if( Av::input->KeyPressed(SDL_SCANCODE_LEFT) ) {
+		transform->position -= side * MOVE_SPEED * dt;
+	}
+
+	int mouse_dx = Av::input->GetMouseDX();
+	int mouse_dy = Av::input->GetMouseDY();
+
+	const int MOUSE_RIGHT = 3;
+	bool mouseLook = Av::input->MousePressed(MOUSE_RIGHT);
+	Av::input->GrabMouse(mouseLook);
+	Av::input->ShowMouse(!mouseLook);
+
+	// Rotation
+	if( mouseLook )
+	{
+		// Find up vector (0,0,1) in local quaternion space
+		Vector3f qup = RotateVector({0,0,1}, Conjugate(transform->rotation));
+		// rotate horizontally
+		Quaternion qhor = RotationToQuaternion(qup, -ROTATION_SPEED * mouse_dx);
+		transform->rotation = UnitQuatProduct(transform->rotation, qhor);
+
+		// rotate vertically
+		Quaternion qver = RotationToQuaternion({0,1,0}, ROTATION_SPEED * mouse_dy);
+		transform->rotation = UnitQuatProduct(transform->rotation, qver);
+
+		transform->rotation.Normalize();
+	}
 }
