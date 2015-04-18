@@ -16,22 +16,22 @@ void MyInputComponent::Update(TransformComponent *transform, float dt)
 	const Vector3f forward = {0,1,0};
 	const Vector3f up = {0,0,1};
 
-	if( Av::input->KeyPressed(SDL_SCANCODE_RIGHT) ) {
+	if( Av::input->KeyPressed(SDL_SCANCODE_D) ) {
 		transform->position += right * (speed * dt);
 	}
-	if( Av::input->KeyPressed(SDL_SCANCODE_LEFT) ) {
+	if( Av::input->KeyPressed(SDL_SCANCODE_A) ) {
 		transform->position -= right * (speed * dt);
 	}
-	if( Av::input->KeyPressed(SDL_SCANCODE_UP) ) {
+	if( Av::input->KeyPressed(SDL_SCANCODE_W) ) {
 		transform->position += forward * (speed * dt);
 	}
-	if( Av::input->KeyPressed(SDL_SCANCODE_DOWN) ) {
+	if( Av::input->KeyPressed(SDL_SCANCODE_S) ) {
 		transform->position -= forward * (speed * dt);
 	}
-	if( Av::input->KeyPressed(SDL_SCANCODE_A) ) {
+	if( Av::input->KeyPressed(SDL_SCANCODE_Z) ) {
 		transform->position += up * (speed * dt);
 	}
-	if( Av::input->KeyPressed(SDL_SCANCODE_Z) ) {
+	if( Av::input->KeyPressed(SDL_SCANCODE_X) ) {
 		transform->position -= up * (speed * dt);
 	}
 }
@@ -43,7 +43,7 @@ void CamControlComponent::Update(TransformComponent *transform, float dt)
 	Vector3f up = {0,0,1};
 	Vector3f side = Cross(view, up);
 
-	const float MOVE_SPEED = 2.0f;
+	const float MOVE_SPEED = 3.0f;
 	const float ROTATION_SPEED = 0.7f;
 
 	if( Av::input->KeyPressed(SDL_SCANCODE_UP) ) {

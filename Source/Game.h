@@ -16,6 +16,8 @@ class TestScene : public Scene
 
 	EntityContainer entities;
 
+	Mesh::Ptr _cubeMesh;
+
 	Entity* CreateCube(Vector3f pos, float scale);
 	Entity* CreateCamera(Vector3f pos, Vector3f view);
 	Entity* CreatePlane();

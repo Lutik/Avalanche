@@ -12,6 +12,8 @@
 
 TestScene::TestScene()
 {
+	_cubeMesh = Shapes::MakeBox(1.5f, 1.5f, 1.5f, 2, 2, 2);
+
 	Entity *cube1 = CreateCube({-3.5, 0.0f, 0.0f}, 0.03f);
 	Entity *cube2 = CreateCube({3.5f, 0.0f, 0.0f}, 0.03f);
 	Entity *cube3 = CreateCube({0.0f, 3.5f, 0.0f}, 0.03f);
@@ -23,6 +25,7 @@ TestScene::TestScene()
 	cube1->AddComponent(new MyAnimComponent());
 	cube2->AddComponent(new MyAnimComponent());
 	cam->AddComponent(new CamControlComponent());
+	light->AddComponent(new MyInputComponent(1.5f));
 
 	_physics.Init();
 }
@@ -32,10 +35,10 @@ Entity* TestScene::CreateCube(Vector3f pos, float scale)
 	Entity *cube = entities.CreateEntity();
 	TransformComponent *tc = new TransformComponent();
 	tc->position = pos;
-	tc->rotation = RotationToQuaternion({0,0,1}, 0.0f);
-	tc->scale = scale;
+	tc->rotation = {1,0,0,0};
+	tc->scale = 1.0f;
 	MeshComponent *mesh_comp = new MeshComponent();
-	mesh_comp->SetMesh(Av::resourceManager.GetMesh("Cube"));
+	mesh_comp->SetMesh(_cubeMesh);
 	MeshDrawComponent *md_comp = new MeshDrawComponent();
 	md_comp->material = Av::resourceManager.GetMaterial("Metal");
 	cube->AddComponent(tc);
@@ -75,7 +78,7 @@ Entity* TestScene::CreatePlane()
 {
 	Entity *plane = entities.CreateEntity();
 	TransformComponent *tc = new TransformComponent();
-	tc->position = {0.0f, 0.0f, -0.74f};
+	tc->position = {0.0f, 0.0f, -1.0f};
 	tc->rotation = RotationToQuaternion({0,0,1}, 0.0f);
 	tc->scale = 1.0f;
 	MeshComponent *sc = new MeshComponent();
