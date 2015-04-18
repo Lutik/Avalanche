@@ -43,13 +43,13 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\</OutDir>
     <IntDir>..\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)libs/jsoncpp-src-0.5.0/include;$(SolutionDir)libs/libpng-1.6.17/;$(SolutionDir)SDL/include;$(SolutionDir);$(SolutionDir)/Engine;$(SolutionDir)/Math;$(SolutionDir)/Engine/Core;$(SolutionDir)/Engine/Utils;$(SolutionDir)/Engine/Resources;$(SolutionDir)/Engine/Render;$(SolutionDir)/Engine/Game;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/libs/bullet-2.82-r2704/src;$(SolutionDir)libs/jsoncpp-src-0.5.0/include;$(SolutionDir)libs/libpng-1.6.17/;$(SolutionDir)SDL/include;$(SolutionDir);$(SolutionDir)/Engine;$(SolutionDir)/Math;$(SolutionDir)/Engine/Core;$(SolutionDir)/Engine/Utils;$(SolutionDir)/Engine/Resources;$(SolutionDir)/Engine/Render;$(SolutionDir)/Engine/Physics;$(SolutionDir)/Engine/Game;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\</OutDir>
     <IntDir>..\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)libs/jsoncpp-src-0.5.0/include;$(SolutionDir)libs/libpng-1.6.17/;$(SolutionDir)SDL/include;$(SolutionDir);$(SolutionDir)/Engine;$(SolutionDir)/Math;$(SolutionDir)/Engine/Core;$(SolutionDir)/Engine/Utils;$(SolutionDir)/Engine/Resources;$(SolutionDir)/Engine/Render;$(SolutionDir)/Engine/Game;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/libs/bullet-2.82-r2704/src;$(SolutionDir)libs/jsoncpp-src-0.5.0/include;$(SolutionDir)libs/libpng-1.6.17/;$(SolutionDir)SDL/include;$(SolutionDir);$(SolutionDir)/Engine;$(SolutionDir)/Math;$(SolutionDir)/Engine/Core;$(SolutionDir)/Engine/Utils;$(SolutionDir)/Engine/Resources;$(SolutionDir)/Engine/Render;$(SolutionDir)/Engine/Physics;$(SolutionDir)/Engine/Game;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -57,7 +57,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)/libs/bullet-2.82-r2704/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -75,7 +75,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)/libs/bullet-2.82-r2704/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -103,6 +103,7 @@
     <ClInclude Include="Engine\Game\Scene.h" />
     <ClInclude Include="Engine\Game\Shapes.h" />
     <ClInclude Include="Engine\Game\TransformComponent.h" />
+    <ClInclude Include="Engine\Physics\PhysicsSystem.h" />
     <ClInclude Include="Engine\Render\Renderer.h" />
     <ClInclude Include="Engine\Render\Shader.h" />
     <ClInclude Include="Engine\Render\Texture.h" />
@@ -144,6 +145,7 @@
     <ClCompile Include="Engine\Game\Scene.cpp" />
     <ClCompile Include="Engine\Game\Shapes.cpp" />
     <ClCompile Include="Engine\Game\TransformComponent.cpp" />
+    <ClCompile Include="Engine\Physics\PhysicsSystem.cpp" />
     <ClCompile Include="Engine\Render\Renderer.cpp" />
     <ClCompile Include="Engine\Render\Shader.cpp" />
     <ClCompile Include="Engine\Render\Texture.cpp" />
@@ -176,6 +178,17 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="libs\bullet-2.82-r2704\build\src\BulletCollision\BulletCollision.vcxproj">
+      <Project>{5df59c72-18cc-4efe-81d7-d0dd2c7af9c9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="libs\bullet-2.82-r2704\build\src\BulletDynamics\BulletDynamics.vcxproj">
+      <Project>{0e1398dc-8d98-4dd4-954c-fbad41601916}</Project>
+    </ProjectReference>
+    <ProjectReference Include="libs\bullet-2.82-r2704\build\src\LinearMath\LinearMath.vcxproj">
+      <Project>{b9735c3c-39a0-4863-9e99-6851858a5711}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

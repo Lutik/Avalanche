@@ -36,6 +36,9 @@
     <Filter Include="Engine\Math">
       <UniqueIdentifier>{36d89754-1a60-4852-9f4c-c313ad2c6bd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Physics">
+      <UniqueIdentifier>{ca01099c-ea1e-4d66-b866-b6ea021531b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -167,6 +170,9 @@
     <ClInclude Include="Engine\Game\LightComponent.h">
       <Filter>Engine\Game\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Physics\PhysicsSystem.h">
+      <Filter>Engine\Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -279,6 +285,9 @@
     </ClCompile>
     <ClCompile Include="Engine\Game\LightComponent.cpp">
       <Filter>Engine\Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Physics\PhysicsSystem.cpp">
+      <Filter>Engine\Physics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

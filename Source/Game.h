@@ -5,13 +5,14 @@
 
 #include "EntityContainer.h"
 #include "AnimatorSystem.h"
-#include "TransformComponent.h"
+#include "PhysicsSystem.h"
 
 
 class TestScene : public Scene
 {
 	Renderer _render;
 	AnimatorSystem _animator;
+	PhysicsSystem _physics;
 
 	EntityContainer entities;
 

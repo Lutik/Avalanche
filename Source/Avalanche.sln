@@ -1,9 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Avalanche", "Avalanche.vcxproj", "{754CD502-88B5-4943-BC5F-03841731FED3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B9735C3C-39A0-4863-9E99-6851858A5711} = {B9735C3C-39A0-4863-9E99-6851858A5711}
+		{5DF59C72-18CC-4EFE-81D7-D0DD2C7AF9C9} = {5DF59C72-18CC-4EFE-81D7-D0DD2C7AF9C9}
+		{0E1398DC-8D98-4DD4-954C-FBAD41601916} = {0E1398DC-8D98-4DD4-954C-FBAD41601916}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bullet", "Bullet", "{F6ECD125-F419-4232-B747-FFB597B04E12}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BulletCollision", "libs\bullet-2.82-r2704\build\src\BulletCollision\BulletCollision.vcxproj", "{5DF59C72-18CC-4EFE-81D7-D0DD2C7AF9C9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BulletDynamics", "libs\bullet-2.82-r2704\build\src\BulletDynamics\BulletDynamics.vcxproj", "{0E1398DC-8D98-4DD4-954C-FBAD41601916}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LinearMath", "libs\bullet-2.82-r2704\build\src\LinearMath\LinearMath.vcxproj", "{B9735C3C-39A0-4863-9E99-6851858A5711}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +34,37 @@ Global
 		{754CD502-88B5-4943-BC5F-03841731FED3}.Release|Win32.Build.0 = Release|Win32
 		{754CD502-88B5-4943-BC5F-03841731FED3}.RelWithDebInfo|Win32.ActiveCfg = Release|Win32
 		{754CD502-88B5-4943-BC5F-03841731FED3}.RelWithDebInfo|Win32.Build.0 = Release|Win32
+		{5DF59C72-18CC-4EFE-81D7-D0DD2C7AF9C9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5DF59C72-18CC-4EFE-81D7-D0DD2C7AF9C9}.Debug|Win32.Build.0 = Debug|Win32
+		{5DF59C72-18CC-4EFE-81D7-D0DD2C7AF9C9}.MinSizeRel|Win32.ActiveCfg = MinSizeRel|Win32
+		{5DF59C72-18CC-4EFE-81D7-D0DD2C7AF9C9}.MinSizeRel|Win32.Build.0 = MinSizeRel|Win32
+		{5DF59C72-18CC-4EFE-81D7-D0DD2C7AF9C9}.Release|Win32.ActiveCfg = Release|Win32
+		{5DF59C72-18CC-4EFE-81D7-D0DD2C7AF9C9}.Release|Win32.Build.0 = Release|Win32
+		{5DF59C72-18CC-4EFE-81D7-D0DD2C7AF9C9}.RelWithDebInfo|Win32.ActiveCfg = RelWithDebInfo|Win32
+		{5DF59C72-18CC-4EFE-81D7-D0DD2C7AF9C9}.RelWithDebInfo|Win32.Build.0 = RelWithDebInfo|Win32
+		{0E1398DC-8D98-4DD4-954C-FBAD41601916}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0E1398DC-8D98-4DD4-954C-FBAD41601916}.Debug|Win32.Build.0 = Debug|Win32
+		{0E1398DC-8D98-4DD4-954C-FBAD41601916}.MinSizeRel|Win32.ActiveCfg = MinSizeRel|Win32
+		{0E1398DC-8D98-4DD4-954C-FBAD41601916}.MinSizeRel|Win32.Build.0 = MinSizeRel|Win32
+		{0E1398DC-8D98-4DD4-954C-FBAD41601916}.Release|Win32.ActiveCfg = Release|Win32
+		{0E1398DC-8D98-4DD4-954C-FBAD41601916}.Release|Win32.Build.0 = Release|Win32
+		{0E1398DC-8D98-4DD4-954C-FBAD41601916}.RelWithDebInfo|Win32.ActiveCfg = RelWithDebInfo|Win32
+		{0E1398DC-8D98-4DD4-954C-FBAD41601916}.RelWithDebInfo|Win32.Build.0 = RelWithDebInfo|Win32
+		{B9735C3C-39A0-4863-9E99-6851858A5711}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B9735C3C-39A0-4863-9E99-6851858A5711}.Debug|Win32.Build.0 = Debug|Win32
+		{B9735C3C-39A0-4863-9E99-6851858A5711}.MinSizeRel|Win32.ActiveCfg = MinSizeRel|Win32
+		{B9735C3C-39A0-4863-9E99-6851858A5711}.MinSizeRel|Win32.Build.0 = MinSizeRel|Win32
+		{B9735C3C-39A0-4863-9E99-6851858A5711}.Release|Win32.ActiveCfg = Release|Win32
+		{B9735C3C-39A0-4863-9E99-6851858A5711}.Release|Win32.Build.0 = Release|Win32
+		{B9735C3C-39A0-4863-9E99-6851858A5711}.RelWithDebInfo|Win32.ActiveCfg = RelWithDebInfo|Win32
+		{B9735C3C-39A0-4863-9E99-6851858A5711}.RelWithDebInfo|Win32.Build.0 = RelWithDebInfo|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5DF59C72-18CC-4EFE-81D7-D0DD2C7AF9C9} = {F6ECD125-F419-4232-B747-FFB597B04E12}
+		{0E1398DC-8D98-4DD4-954C-FBAD41601916} = {F6ECD125-F419-4232-B747-FFB597B04E12}
+		{B9735C3C-39A0-4863-9E99-6851858A5711} = {F6ECD125-F419-4232-B747-FFB597B04E12}
 	EndGlobalSection
 EndGlobal

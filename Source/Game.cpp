@@ -24,6 +24,8 @@ TestScene::TestScene()
 	cube2->AddComponent(new MyAnimComponent());
 	//cam->AddComponent(new MyAnimComponent());
 	light->AddComponent(new MyInputComponent(1.0f));
+
+	_physics.Init();
 }
 
 Entity* TestScene::CreateCube(Vector3f pos, float scale)
@@ -107,6 +109,7 @@ void TestScene::onUpdate(float dt)
 {
 	_animator.Update(entities, dt);
 
+	_physics.Update(entities, dt);
 	_render.Clear();
 	_render.Draw(entities);
 }
