@@ -23,7 +23,10 @@
 #include <memory>
 #include <algorithm>
 #include <list>
+#include <set>
 #include <cstdint>
+
+#include <cassert>
 
 // JSON
 #include <json/json.h>

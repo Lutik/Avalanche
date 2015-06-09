@@ -5,40 +5,49 @@
 #include "Material.h"
 #include "VertexArrayObject.h"
 #include "EntityContainer.h"
+#include "System.h"
 
-class Renderer
+struct TransformComponent;
+struct CameraComponent;
+
+class Renderer : public GameSystem
 {
-	Matrix4f _view;
-	Matrix4f _projection;
+	struct CameraData {
+		Entity *entity = nullptr;
+		TransformComponent *transform = nullptr;
+		CameraComponent *camera = nullptr;
+	};
+	CameraData _currentCamera;
 
 	struct ModelRenderData
 	{
+		Entity *entity;
 		Mesh *mesh;
 		Material *material;
-		Matrix4f matrix;
+		TransformComponent *transform;
 	};
 	std::vector<ModelRenderData> _models;
 
 	struct LightData
 	{
-		Vector3f pos;
+		Entity *entity;
+		Vector3f *pos;
 		Vector3f color;
 		Vector3f attenuation;
 	};
 	std::vector<LightData> _lights;
 
-	void SortLights(Vector3f model_pos, int count);
+	void AddLight(Entity *entity);
+	void AddMesh(Entity *entity);
+	void AddCamera(Entity *entity);
 
-	void CollectLightData(EntityContainer &entities);
-	bool CollectCameraData(EntityContainer &entities);
-	void CollectRenderData(EntityContainer &entities);
+	void CollectLightData();
+	void CollectCameraData();
+	void CollectRenderData();
 public:
-	void SetViewMatrix(const Matrix4f &mat);
-	void SetProjectionMatrix(const Matrix4f &mat);
+	void Init(EntityContainer *entities) override;
+	void Update(float dt) override;
 
-	void AddLight(Vector3f light_dir);
-
-	void Clear();
-
-	void Draw(EntityContainer &entities);
+	void OnAddComponent(Entity *entity, ComponentType compType) override;
+	void OnRemoveComponent(Entity *entity, ComponentType compType) override;
 };

@@ -11,6 +11,8 @@ enum class ComponentType
 	POINT_LIGHT
 };
 
+typedef std::vector<ComponentType> ComponentTypeSet;
+
 struct Component
 {
 	virtual ~Component() {};

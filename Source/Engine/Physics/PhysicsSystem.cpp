@@ -3,8 +3,10 @@
 #include "PhysicsSystem.h"
 
 
-void PhysicsSystem::Init()
+void PhysicsSystem::Init(EntityContainer *entities)
 {
+	GameSystem::Init(entities);
+
 	_broadphase = std::make_unique<btDbvtBroadphase>();
 	_collisionConfig = std::make_unique<btDefaultCollisionConfiguration>();
 	_dispatcher = std::make_unique<btCollisionDispatcher>(_collisionConfig.get());
@@ -15,7 +17,7 @@ void PhysicsSystem::Init()
 	_world->setGravity(btVector3(0.0f, 0.0f, -9.8f));
 }
 
-void PhysicsSystem::Update(EntityContainer &entities, float dt)
+void PhysicsSystem::Update(float dt)
 {
 	_world->stepSimulation(dt, 4);
 }

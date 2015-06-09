@@ -173,6 +173,9 @@
     <ClInclude Include="Engine\Physics\PhysicsSystem.h">
       <Filter>Engine\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Game\System.h">
+      <Filter>Engine\Game\Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -271,9 +274,6 @@
     <ClCompile Include="MyComponents.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Game\EntityContainer.cpp">
-      <Filter>Engine\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Game\CameraComponent.cpp">
       <Filter>Engine\Game\Components</Filter>
     </ClCompile>
@@ -288,6 +288,12 @@
     </ClCompile>
     <ClCompile Include="Engine\Physics\PhysicsSystem.cpp">
       <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Game\System.cpp">
+      <Filter>Engine\Game\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Game\EntityContainer.cpp">
+      <Filter>Engine\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

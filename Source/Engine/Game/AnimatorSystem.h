@@ -1,9 +1,9 @@
 #pragma once
 
-#include "EntityContainer.h"
+#include "System.h"
 
-class AnimatorSystem
+class AnimatorSystem : public GameSystem
 {
 public:
-	void Update(EntityContainer &entities, float dt);
+	void Update(float dt) override;
 };

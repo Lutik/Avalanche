@@ -2,20 +2,33 @@
 
 #include "Entity.h"
 
+class GameSystem;
+
 class EntityContainer
 {
-	EntityId _last_entity_id = 0;
-
 	typedef std::unique_ptr<Entity> EntityPtr;
 	typedef std::vector<EntityPtr> EntityVector;
 	EntityVector _entities;
+
+	std::map<ComponentType, std::vector<GameSystem*>> _listeners;
 public:
 
 	Entity* CreateEntity();
-	void DeleteEntity(EntityId id);
-	Entity* GetEntity(EntityId id);
+	void DeleteEntity(Entity *entity);
 
-	std::vector<Entity*> GetEntitiesWithComponentTypes(const std::vector<ComponentType> &compTypes) const;
+	void AddComponent(Entity *entity, Component *component);
+	void RemoveComponent(Entity *entity, ComponentType compType);
 
-	void Clear();
+	void AddListener(ComponentType compType, GameSystem *system);
+	void RemoveListener(ComponentType compType, GameSystem *system);
+
+	template<class CType>
+	CType* GetComponent(Entity *entity, ComponentType type) const
+	{
+		return static_cast<CType*>(entity->GetComponent(type));
+	}
+
+	bool HasComponents(const Entity *entity, const ComponentTypeSet &compTypes) const;
+
+	std::vector<Entity*> GetEntitiesWithComponentTypes(const ComponentTypeSet &compTypes) const;
 };

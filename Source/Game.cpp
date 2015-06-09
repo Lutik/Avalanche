@@ -12,6 +12,12 @@
 
 TestScene::TestScene()
 {
+	_render.Init(&entities);
+	_animator.Init(&entities);
+	_physics.Init(&entities);
+
+
+
 	_cubeMesh = Shapes::MakeBox(1.5f, 1.5f, 1.5f, 2, 2, 2);
 
 	Entity *cube1 = CreateCube({-3.5, 0.0f, 0.0f}, 0.03f);
@@ -22,12 +28,10 @@ TestScene::TestScene()
 	Entity *plane = CreatePlane();
 	Entity *light = CreateLight({0.0f, 0.0f, 1.0f}, {0.0f, 1.0f, 1.0f});
 	
-	cube1->AddComponent(new MyAnimComponent());
-	cube2->AddComponent(new MyAnimComponent());
-	cam->AddComponent(new CamControlComponent());
-	light->AddComponent(new MyInputComponent(1.5f));
-
-	_physics.Init();
+	entities.AddComponent(cube1, new MyAnimComponent());
+	entities.AddComponent(cube2, new MyAnimComponent());
+	entities.AddComponent(cam, new CamControlComponent());
+	entities.AddComponent(light, new MyInputComponent(1.5f));
 }
 
 Entity* TestScene::CreateCube(Vector3f pos, float scale)
@@ -41,9 +45,9 @@ Entity* TestScene::CreateCube(Vector3f pos, float scale)
 	mesh_comp->SetMesh(_cubeMesh);
 	MeshDrawComponent *md_comp = new MeshDrawComponent();
 	md_comp->material = Av::resourceManager.GetMaterial("Metal");
-	cube->AddComponent(tc);
-	cube->AddComponent(mesh_comp);
-	cube->AddComponent(md_comp);
+	entities.AddComponent(cube, tc);
+	entities.AddComponent(cube, mesh_comp);
+	entities.AddComponent(cube, md_comp);
 	return cube;
 }
 
@@ -69,8 +73,8 @@ Entity* TestScene::CreateCamera(Vector3f pos, Vector3f view)
 	tc->position = pos;
 	tc->rotation = CalcCameraRotation(view);
 	tc->scale = 1.0f;
-	cam->AddComponent(tc);
-	cam->AddComponent(new PerspectiveCameraComponent(45.0f, Av::application->GetAspectRatio(), 0.2f, 30.0f));
+	entities.AddComponent(cam, tc);
+	entities.AddComponent(cam, new PerspectiveCameraComponent(45.0f, Av::application->GetAspectRatio(), 0.2f, 30.0f));
 	return cam;
 }
 
@@ -85,9 +89,9 @@ Entity* TestScene::CreatePlane()
 	sc->SetMesh( Shapes::MakePlane(10.0f, 10.0f, 8, 8, 3.0f, 3.0f) );
 	MeshDrawComponent *mdc = new MeshDrawComponent();
 	mdc->material = Av::resourceManager.GetMaterial("Concrete");
-	plane->AddComponent(tc);
-	plane->AddComponent(sc);
-	plane->AddComponent(mdc);
+	entities.AddComponent(plane, tc);
+	entities.AddComponent(plane, sc);
+	entities.AddComponent(plane, mdc);
 	return plane;
 }
 
@@ -99,24 +103,22 @@ Entity* TestScene::CreateLight(Vector3f pos, Vector3f color)
 	tc->rotation = RotationToQuaternion({0,0,1}, 0.0f);
 	tc->scale = 0.01f;
 	PointLightComponent *lc = new PointLightComponent(Vector3f{0.8f, 1.0f, 1.0f}, Vector3f{1.0f, 0.0f, 0.1f});
-	light->AddComponent(tc);
-	light->AddComponent(lc);
+	entities.AddComponent(light, tc);
+	entities.AddComponent(light, lc);
 
 	MeshComponent *mesh_comp = new MeshComponent();
 	mesh_comp->SetMesh(Av::resourceManager.GetMesh("Cube"));
 	MeshDrawComponent *md_comp = new MeshDrawComponent();
 	md_comp->material = Av::resourceManager.GetMaterial("Metal");
-	light->AddComponent(mesh_comp);
-	light->AddComponent(md_comp);
+	entities.AddComponent(light, mesh_comp);
+	entities.AddComponent(light, md_comp);
 
 	return light;
 }
 
 void TestScene::onUpdate(float dt)
 {
-	_animator.Update(entities, dt);
-
-	_physics.Update(entities, dt);
-	_render.Clear();
-	_render.Draw(entities);
+	_animator.Update( dt);
+	_physics.Update(dt);
+	_render.Update(dt);
 }

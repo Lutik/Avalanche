@@ -3,8 +3,9 @@
 #include <btBulletDynamicsCommon.h>
 
 #include "EntityContainer.h"
+#include "System.h"
 
-class PhysicsSystem
+class PhysicsSystem : public GameSystem
 {
 	std::unique_ptr<btBroadphaseInterface> _broadphase;
 	std::unique_ptr<btCollisionConfiguration> _collisionConfig;
@@ -13,7 +14,7 @@ class PhysicsSystem
 
 	std::unique_ptr<btDiscreteDynamicsWorld> _world;
 public:
-	void Init();
+	void Init(EntityContainer *entities) override;
 
-	void Update(EntityContainer &entities, float dt);
+	void Update(float dt) override;
 };
