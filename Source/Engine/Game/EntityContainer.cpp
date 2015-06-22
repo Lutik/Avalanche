@@ -92,3 +92,19 @@ void EntityContainer::RemoveListener(ComponentType compType, GameSystem *system)
 			itr->second.erase(itr2);
 	}
 }
+
+void EntityContainer::Clear()
+{
+	for(EntityPtr &entity : _entities)
+	{
+		for(auto &pair : _listeners)
+		{
+			if(entity->HasComponent(pair.first)) {
+				for(GameSystem *system : pair.second) {
+					system->OnRemoveComponent(entity.get(), pair.first);
+				}
+			}
+		}
+	}
+	_entities.clear();
+}

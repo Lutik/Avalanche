@@ -11,8 +11,8 @@ class EntityContainer
 	EntityVector _entities;
 
 	std::map<ComponentType, std::vector<GameSystem*>> _listeners;
-public:
 
+public:
 	Entity* CreateEntity();
 	void DeleteEntity(Entity *entity);
 
@@ -31,4 +31,6 @@ public:
 	bool HasComponents(const Entity *entity, const ComponentTypeSet &compTypes) const;
 
 	std::vector<Entity*> GetEntitiesWithComponentTypes(const ComponentTypeSet &compTypes) const;
+
+	void Clear();
 };

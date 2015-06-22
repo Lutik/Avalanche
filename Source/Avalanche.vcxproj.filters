@@ -176,6 +176,12 @@
     <ClInclude Include="Engine\Game\System.h">
       <Filter>Engine\Game\Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Physics\PhysicsBody.h">
+      <Filter>Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Physics\MotionState.h">
+      <Filter>Engine\Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -294,6 +300,12 @@
     </ClCompile>
     <ClCompile Include="Engine\Game\EntityContainer.cpp">
       <Filter>Engine\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Physics\PhysicsBody.cpp">
+      <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Physics\MotionState.cpp">
+      <Filter>Engine\Physics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

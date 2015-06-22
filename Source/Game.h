@@ -18,12 +18,13 @@ class TestScene : public Scene
 
 	Mesh::Ptr _cubeMesh;
 
-	Entity* CreateCube(Vector3f pos, float scale);
+	Entity* CreateCube(Vector3f pos);
 	Entity* CreateCamera(Vector3f pos, Vector3f view);
 	Entity* CreatePlane();
 	Entity* CreateLight(Vector3f pos, Vector3f color);
 public:
 	TestScene();
+	~TestScene();
 
 	virtual void onUpdate(float dt) override;
 };

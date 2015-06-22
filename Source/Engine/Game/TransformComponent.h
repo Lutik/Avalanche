@@ -10,7 +10,7 @@ struct TransformComponent : public Component
 {
 	Quaternion rotation;
 	Vector3f position;
-	float scale;
+	float scale = 1.0f;
 
 	Matrix4f GetModelMatrix() const;
 

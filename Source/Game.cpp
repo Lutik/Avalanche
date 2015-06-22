@@ -9,6 +9,7 @@
 #include "CameraComponent.h"
 #include "LightComponent.h"
 #include "Shapes.h"
+#include "PhysicsBody.h"
 
 TestScene::TestScene()
 {
@@ -16,25 +17,26 @@ TestScene::TestScene()
 	_animator.Init(&entities);
 	_physics.Init(&entities);
 
-
-
 	_cubeMesh = Shapes::MakeBox(1.5f, 1.5f, 1.5f, 2, 2, 2);
 
-	Entity *cube1 = CreateCube({-3.5, 0.0f, 0.0f}, 0.03f);
-	Entity *cube2 = CreateCube({3.5f, 0.0f, 0.0f}, 0.03f);
-	Entity *cube3 = CreateCube({0.0f, 3.5f, 0.0f}, 0.03f);
-	Entity *cube4 = CreateCube({0.0f, -3.5f, 0.0f}, 0.03f);
+	Entity *cube1 = CreateCube({-0.5, 0.0f, 4.0f});
+	Entity *cube2 = CreateCube({0.5f, 0.0f, 8.0f});
+	Entity *cube3 = CreateCube({0.0f, 0.5f, 12.0f});
+	Entity *cube4 = CreateCube({0.0f, -0.5f, 16.0f});
 	Entity *cam = CreateCamera({-6.0f, -6.0f, 3.0f}, {1.0f, 1.0f, -0.5f});
 	Entity *plane = CreatePlane();
 	Entity *light = CreateLight({0.0f, 0.0f, 1.0f}, {0.0f, 1.0f, 1.0f});
-	
-	entities.AddComponent(cube1, new MyAnimComponent());
-	entities.AddComponent(cube2, new MyAnimComponent());
+
 	entities.AddComponent(cam, new CamControlComponent());
 	entities.AddComponent(light, new MyInputComponent(1.5f));
 }
 
-Entity* TestScene::CreateCube(Vector3f pos, float scale)
+TestScene::~TestScene()
+{
+	entities.Clear();
+}
+
+Entity* TestScene::CreateCube(Vector3f pos)
 {
 	Entity *cube = entities.CreateEntity();
 	TransformComponent *tc = new TransformComponent();
@@ -48,6 +50,10 @@ Entity* TestScene::CreateCube(Vector3f pos, float scale)
 	entities.AddComponent(cube, tc);
 	entities.AddComponent(cube, mesh_comp);
 	entities.AddComponent(cube, md_comp);
+
+	PhysicsBody *ph_comp = new PhysicsBody(tc, CubeShape(1.5f), 0.5f);
+	entities.AddComponent(cube, ph_comp);
+
 	return cube;
 }
 
@@ -92,6 +98,10 @@ Entity* TestScene::CreatePlane()
 	entities.AddComponent(plane, tc);
 	entities.AddComponent(plane, sc);
 	entities.AddComponent(plane, mdc);
+
+	PhysicsBody *ph_comp = new PhysicsBody(tc, PlaneShape(Vector3f(0,0,1), 0.0f), 0.0f);
+	entities.AddComponent(plane, ph_comp);
+
 	return plane;
 }
 
