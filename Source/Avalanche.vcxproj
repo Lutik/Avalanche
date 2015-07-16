@@ -124,6 +124,7 @@
     <ClInclude Include="Engine\Utils\Log.h" />
     <ClInclude Include="Engine\Utils\OpenGL.h" />
     <ClInclude Include="Engine\Utils\Utils.h" />
+    <ClInclude Include="FpsCounter.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="Math\AvMath.h" />
@@ -166,6 +167,7 @@
     <ClCompile Include="Engine\Utils\Log.cpp" />
     <ClCompile Include="Engine\Utils\OpenGL.cpp" />
     <ClCompile Include="Engine\Utils\Utils.cpp" />
+    <ClCompile Include="FpsCounter.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="GL\gl_core_3_3.c">

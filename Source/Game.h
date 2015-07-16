@@ -7,6 +7,7 @@
 #include "AnimatorSystem.h"
 #include "PhysicsSystem.h"
 
+#include "FpsCounter.h"
 
 class TestScene : public Scene
 {
@@ -17,6 +18,8 @@ class TestScene : public Scene
 	EntityContainer entities;
 
 	Mesh::Ptr _cubeMesh;
+
+	FpsCounter _fps;
 
 	Entity* CreateCube(Vector3f pos);
 	Entity* CreateCamera(Vector3f pos, Vector3f view);

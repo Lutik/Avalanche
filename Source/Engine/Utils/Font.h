@@ -6,7 +6,7 @@
 
 class Font
 {
-	Texture2D _tex;
+	Texture2D *_tex;
 
 	struct GlyphInfo
 	{
@@ -26,6 +26,4 @@ public:
 	void Load(std::string description);
 
 	Mesh Font::MakeStringMesh(Vector2f pos, std::string str, float height);
-
-	const Texture2D& GetTexture() const;
 };

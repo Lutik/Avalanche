@@ -128,7 +128,10 @@ Entity* TestScene::CreateLight(Vector3f pos, Vector3f color)
 
 void TestScene::onUpdate(float dt)
 {
-	_animator.Update( dt);
+	_animator.Update(dt);
 	_physics.Update(dt);
 	_render.Update(dt);
+
+	_fps.Update(dt);
+	_fps.Draw();
 }

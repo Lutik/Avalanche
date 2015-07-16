@@ -12,6 +12,10 @@
 		{
 			"name" : "ConcreteDiffuse",
 			"path" : "concrete.png"
+		},
+		{
+			"name" : "Presquire_32",
+			"path" : "Font/Presquire_32.png"
 		}
 	],
 	"Meshes" :
@@ -27,6 +31,11 @@
 			"name" : "Default",
 			"vs" : "Shaders/Lambert.vsh",
 			"fs" : "Shaders/Lambert.fsh"
+		},
+		{
+			"name" : "DefaultGUI",
+			"vs" : "Shaders/GUI.vsh",
+			"fs" : "Shaders/GUI.fsh"
 		}
 	],
 	"Materials" :
@@ -43,6 +52,13 @@
 			"shader" : "Default",
 			"textures" : {
 				"diffuse_tex" : "ConcreteDiffuse"
+			}
+		},
+		{
+			"name" : "Font_Presquire_32",
+			"shader" : "DefaultGUI",
+			"textures" : {
+				"tex" : "Presquire_32"
 			}
 		}
 	]

@@ -25,6 +25,7 @@ Mesh::Mesh(Mesh&& other)
 	std::swap(_ib, other._ib);
 	std::swap(_vertexDescription, other._vertexDescription);
 	std::swap(_indexType, other._indexType);
+	std::swap(_primitiveType, other._primitiveType);
 	std::swap(_vao, other._vao);
 }
 
@@ -34,6 +35,7 @@ Mesh& Mesh::operator=(Mesh&& other)
 	std::swap(_ib, other._ib);
 	std::swap(_vertexDescription, other._vertexDescription);
 	std::swap(_indexType, other._indexType);
+	std::swap(_primitiveType, other._primitiveType);
 	std::swap(_vao, other._vao);
 	return *this;
 }
