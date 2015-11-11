@@ -106,6 +106,7 @@
     <ClInclude Include="Engine\Game\TransformComponent.h" />
     <ClInclude Include="Engine\Physics\MotionState.h" />
     <ClInclude Include="Engine\Physics\PhysicsBody.h" />
+    <ClInclude Include="Engine\Physics\PhysicsShapes.h" />
     <ClInclude Include="Engine\Physics\PhysicsSystem.h" />
     <ClInclude Include="Engine\Render\Renderer.h" />
     <ClInclude Include="Engine\Render\Shader.h" />
@@ -152,6 +153,7 @@
     <ClCompile Include="Engine\Game\TransformComponent.cpp" />
     <ClCompile Include="Engine\Physics\MotionState.cpp" />
     <ClCompile Include="Engine\Physics\PhysicsBody.cpp" />
+    <ClCompile Include="Engine\Physics\PhysicsShapes.cpp" />
     <ClCompile Include="Engine\Physics\PhysicsSystem.cpp" />
     <ClCompile Include="Engine\Render\Renderer.cpp" />
     <ClCompile Include="Engine\Render\Shader.cpp" />

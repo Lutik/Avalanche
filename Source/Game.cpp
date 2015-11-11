@@ -51,7 +51,7 @@ Entity* TestScene::CreateCube(Vector3f pos)
 	entities.AddComponent(cube, mesh_comp);
 	entities.AddComponent(cube, md_comp);
 
-	PhysicsBody *ph_comp = new PhysicsBody(tc, CubeShape(1.5f), 0.5f);
+	PhysicsBody *ph_comp = new PhysicsBody(tc, ModelFromShape(CubeShape(1.5f)), 0.5f);
 	entities.AddComponent(cube, ph_comp);
 
 	return cube;
@@ -99,7 +99,7 @@ Entity* TestScene::CreatePlane()
 	entities.AddComponent(plane, sc);
 	entities.AddComponent(plane, mdc);
 
-	PhysicsBody *ph_comp = new PhysicsBody(tc, PlaneShape(Vector3f(0,0,1), 0.0f), 0.0f);
+	PhysicsBody *ph_comp = new PhysicsBody(tc, ModelFromShape(PlaneShape(Vector3f(0,0,1), 0.0f)), 0.0f);
 	entities.AddComponent(plane, ph_comp);
 
 	return plane;

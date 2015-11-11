@@ -185,6 +185,9 @@
     <ClInclude Include="FpsCounter.h">
       <Filter>MyGame</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Physics\PhysicsShapes.h">
+      <Filter>Engine\Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -312,6 +315,9 @@
     </ClCompile>
     <ClCompile Include="FpsCounter.cpp">
       <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Physics\PhysicsShapes.cpp">
+      <Filter>Engine\Physics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
